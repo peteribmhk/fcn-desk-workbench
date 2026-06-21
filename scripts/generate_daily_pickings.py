@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Generate an indicative FCN daily picking report.
 
 This script is intentionally dependency-free so it can run on GitHub Actions
@@ -62,18 +63,16 @@ RISK_TAGS = {
 
 
 def fetch_stooq_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
-    symbols = ",".join(f"{ticker.lower()}.us" for ticker in tickers)
-    query = urllib.parse.urlencode({"s": symbols, "f": "sd2t2ohlcv", "h": "", "e": "csv"})
-    url = f"https://stooq.com/q/l/?{query}"
-
-    with urllib.request.urlopen(url, timeout=30) as response:
-        text = response.read().decode("utf-8", errors="replace")
-
     rows = {}
-    for row in csv.DictReader(text.splitlines()):
-        symbol = row.get("Symbol", "").split(".")[0].upper()
-        if symbol:
-            rows[symbol] = row
+    for ticker in tickers:
+        query = urllib.parse.urlencode({"s": f"{ticker.lower()}.us", "f": "sd2t2ohlcv", "h": "", "e": "csv"})
+        url = f"https://stooq.com/q/l/?{query}"
+        with urllib.request.urlopen(url, timeout=30) as response:
+            text = response.read().decode("utf-8", errors="replace")
+        for row in csv.DictReader(text.splitlines()):
+            symbol = row.get("Symbol", "").split(".")[0].upper()
+            if symbol:
+                rows[symbol] = row
     return rows
 
 
@@ -235,4 +234,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
