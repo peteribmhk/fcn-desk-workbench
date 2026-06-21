@@ -1,9 +1,9 @@
 # FCN Daily Report
 
 **Report date:** 2026-06-21  
-**Generated:** 2026-06-21 22:36 HKT / 2026-06-21 14:36 UTC  
+**Generated:** 2026-06-21 22:38 HKT / 2026-06-21 14:38 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
-**Source caveat:** Public quote fetch failed: <HTTPError 404: 'Not Found'>. Use this report as a template only.
+**Source caveat:** Public quote fetch failed: RuntimeError('No public quote rows returned from Stooq daily CSV endpoint'). Use this report as a template only.
 
 ## Market Snapshot
 
