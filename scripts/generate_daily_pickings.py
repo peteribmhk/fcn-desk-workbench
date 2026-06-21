@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import csv
 import datetime as dt
+import json
 import math
 import urllib.parse
 import urllib.request
@@ -60,6 +61,42 @@ RISK_TAGS = {
     "PLTR": "Valuation, AI software sentiment, earnings risk",
     "HOOD": "Retail activity, crypto revenue, regulation",
 }
+
+
+def fetch_yahoo_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
+    query = urllib.parse.urlencode({"symbols": ",".join(tickers)})
+    url = f"https://query1.finance.yahoo.com/v7/finance/quote?{query}"
+    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        payload = json.loads(response.read().decode("utf-8", errors="replace"))
+
+    rows = {}
+    for item in payload.get("quoteResponse", {}).get("result", []):
+        ticker = item.get("symbol", "").upper()
+        price = item.get("regularMarketPrice")
+        open_ = item.get("regularMarketOpen")
+        timestamp = item.get("regularMarketTime")
+        if not ticker or price is None:
+            continue
+        when = "N/A"
+        time_text = "close"
+        if timestamp:
+            stamp = dt.datetime.fromtimestamp(int(timestamp), tz=dt.timezone.utc)
+            when = stamp.strftime("%Y-%m-%d")
+            time_text = stamp.strftime("%H:%M UTC")
+        rows[ticker] = {
+            "Symbol": ticker,
+            "Date": when,
+            "Time": time_text,
+            "Open": "" if open_ is None else str(open_),
+            "High": "",
+            "Low": "",
+            "Close": str(price),
+            "Volume": str(item.get("regularMarketVolume", "")),
+        }
+    if not rows:
+        raise RuntimeError("No public quote rows returned from Yahoo Finance quote endpoint")
+    return rows
 
 
 def fetch_stooq_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
@@ -146,11 +183,18 @@ def generate_report() -> str:
     hk_time = now_utc.astimezone(dt.timezone(dt.timedelta(hours=8)))
 
     try:
-        quotes = fetch_stooq_quotes(TICKERS)
-        source_note = "Public quote source: Stooq CSV. Data may be delayed or unavailable."
+        quotes = fetch_yahoo_quotes(TICKERS)
+        source_note = "Public quote source: Yahoo Finance public quote endpoint. Data may be delayed or unavailable."
     except Exception as exc:  # noqa: BLE001 - report should still be created
-        quotes = {}
-        source_note = f"Public quote fetch failed: {exc!r}. Use this report as a template only."
+        try:
+            quotes = fetch_stooq_quotes(TICKERS)
+            source_note = "Public quote source: Stooq daily CSV fallback. Data may be delayed or unavailable."
+        except Exception as fallback_exc:  # noqa: BLE001 - report should still be created
+            quotes = {}
+            source_note = (
+                f"Public quote fetch failed: primary={exc!r}; fallback={fallback_exc!r}. "
+                "Use this report as a template only."
+            )
 
     market_rows = [["Ticker", "Last", "Date/Time", "Daily move", "Volatility read", "Main risk"]]
     for ticker in TICKERS:
