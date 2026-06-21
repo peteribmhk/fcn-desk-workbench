@@ -65,14 +65,23 @@ RISK_TAGS = {
 def fetch_stooq_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
     rows = {}
     for ticker in tickers:
-        query = urllib.parse.urlencode({"s": f"{ticker.lower()}.us", "f": "sd2t2ohlcv", "h": "", "e": "csv"})
-        url = f"https://stooq.com/q/l/?{query}"
-        with urllib.request.urlopen(url, timeout=30) as response:
-            text = response.read().decode("utf-8", errors="replace")
-        for row in csv.DictReader(text.splitlines()):
-            symbol = row.get("Symbol", "").split(".")[0].upper()
-            if symbol:
-                rows[symbol] = row
+        query = urllib.parse.urlencode({"s": f"{ticker.lower()}.us", "i": "d"})
+        url = f"https://stooq.com/q/d/l/?{query}"
+        try:
+            with urllib.request.urlopen(url, timeout=30) as response:
+                text = response.read().decode("utf-8", errors="replace")
+        except Exception:
+            continue
+
+        history = list(csv.DictReader(text.splitlines()))
+        if not history:
+            continue
+        latest = history[-1]
+        latest["Symbol"] = f"{ticker}.US"
+        latest["Time"] = "close"
+        rows[ticker] = latest
+    if not rows:
+        raise RuntimeError("No public quote rows returned from Stooq daily CSV endpoint")
     return rows
 
 
