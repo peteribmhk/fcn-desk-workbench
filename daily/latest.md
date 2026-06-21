@@ -1,22 +1,22 @@
 # FCN Daily Report
 
 **Report date:** 2026-06-21  
-**Generated:** 2026-06-21 22:42 HKT / 2026-06-21 14:42 UTC  
+**Generated:** 2026-06-21 22:49 HKT / 2026-06-21 14:49 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
-**Source caveat:** Public quote fetch failed: primary=<HTTPError 401: 'Unauthorized'>; fallback=RuntimeError('No public quote rows returned from Stooq daily CSV endpoint'). Use this report as a template only.
+**Source caveat:** Public quote source: Yahoo Finance public quote endpoint. Data may be delayed or unavailable.
 
 ## Market Snapshot
 
 | Ticker | Last | Date/Time | Daily move | Volatility read | Main risk |
 | --- | --- | --- | --- | --- | --- |
-| MSTR | N/A | N/A | N/A | Very high | BTC beta, leverage, gap risk |
-| COIN | N/A | N/A | N/A | High | Crypto flow, regulation, BTC/ETH sentiment |
-| AMD | N/A | N/A | N/A | Medium-high | AI expectations, valuation, product cycle |
-| SMCI | N/A | N/A | N/A | Very high | Financing/dilution, order-cycle risk, jump risk |
-| NVDA | N/A | N/A | N/A | Medium-high | AI capex cycle, valuation, export controls |
-| TSLA | N/A | N/A | N/A | High | Deliveries, margins, CEO/event risk |
-| PLTR | N/A | N/A | N/A | High | Valuation, AI software sentiment, earnings risk |
-| HOOD | N/A | N/A | N/A | High | Retail activity, crypto revenue, regulation |
+| MSTR | 112.53 | 2026-06-18 13:30 UTC | -4.34% | Very high; active daily move | BTC beta, leverage, gap risk |
+| COIN | 163.26 | 2026-06-18 13:30 UTC | -2.68% | High | Crypto flow, regulation, BTC/ETH sentiment |
+| AMD | 537.37 | 2026-06-18 13:30 UTC | +1.09% | Medium-high | AI expectations, valuation, product cycle |
+| SMCI | 30.66 | 2026-06-18 13:30 UTC | +7.81% | Very high; elevated daily move | Financing/dilution, order-cycle risk, jump risk |
+| NVDA | 210.69 | 2026-06-18 13:30 UTC | +1.62% | Medium-high | AI capex cycle, valuation, export controls |
+| TSLA | 400.49 | 2026-06-18 13:30 UTC | +0.60% | High | Deliveries, margins, CEO/event risk |
+| PLTR | 128.47 | 2026-06-18 13:30 UTC | -1.81% | High | Valuation, AI software sentiment, earnings risk |
+| HOOD | 108.15 | 2026-06-18 13:30 UTC | +0.30% | High | Retail activity, crypto revenue, regulation |
 
 ## Basket Pickings
 
