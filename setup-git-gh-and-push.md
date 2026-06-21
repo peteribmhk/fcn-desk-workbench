@@ -99,3 +99,27 @@ Check:
 - `templates/` and `samples/` are visible.
 - No client names, account details, actual suitability records, or confidential issuer quotes were uploaded.
 
+## 8. If Git Reports Dubious Ownership
+
+If `git push` fails with:
+
+```text
+detected dubious ownership in repository
+```
+
+run:
+
+```powershell
+git config --global --add safe.directory "C:/Users/ZhuanZ1/Documents/Codex/2026-06-07/i-am-a-securities-salesperson-in/outputs/fcn-desk-workbench"
+git push -u origin main
+```
+
+This is needed because Codex created the project files under a sandbox owner, while your normal PowerShell runs as your Windows user.
+
+## 9. One-Command Push Script
+
+From normal Windows PowerShell, run:
+
+```powershell
+& "C:\Users\ZhuanZ1\Documents\Codex\2026-06-07\i-am-a-securities-salesperson-in\outputs\fcn-desk-workbench\push-to-github.ps1"
+```
