@@ -64,26 +64,42 @@ RISK_TAGS = {
 
 
 def fetch_yahoo_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
-    query = urllib.parse.urlencode({"symbols": ",".join(tickers)})
-    url = f"https://query1.finance.yahoo.com/v7/finance/quote?{query}"
-    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(request, timeout=30) as response:
-        payload = json.loads(response.read().decode("utf-8", errors="replace"))
-
     rows = {}
-    for item in payload.get("quoteResponse", {}).get("result", []):
-        ticker = item.get("symbol", "").upper()
-        price = item.get("regularMarketPrice")
-        open_ = item.get("regularMarketOpen")
-        timestamp = item.get("regularMarketTime")
-        if not ticker or price is None:
+    for ticker in tickers:
+        query = urllib.parse.urlencode({"range": "5d", "interval": "1d"})
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?{query}"
+        request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = json.loads(response.read().decode("utf-8", errors="replace"))
+
+        result = (payload.get("chart", {}).get("result") or [None])[0]
+        if not result:
             continue
+
+        timestamps = result.get("timestamp") or []
+        quote = ((result.get("indicators", {}).get("quote") or [{}])[0])
+        closes = quote.get("close") or []
+        opens = quote.get("open") or []
+
+        latest_index = None
+        for idx in range(len(closes) - 1, -1, -1):
+            if closes[idx] is not None:
+                latest_index = idx
+                break
+        if latest_index is None:
+            continue
+
+        price = closes[latest_index]
+        open_ = opens[latest_index] if latest_index < len(opens) else None
+        timestamp = timestamps[latest_index] if latest_index < len(timestamps) else None
         when = "N/A"
         time_text = "close"
         if timestamp:
             stamp = dt.datetime.fromtimestamp(int(timestamp), tz=dt.timezone.utc)
             when = stamp.strftime("%Y-%m-%d")
             time_text = stamp.strftime("%H:%M UTC")
+        volumes = quote.get("volume") or []
+        volume = volumes[latest_index] if latest_index < len(volumes) else ""
         rows[ticker] = {
             "Symbol": ticker,
             "Date": when,
@@ -92,10 +108,10 @@ def fetch_yahoo_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
             "High": "",
             "Low": "",
             "Close": str(price),
-            "Volume": str(item.get("regularMarketVolume", "")),
+            "Volume": str(volume),
         }
     if not rows:
-        raise RuntimeError("No public quote rows returned from Yahoo Finance quote endpoint")
+        raise RuntimeError("No public quote rows returned from Yahoo Finance chart endpoint")
     return rows
 
 
