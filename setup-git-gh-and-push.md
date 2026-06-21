@@ -2,7 +2,8 @@
 
 Target GitHub account: <https://github.com/peteribmhk>  
 Target repository: `peteribmhk/fcn-desk-workbench`  
-Recommended visibility: **Private**
+Current visibility: **Public**  
+Recommended rule: use public visibility only for sanitized templates and methodology.
 
 Run these commands in a normal Windows PowerShell terminal on your laptop, not inside Codex.
 
@@ -52,7 +53,7 @@ Verify:
 gh auth status
 ```
 
-## 5. Push This Project To A New Private Repo
+## 5. Push This Project To A New Repo
 
 ```powershell
 cd "C:\Users\ZhuanZ1\Documents\Codex\2026-06-07\i-am-a-securities-salesperson-in\outputs\fcn-desk-workbench"
@@ -60,7 +61,7 @@ git init
 git branch -M main
 git add .
 git commit -m "Initial FCN desk workbench"
-gh repo create peteribmhk/fcn-desk-workbench --private --source . --remote origin --push
+gh repo create peteribmhk/fcn-desk-workbench --public --source . --remote origin --push
 ```
 
 ## 6. If The Repo Already Exists
@@ -94,7 +95,7 @@ https://github.com/peteribmhk/fcn-desk-workbench
 
 Check:
 
-- The repo is private.
+- The repo visibility matches the intended use.
 - `README.md` appears on the homepage.
 - `templates/` and `samples/` are visible.
 - No client names, account details, actual suitability records, or confidential issuer quotes were uploaded.

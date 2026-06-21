@@ -1,8 +1,8 @@
 # FCN Desk Workbench
 
-Private working repository for daily Fixed Coupon Note (FCN) screening, issuer RFQ preparation, and client explanation drafts.
+Public-safe working repository for daily Fixed Coupon Note (FCN) screening, issuer RFQ preparation, and client explanation drafts.
 
-This project is a sales workflow aid, not a tradable pricing system. It uses public or manually entered market context to help judge which baskets may produce higher coupons and whether the structure terms are reasonable.
+This project is a sales workflow aid, not a tradable pricing system. It uses public or manually entered market context to help judge which baskets may produce higher coupons and whether the structure terms are reasonable. Do not store client-specific information, actual issuer quotes, suitability records, or firm-confidential materials in this public repository.
 
 ## Core Disclaimer
 
@@ -46,11 +46,11 @@ Expected output:
 
 ## GitHub Upload
 
-Recommended repo setting: **private**.
+Current repo setting: **public**.
 
-Because this first version is Markdown/CSV only, upload the `fcn-desk-workbench` folder directly through GitHub web UI:
+Because this first version is Markdown/CSV only, upload the `fcn-desk-workbench` folder directly through GitHub web UI if you are recreating it:
 
-1. Create a new private GitHub repository named `fcn-desk-workbench`.
+1. Create a new GitHub repository named `fcn-desk-workbench`.
 2. Upload all files and folders from this directory.
 3. Commit with message: `Initial FCN desk workbench`.
-4. Keep client names, account details, and actual suitability records out of the repo.
+4. Keep client names, account details, actual issuer quotes, and suitability records out of the repo, especially when the repo is public.

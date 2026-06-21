@@ -15,9 +15,9 @@ If the laptop is off, use one of these cloud paths:
 
 ## Recommended V1 Setup
 
-Use this project as a private GitHub repo and access it from ChatGPT mobile:
+Use this project as a GitHub repo and access it from ChatGPT mobile:
 
-1. Upload the repo to GitHub as private.
+1. Upload the repo to GitHub. If it is public, keep it sanitized and template-only.
 2. In ChatGPT mobile, start a project or chat called `FCN Desk Workbench`.
 3. Add or paste the key files:
    - `README.md`
@@ -49,7 +49,7 @@ Possible workflow:
 1. A scheduled GitHub Actions job runs after the US close.
 2. It fetches public market data from approved/free sources or an API key stored in GitHub Secrets.
 3. It writes a new Markdown file under `daily/YYYY-MM-DD.md`.
-4. It commits the file back to the private repo.
+4. It commits the file back to the repo.
 
 This requires adding scripts and a workflow file later. It is not part of V1 because the current repo intentionally has no runtime dependency.
 
@@ -66,4 +66,3 @@ For client-facing use, always keep three layers separate:
 1. **Public-data screen**: useful for idea generation.
 2. **Issuer RFQ**: source of actual tradable coupon.
 3. **Compliance/suitability process**: required before client use.
-
