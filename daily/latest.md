@@ -1,7 +1,7 @@
 # FCN Daily Report
 
 **Report date:** 2026-06-21  
-**Generated:** 2026-06-21 22:49 HKT / 2026-06-21 14:49 UTC  
+**Generated:** 2026-06-21 22:55 HKT / 2026-06-21 14:55 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** Public quote source: Yahoo Finance public quote endpoint. Data may be delayed or unavailable.
 
