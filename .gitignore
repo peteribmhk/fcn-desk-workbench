@@ -1,0 +1,10 @@
+# Local working files
+*.tmp
+*.bak
+~$*
+
+# Private exports that should not be uploaded unless reviewed
+client-notes/
+actual-quotes/
+suitability-records/
+
