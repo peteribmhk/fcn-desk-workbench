@@ -34,6 +34,22 @@ Expected output:
 6. Issuer RFQ wording.
 7. Short Chinese/English client explanation.
 
+## Cloud Runtime And Phone Interface
+
+This repo now includes a GitHub Actions cloud runtime:
+
+- Workflow: `.github/workflows/fcn-daily-report.yml`
+- Generator: `scripts/generate_daily_pickings.py`
+- Phone-readable report: `daily/latest.md`
+
+The workflow runs at **08:30 Hong Kong time, Monday-Friday**, and can also be started manually from the GitHub **Actions** tab. It does not require your laptop to be on.
+
+Phone link:
+
+```text
+https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
+```
+
 ## Project Files
 
 - `watchlist.csv`: default high-volatility ticker universe and basket ideas.
@@ -43,6 +59,9 @@ Expected output:
 - `templates/client-explanation.md`: bilingual client explanation blocks.
 - `samples/sample-daily-pickings.md`: example output format using qualitative assumptions.
 - `mobile-cloud-workflow.md`: how to use this project from phone/ChatGPT when the laptop is off.
+- `.github/workflows/fcn-daily-report.yml`: cloud runtime for scheduled reports.
+- `scripts/generate_daily_pickings.py`: dependency-free report generator.
+- `daily/latest.md`: phone-readable latest report.
 
 ## GitHub Upload
 

@@ -13,6 +13,22 @@ If the laptop is off, use one of these cloud paths:
 3. **GitHub Actions** for scheduled cloud runs that update files in the repo.
 4. **GitHub Codespaces** for a browser-based cloud development environment.
 
+## Installed In This Repo
+
+This repo includes the recommended cloud runtime and phone interface:
+
+- **Cloud runtime:** GitHub Actions workflow `.github/workflows/fcn-daily-report.yml`
+- **Report generator:** `scripts/generate_daily_pickings.py`
+- **Phone-readable report:** `daily/latest.md`
+
+The workflow runs at 08:30 Hong Kong time, Monday-Friday, and can also be run manually from GitHub's **Actions** tab.
+
+Open from phone:
+
+```text
+https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
+```
+
 ## Recommended V1 Setup
 
 Use this project as a GitHub repo and access it from ChatGPT mobile:
