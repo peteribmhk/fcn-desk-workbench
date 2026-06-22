@@ -34,9 +34,21 @@ Default structure to compare:
 - Product: worst-of FCN / autocallable FCN.
 - Tenor: 3M, 6M, and 12M comparison if time allows.
 - KO: 100%, monthly observation.
-- KI / airbag: 59% KI, observed at maturity unless issuer specifies otherwise.
+- KI / airbag: request KI ladder 50 / 55 / 59 / 65 / 70, observed at maturity unless issuer specifies otherwise.
 - Coupon: fixed coupon, monthly payment unless requested otherwise.
 - Data: public data for screening only.
+
+## KI Optimization
+
+| Basket | Tenor | KI | Airbag | Coupon p.a. | Coupon pickup vs prior KI | Pickup per KI point | Decision |
+|---|---|---:|---:|---:|---:|---:|---|
+| [TICKER 1] / [TICKER 2] | 3M | 50 | 50 | TBD | - | - | Base protection |
+| [TICKER 1] / [TICKER 2] | 3M | 55 | 45 | TBD | TBD | TBD | Keep / move up |
+| [TICKER 1] / [TICKER 2] | 3M | 59 | 41 | TBD | TBD | TBD | Keep / move up |
+| [TICKER 1] / [TICKER 2] | 3M | 65 | 35 | TBD | TBD | TBD | Keep / move up |
+| [TICKER 1] / [TICKER 2] | 3M | 70 | 30 | TBD | TBD | TBD | Only if pickup is strong |
+
+Decision rule: choose the KI where incremental coupon pickup is worth the airbag sacrificed. If coupon pickup is flat, prefer the lower KI.
 
 ## RFQ To Send
 
@@ -49,7 +61,7 @@ Tenor: [3M / 6M / 12M]
 Initial fixing: [live level / today close / specified date]
 Coupon: fixed coupon, paid monthly
 KO: 100%, observed monthly, autocall from [month 1 / month 2 / month 3]
-KI: 59%, observed at maturity
+KI: please quote ladder 50 / 55 / 59 / 65 / 70, observed at maturity
 No RO economics included unless otherwise specified
 Notional: [amount]
 Please show coupon p.a., issuer estimated value, bid/offer, settlement convention, fee/margin assumptions, and early unwind policy.
@@ -64,4 +76,3 @@ English:
 中文:
 
 > 这是一个仅供参考的高票息 FCN 想法。票息较高，是因为相关股票波动较大，投资者承担最差表现股票的下行风险。如果产品没有提前赎回，并且到期时最差表现股票低于 KI 水平，本金赎回可能会跟随该股票的下跌表现。
-

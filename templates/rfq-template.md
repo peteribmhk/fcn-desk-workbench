@@ -12,8 +12,8 @@ Tenor: [3M / 6M / 12M]
 Initial fixing: [live level / close / specified fixing date]
 Coupon: fixed coupon, paid [monthly / quarterly]
 KO: [100%], observed [monthly], autocall from [month 1 / month 2 / month 3]
-KI: [59%], observed [at maturity / daily close / continuously]
-Airbag: [41% buffer if KI is 59%]
+KI: Please quote ladder [50% / 55% / 59% / 65% / 70%], observed [at maturity / daily close / continuously]
+Airbag: [100 - KI]
 Redemption: if KI event applies and final worst-of is below strike, redemption follows worst-of performance
 Notional: [amount]
 Settlement: [cash / physical / issuer standard]
@@ -35,13 +35,13 @@ Please show:
 ### Max Coupon RFQ
 
 ```text
-Please maximize coupon for a USD worst-of FCN on [TICKER 1] / [TICKER 2], KO 100 monthly, KI 59 at maturity, monthly coupon, no RO economics. Show 3M, 6M, and 12M levels.
+Please maximize value, not just coupon, for a USD worst-of FCN on [TICKER 1] / [TICKER 2], KO 100 monthly, monthly coupon, no RO economics. Show 3M, 6M, and 12M levels across KI 50 / 55 / 59 / 65 / 70. Please include coupon p.a. for each KI level.
 ```
 
-### Safer Airbag RFQ
+### KI Optimization RFQ
 
 ```text
-Please compare KI 50 / 55 / 59 for the same basket and tenor. Show coupon give-up and explain which input drives the difference.
+Please compare KI 50 / 55 / 59 / 65 / 70 for the same basket, tenor, KO, observation schedule, and coupon frequency. Show coupon pickup between each KI level and explain whether the pickup is driven mainly by vol, skew, correlation, funding, borrow, or margin.
 ```
 
 ### Quote Challenge
@@ -49,4 +49,3 @@ Please compare KI 50 / 55 / 59 for the same basket and tenor. Show coupon give-u
 ```text
 Your coupon appears below my indicative screen. Please clarify whether the difference is mainly driven by vol, correlation, dividends, borrow, funding, issuer margin, or autocall assumptions.
 ```
-

@@ -19,20 +19,21 @@ from pathlib import Path
 
 
 TICKERS = ["MSTR", "COIN", "AMD", "SMCI", "NVDA", "TSLA", "PLTR", "HOOD"]
+KI_LADDER = [50, 55, 59, 65, 70]
 
 BASKETS = [
     {
         "rank": 1,
         "basket": ("MSTR", "COIN"),
         "category": "Max coupon",
-        "terms": "3M/6M, KO 100 monthly, KI 59 maturity, monthly coupon",
+        "terms": "3M/6M, KO 100 monthly, RFQ KI ladder 50/55/59/65/70",
         "risk": "Concentrated crypto-beta; BTC selloff can hit both names.",
     },
     {
         "rank": 2,
         "basket": ("AMD", "SMCI"),
         "category": "Balanced high coupon",
-        "terms": "3M tactical or 6M if client accepts event risk; KO 100, KI 59",
+        "terms": "3M tactical or 6M if client accepts event risk; optimize KI ladder",
         "risk": "SMCI can dominate worst-of downside; financing and jump risk matter.",
     },
     {
@@ -46,7 +47,7 @@ BASKETS = [
         "rank": 4,
         "basket": ("COIN", "SMCI"),
         "category": "Aggressive alternative",
-        "terms": "3M/6M; ask issuer to compare KI 55 vs KI 59",
+        "terms": "3M/6M; compare coupon pickup per KI point across ladder",
         "risk": "Crypto regulation plus SMCI financing/event risk.",
     },
 ]
@@ -194,6 +195,33 @@ def md_table(rows: list[list[str]]) -> str:
     return "\n".join([header, sep, *body])
 
 
+def ki_optimization_rows() -> list[list[str]]:
+    rows = [
+        [
+            "KI",
+            "Airbag",
+            "Coupon p.a.",
+            "Pickup vs prior KI",
+            "Pickup per KI point",
+            "Desk decision",
+        ]
+    ]
+    for index, ki in enumerate(KI_LADDER):
+        rows.append(
+            [
+                f"{ki}%",
+                f"{100 - ki}%",
+                "Issuer RFQ",
+                "-" if index == 0 else "Calculate",
+                "-" if index == 0 else "Calculate",
+                "Base protection"
+                if index == 0
+                else "Move up only if pickup justifies airbag sacrificed",
+            ]
+        )
+    return rows
+
+
 def generate_report() -> str:
     now_utc = dt.datetime.now(dt.timezone.utc)
     hk_time = now_utc.astimezone(dt.timezone(dt.timedelta(hours=8)))
@@ -262,14 +290,20 @@ def generate_report() -> str:
 - Currency: USD.
 - Tenor: compare 3M and 6M first; add 12M only if client accepts longer event risk.
 - KO: 100%, monthly observation.
-- KI / airbag: 59% KI, observed at maturity unless issuer specifies otherwise.
+- KI / airbag: request ladder 50 / 55 / 59 / 65 / 70, observed at maturity unless issuer specifies otherwise.
 - Coupon: fixed coupon, monthly payment.
 - RO: no RO economics unless specifically requested.
+
+## KI Optimization
+
+{md_table(ki_optimization_rows())}
+
+Decision rule: do not choose KI by habit. Compare the coupon pickup against the airbag sacrificed. If the pickup is flat, keep the lower KI. If a higher KI gives a sharply better coupon pickup per KI point, flag that level as the best-value candidate subject to client risk appetite.
 
 ## RFQ Wording
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 100 monthly, KI 59 at maturity, fixed monthly coupon, no RO economics. Please show coupon p.a., issuer estimated value, bid/offer, assumptions, and early unwind policy.
+Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 100 monthly, fixed monthly coupon, no RO economics. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
 ```
 
 ## Client Explanation

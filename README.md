@@ -57,6 +57,7 @@ https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
 - `templates/daily-pickings.md`: daily output template.
 - `templates/rfq-template.md`: issuer RFQ template.
 - `templates/client-explanation.md`: bilingual client explanation blocks.
+- `templates/ki-optimization.md`: KI ladder and coupon-pickup comparison template.
 - `samples/sample-daily-pickings.md`: example output format using qualitative assumptions.
 - `mobile-cloud-workflow.md`: how to use this project from phone/ChatGPT when the laptop is off.
 - `.github/workflows/fcn-daily-report.yml`: cloud runtime for scheduled reports.

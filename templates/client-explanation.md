@@ -24,11 +24,11 @@ The coupon is not free yield. It is compensation for taking equity-linked downsi
 
 English:
 
-The KI level is the downside trigger. A 59% KI means the stock has a 41% airbag from the initial level. A lower KI gives more protection but usually reduces coupon. A higher KI gives higher coupon but increases the chance that downside redemption applies.
+The KI level is the downside trigger. The airbag equals 100 minus the KI level. A lower KI gives more protection but usually reduces coupon. A higher KI gives higher coupon but increases the chance that downside redemption applies. The key question is whether the extra coupon is worth the airbag sacrificed.
 
 中文:
 
-KI 水平是下行触发点。59% KI 表示相对初始价格有 41% 的 airbag。KI 越低，保护越深，但票息通常越低。KI 越高，票息通常越高，但触发下行赎回的机会也更高。
+KI 水平是下行触发点。Airbag 等于 100 减去 KI 水平。KI 越低，保护越深，但票息通常越低。KI 越高，票息通常越高，但触发下行赎回的机会也更高。关键不是单纯追求最低 KI 或最高票息，而是判断多拿的票息是否值得牺牲相应的 airbag。
 
 ## KO Explanation
 
@@ -49,4 +49,3 @@ The main risk is that the worst-performing stock falls significantly and remains
 中文:
 
 主要风险是最差表现股票大幅下跌，并在相关观察点低于 KI 水平。在这种情况下，投资者可能承受与该股票表现挂钩的本金损失。
-

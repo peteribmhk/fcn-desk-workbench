@@ -49,10 +49,42 @@ Rank baskets by the following order:
 
 Use "airbag" as the downside protection buffer between initial level and KI.
 
-- **KI 59**: aggressive but meaningful downside buffer; common for high-vol names when chasing coupon.
+- Do not assume one fixed KI level is optimal.
+- Request a **KI ladder** from issuers for the same basket, tenor, KO, observation schedule, and coupon frequency.
+- Default ladder: **KI 50 / 55 / 59 / 65 / 70**, observed at maturity unless specified otherwise.
 - Lower KI gives more protection and lower coupon.
-- Higher KI gives higher coupon but makes loss trigger more realistic.
+- Higher KI gives higher coupon but makes downside redemption more realistic.
 - Always state whether KI is observed at maturity, daily close, or continuously.
+
+## KI Optimization
+
+The objective is not "lowest KI" or "highest coupon" by itself. The objective is best value: how much extra coupon is received for each point of airbag sacrificed.
+
+For each issuer quote matrix, calculate:
+
+```text
+Airbag = 100 - KI
+Coupon pickup = Higher-KI coupon - Lower-KI coupon
+Airbag sacrificed = Higher KI - Lower KI
+Pickup per KI point = Coupon pickup / Airbag sacrificed
+```
+
+Decision guide:
+
+- If pickup is small, keep the lower KI.
+- If pickup is meaningful and the client accepts the extra downside risk, move up the KI ladder.
+- If pickup accelerates sharply at a higher KI, flag that level as a potential value point.
+- If pickup is flat between two KI levels, choose the lower KI.
+
+Suggested desk thresholds, to be adjusted with experience:
+
+| Pickup per 1 KI point | Interpretation | Action |
+|---:|---|---|
+| Below 0.25% p.a. | Weak compensation | Prefer lower KI |
+| 0.25%-0.60% p.a. | Balanced tradeoff | Compare client risk appetite |
+| Above 0.60% p.a. | Strong compensation | Higher KI may be worth considering |
+
+Always compare KI levels using the same tenor, KO, basket, issuer, and observation assumptions.
 
 ## Coupon Language
 
@@ -62,6 +94,7 @@ Avoid false precision. Use ranges:
 - "Coupon should screen above the semiconductor basket because volatility and jump risk are higher."
 - "RFQ target range should be validated with issuer."
 - "If issuer quote is far below this range, ask which input is driving the difference: vol, correlation, funding, borrow, or margin."
+- "The best KI is where incremental coupon pickup justifies the extra loss-trigger risk."
 
 ## Output Ranking Categories
 
@@ -71,4 +104,3 @@ Use these labels:
 - **Balanced high coupon**: attractive coupon with clearer client story.
 - **Aggressive alternative**: high coupon but likely unsuitable for conservative clients.
 - **Watch only**: interesting but not preferred due to event risk, liquidity, or crowded exposure.
-
