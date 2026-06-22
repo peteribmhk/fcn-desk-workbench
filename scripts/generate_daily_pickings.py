@@ -64,6 +64,52 @@ RISK_TAGS = {
 }
 
 
+def clean_number(value: str | None) -> str:
+    if value is None:
+        return ""
+    return value.replace("$", "").replace(",", "").replace("%", "").strip()
+
+
+def fetch_nasdaq_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
+    rows = {}
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "application/json, text/plain, */*",
+        "Origin": "https://www.nasdaq.com",
+        "Referer": "https://www.nasdaq.com/",
+    }
+    for ticker in tickers:
+        url = f"https://api.nasdaq.com/api/quote/{ticker}/info?assetclass=stocks"
+        request = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                payload = json.loads(response.read().decode("utf-8", errors="replace"))
+        except Exception:
+            continue
+
+        data = payload.get("data") or {}
+        primary = data.get("primaryData") or {}
+        price = clean_number(primary.get("lastSalePrice"))
+        if not price:
+            continue
+
+        rows[ticker] = {
+            "Symbol": ticker,
+            "Date": primary.get("lastTradeTimestamp") or "N/A",
+            "Time": f"{data.get('marketStatus', 'N/A')} delayed",
+            "Open": "",
+            "High": "",
+            "Low": "",
+            "Close": price,
+            "Volume": clean_number(primary.get("volume")),
+            "PctChange": clean_number(primary.get("percentageChange")),
+            "RealTime": str(primary.get("isRealTime", False)),
+        }
+    if not rows:
+        raise RuntimeError("No public quote rows returned from Nasdaq public quote endpoint")
+    return rows
+
+
 def fetch_yahoo_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
     rows = {}
     for ticker in tickers:
@@ -143,6 +189,13 @@ def pct_change(close: float, open_: float) -> float | None:
     if not open_ or math.isnan(open_) or math.isnan(close):
         return None
     return (close / open_ - 1.0) * 100.0
+
+
+def row_pct_change(row: dict[str, str], close: float, open_: float) -> float | None:
+    quoted_change = parse_float(row.get("PctChange", ""))
+    if not math.isnan(quoted_change):
+        return quoted_change
+    return pct_change(close, open_)
 
 
 def parse_float(value: str) -> float:
@@ -227,25 +280,30 @@ def generate_report() -> str:
     hk_time = now_utc.astimezone(dt.timezone(dt.timedelta(hours=8)))
 
     try:
-        quotes = fetch_yahoo_quotes(TICKERS)
-        source_note = "Public quote source: Yahoo Finance public quote endpoint. Data may be delayed or unavailable."
-    except Exception as exc:  # noqa: BLE001 - report should still be created
+        quotes = fetch_nasdaq_quotes(TICKERS)
+        source_note = "Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed."
+    except Exception as nasdaq_exc:  # noqa: BLE001 - report should still be created
         try:
-            quotes = fetch_stooq_quotes(TICKERS)
-            source_note = "Public quote source: Stooq daily CSV fallback. Data may be delayed or unavailable."
-        except Exception as fallback_exc:  # noqa: BLE001 - report should still be created
-            quotes = {}
-            source_note = (
-                f"Public quote fetch failed: primary={exc!r}; fallback={fallback_exc!r}. "
-                "Use this report as a template only."
-            )
+            quotes = fetch_yahoo_quotes(TICKERS)
+            source_note = "Public quote source: Yahoo Finance public chart endpoint fallback. Data may be delayed or unavailable."
+        except Exception as yahoo_exc:  # noqa: BLE001 - report should still be created
+            try:
+                quotes = fetch_stooq_quotes(TICKERS)
+                source_note = "Public quote source: Stooq daily CSV fallback. Data may be delayed or unavailable."
+            except Exception as stooq_exc:  # noqa: BLE001 - report should still be created
+                quotes = {}
+                source_note = (
+                    "Public quote fetch failed: "
+                    f"nasdaq={nasdaq_exc!r}; yahoo={yahoo_exc!r}; stooq={stooq_exc!r}. "
+                    "Use this report as a template only."
+                )
 
     market_rows = [["Ticker", "Last", "Date/Time", "Daily move", "Volatility read", "Main risk"]]
     for ticker in TICKERS:
         row = quotes.get(ticker, {})
         close = parse_float(row.get("Close", ""))
         open_ = parse_float(row.get("Open", ""))
-        move = pct_change(close, open_)
+        move = row_pct_change(row, close, open_)
         last = "N/A" if math.isnan(close) else f"{close:.2f}"
         when = "N/A"
         if row:

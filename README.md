@@ -44,6 +44,8 @@ This repo now includes a GitHub Actions cloud runtime:
 
 The workflow runs at **08:30 Hong Kong time, Monday-Friday**, and can also be started manually from the GitHub **Actions** tab. It does not require your laptop to be on.
 
+The generator tries free/public delayed quote sources in this order: Nasdaq public quote endpoint, Yahoo Finance public chart endpoint, then Stooq daily CSV fallback. These are not firm real-time exchange feeds.
+
 Phone link:
 
 ```text
