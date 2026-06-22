@@ -1,7 +1,7 @@
 # FCN Daily Report
 
-**Report date:** 2026-06-22  
-**Generated:** 2026-06-22 09:34 HKT / 2026-06-22 01:34 UTC  
+**Report date:** 2026-06-23  
+**Generated:** 2026-06-23 02:06 HKT / 2026-06-22 18:06 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed.
 
@@ -9,14 +9,14 @@
 
 | Ticker | Last | Date/Time | Daily move | Volatility read | Main risk |
 | --- | --- | --- | --- | --- | --- |
-| MSTR | 112.53 | Jun 17, 2026 Closed delayed | -3.46% | Very high | BTC beta, leverage, gap risk |
-| COIN | 163.26 | Jun 17, 2026 Closed delayed | -1.00% | High | Crypto flow, regulation, BTC/ETH sentiment |
-| AMD | 537.37 | Jun 17, 2026 Closed delayed | +4.86% | Medium-high; active daily move | AI expectations, valuation, product cycle |
-| SMCI | 30.66 | Jun 17, 2026 Closed delayed | +10.37% | Very high; elevated daily move | Financing/dilution, order-cycle risk, jump risk |
-| NVDA | 210.69 | Jun 17, 2026 Closed delayed | +2.95% | Medium-high | AI capex cycle, valuation, export controls |
-| TSLA | 400.49 | Jun 17, 2026 Closed delayed | +1.04% | High | Deliveries, margins, CEO/event risk |
-| PLTR | 128.47 | Jun 17, 2026 Closed delayed | -1.65% | High | Valuation, AI software sentiment, earnings risk |
-| HOOD | 108.15 | Jun 17, 2026 Closed delayed | +2.80% | High | Retail activity, crypto revenue, regulation |
+| MSTR | 110.40 | Jun 22, 2026 2:06 PM ET Open delayed | -1.89% | Very high | BTC beta, leverage, gap risk |
+| COIN | 165.35 | Jun 22, 2026 2:06 PM ET Open delayed | +1.28% | High | Crypto flow, regulation, BTC/ETH sentiment |
+| AMD | 545.91 | Jun 22, 2026 2:06 PM ET Open delayed | +1.59% | Medium-high | AI expectations, valuation, product cycle |
+| SMCI | 36.62 | Jun 22, 2026 2:06 PM ET Open delayed | +19.46% | Very high; elevated daily move | Financing/dilution, order-cycle risk, jump risk |
+| NVDA | 208.96 | Jun 22, 2026 2:06 PM ET Open delayed | -0.82% | Medium-high | AI capex cycle, valuation, export controls |
+| TSLA | 407.35 | Jun 22, 2026 2:06 PM ET Open delayed | +1.71% | High | Deliveries, margins, CEO/event risk |
+| PLTR | 120.88 | Jun 22, 2026 2:06 PM ET Open delayed | -5.91% | High; active daily move | Valuation, AI software sentiment, earnings risk |
+| HOOD | 107.19 | Jun 22, 2026 2:06 PM ET Open delayed | -0.89% | High | Retail activity, crypto revenue, regulation |
 
 ## Basket Pickings
 
