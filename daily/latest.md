@@ -1,7 +1,7 @@
 # FCN Daily Report
 
 **Report date:** 2026-06-23  
-**Generated:** 2026-06-23 02:06 HKT / 2026-06-22 18:06 UTC  
+**Generated:** 2026-06-23 20:15 HKT / 2026-06-23 12:15 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed.
 
@@ -9,14 +9,14 @@
 
 | Ticker | Last | Date/Time | Daily move | Volatility read | Main risk |
 | --- | --- | --- | --- | --- | --- |
-| MSTR | 110.40 | Jun 22, 2026 2:06 PM ET Open delayed | -1.89% | Very high | BTC beta, leverage, gap risk |
-| COIN | 165.35 | Jun 22, 2026 2:06 PM ET Open delayed | +1.28% | High | Crypto flow, regulation, BTC/ETH sentiment |
-| AMD | 545.91 | Jun 22, 2026 2:06 PM ET Open delayed | +1.59% | Medium-high | AI expectations, valuation, product cycle |
-| SMCI | 36.62 | Jun 22, 2026 2:06 PM ET Open delayed | +19.46% | Very high; elevated daily move | Financing/dilution, order-cycle risk, jump risk |
-| NVDA | 208.96 | Jun 22, 2026 2:06 PM ET Open delayed | -0.82% | Medium-high | AI capex cycle, valuation, export controls |
-| TSLA | 407.35 | Jun 22, 2026 2:06 PM ET Open delayed | +1.71% | High | Deliveries, margins, CEO/event risk |
-| PLTR | 120.88 | Jun 22, 2026 2:06 PM ET Open delayed | -5.91% | High; active daily move | Valuation, AI software sentiment, earnings risk |
-| HOOD | 107.19 | Jun 22, 2026 2:06 PM ET Open delayed | -0.89% | High | Retail activity, crypto revenue, regulation |
+| MSTR | 106.22 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -2.96% | Very high | BTC beta, leverage, gap risk |
+| COIN | 159.03 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -3.52% | High | Crypto flow, regulation, BTC/ETH sentiment |
+| AMD | 517.45 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -6.20% | Medium-high; active daily move | AI expectations, valuation, product cycle |
+| SMCI | 33.51 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -5.50% | Very high; active daily move | Financing/dilution, order-cycle risk, jump risk |
+| NVDA | 203.39 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -2.52% | Medium-high | AI capex cycle, valuation, export controls |
+| TSLA | 394.55 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -2.59% | High | Deliveries, margins, CEO/event risk |
+| PLTR | 119.42 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -0.07% | High | Valuation, AI software sentiment, earnings risk |
+| HOOD | 101.08 | Jun 23, 2026 8:15 AM ET Pre-Market delayed | -4.38% | High; active daily move | Retail activity, crypto revenue, regulation |
 
 ## Basket Pickings
 
