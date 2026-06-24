@@ -1,7 +1,7 @@
 # FCN Daily Report
 
 **Report date:** 2026-06-24  
-**Generated:** 2026-06-24 08:23 HKT / 2026-06-24 00:23 UTC  
+**Generated:** 2026-06-24 19:24 HKT / 2026-06-24 11:24 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed.
 
@@ -9,14 +9,14 @@
 
 | Ticker | Last | Date/Time | Daily move | Volatility read | Main risk |
 | --- | --- | --- | --- | --- | --- |
-| MSTR | 109.46 | Jun 23, 2026 Closed delayed | -2.73% | Very high | BTC beta, leverage, gap risk |
-| COIN | 164.84 | Jun 23, 2026 Closed delayed | +0.97% | High | Crypto flow, regulation, BTC/ETH sentiment |
-| AMD | 551.63 | Jun 23, 2026 Closed delayed | +2.65% | Medium-high | AI expectations, valuation, product cycle |
-| SMCI | 35.46 | Jun 23, 2026 Closed delayed | +15.66% | Very high; elevated daily move | Financing/dilution, order-cycle risk, jump risk |
-| NVDA | 208.65 | Jun 23, 2026 Closed delayed | -0.97% | Medium-high | AI capex cycle, valuation, export controls |
-| TSLA | 405.05 | Jun 23, 2026 Closed delayed | +1.14% | High | Deliveries, margins, CEO/event risk |
-| PLTR | 119.50 | Jun 23, 2026 Closed delayed | -6.98% | High; active daily move | Valuation, AI software sentiment, earnings risk |
-| HOOD | 105.71 | Jun 23, 2026 Closed delayed | -2.26% | High | Retail activity, crypto revenue, regulation |
+| MSTR | 104.10 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | +0.25% | Very high | BTC beta, leverage, gap risk |
+| COIN | 158.81 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | +0.40% | High | Crypto flow, regulation, BTC/ETH sentiment |
+| AMD | 524.06 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | +0.81% | Medium-high | AI expectations, valuation, product cycle |
+| SMCI | 33.89 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | +1.71% | Very high | Financing/dilution, order-cycle risk, jump risk |
+| NVDA | 201.06 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | +0.51% | Medium-high | AI capex cycle, valuation, export controls |
+| TSLA | 383.26 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | +0.43% | High | Deliveries, margins, CEO/event risk |
+| PLTR | 115.50 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | -1.03% | High | Valuation, AI software sentiment, earnings risk |
+| HOOD | 102.95 | Jun 24, 2026 7:24 AM ET Pre-Market delayed | -0.29% | High | Retail activity, crypto revenue, regulation |
 
 ## Listed Options Vol Proxy
 
@@ -24,14 +24,14 @@
 
 | Ticker | 3M ATM straddle proxy | 6M ATM straddle proxy | Listed options liquidity |
 | --- | --- | --- | --- |
-| MSTR | Sep 18 110 ATM straddle 30.9% | Dec 18 110 ATM straddle 44.5% | Usable listed options liquidity |
-| COIN | Sep 18 165 ATM straddle 26.8% | Dec 18 165 ATM straddle 38.9% | Thin listed options liquidity |
-| AMD | Sep 18 550 ATM straddle 28.9% | Dec 18 550 ATM straddle 39.7% | Thin listed options liquidity |
-| SMCI | Sep 18 35 ATM straddle 34.1% | Dec 18 35 ATM straddle 47.6% | Deep listed options liquidity |
-| NVDA | Sep 18 210 ATM straddle 15.8% | Dec 18 210 ATM straddle 23.2% | Deep listed options liquidity |
-| TSLA | Sep 18 405 ATM straddle 17.7% | Dec 18 405 ATM straddle 25.6% | Usable listed options liquidity |
-| PLTR | Sep 18 120 ATM straddle 20.9% | Dec 18 120 ATM straddle 30.3% | Deep listed options liquidity |
-| HOOD | Sep 18 105 ATM straddle 25.9% | Dec 18 105 ATM straddle 37.1% | Usable listed options liquidity |
+| MSTR | Sep 18 105 ATM straddle 31.7% | Dec 18 105 ATM straddle 45.8% | Usable listed options liquidity |
+| COIN | Sep 18 160 ATM straddle 27.4% | Dec 18 160 ATM straddle 39.8% | Usable listed options liquidity |
+| AMD | Sep 18 520 ATM straddle 29.3% | Dec 18 520 ATM straddle 40.5% | Thin listed options liquidity |
+| SMCI | Sep 18 34 ATM straddle 35.0% | Dec 18 34 ATM straddle 49.1% | Usable listed options liquidity |
+| NVDA | Sep 18 200 ATM straddle 15.9% | Dec 18 200 ATM straddle 23.5% | Deep listed options liquidity |
+| TSLA | Sep 18 385 ATM straddle 17.8% | Dec 18 385 ATM straddle 26.3% | Usable listed options liquidity |
+| PLTR | Sep 18 115 ATM straddle 21.2% | Dec 18 115 ATM straddle 30.9% | Usable listed options liquidity |
+| HOOD | Sep 18 105 ATM straddle 26.6% | Dec 18 105 ATM straddle 38.1% | Usable listed options liquidity |
 
 Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, and not an autocall model.
 
