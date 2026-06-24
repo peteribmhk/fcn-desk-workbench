@@ -20,6 +20,12 @@ from pathlib import Path
 
 TICKERS = ["MSTR", "COIN", "AMD", "SMCI", "NVDA", "TSLA", "PLTR", "HOOD"]
 KI_LADDER = [50, 55, 59, 65, 70]
+NASDAQ_HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept": "application/json, text/plain, */*",
+    "Origin": "https://www.nasdaq.com",
+    "Referer": "https://www.nasdaq.com/",
+}
 
 BASKETS = [
     {
@@ -70,17 +76,30 @@ def clean_number(value: str | None) -> str:
     return value.replace("$", "").replace(",", "").replace("%", "").strip()
 
 
+def parse_float(value: str) -> float:
+    try:
+        if value in {"", "N/D", "N/A", "-", "--"}:
+            return float("nan")
+        return float(value)
+    except ValueError:
+        return float("nan")
+
+
+def parse_int(value: str | None) -> int:
+    number = clean_number(value)
+    if number in {"", "N/D", "N/A", "-", "--"}:
+        return 0
+    try:
+        return int(float(number))
+    except ValueError:
+        return 0
+
+
 def fetch_nasdaq_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
     rows = {}
-    headers = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "application/json, text/plain, */*",
-        "Origin": "https://www.nasdaq.com",
-        "Referer": "https://www.nasdaq.com/",
-    }
     for ticker in tickers:
         url = f"https://api.nasdaq.com/api/quote/{ticker}/info?assetclass=stocks"
-        request = urllib.request.Request(url, headers=headers)
+        request = urllib.request.Request(url, headers=NASDAQ_HEADERS)
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
                 payload = json.loads(response.read().decode("utf-8", errors="replace"))
@@ -108,6 +127,118 @@ def fetch_nasdaq_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
     if not rows:
         raise RuntimeError("No public quote rows returned from Nasdaq public quote endpoint")
     return rows
+
+
+def parse_expiry(value: str) -> dt.date | None:
+    try:
+        return dt.datetime.strptime(value, "%B %d, %Y").date()
+    except (TypeError, ValueError):
+        return None
+
+
+def option_mid(bid: float, ask: float) -> float:
+    if math.isnan(bid) and math.isnan(ask):
+        return float("nan")
+    if math.isnan(bid):
+        return ask
+    if math.isnan(ask):
+        return bid
+    return (bid + ask) / 2
+
+
+def format_option_point(point: dict[str, object] | None) -> str:
+    if not point:
+        return "N/A"
+    expiry = point["expiry"]
+    strike = point["strike"]
+    straddle_pct = point["straddle_pct"]
+    return f"{expiry} {strike:.0f} ATM straddle {straddle_pct:.1f}%"
+
+
+def option_liquidity_read(volume: int, open_interest: int) -> str:
+    if open_interest >= 10000 and volume >= 1000:
+        return "Deep listed options liquidity"
+    if open_interest >= 3000:
+        return "Usable listed options liquidity"
+    if open_interest > 0:
+        return "Thin listed options liquidity"
+    return "N/A"
+
+
+def fetch_nasdaq_option_snapshot(
+    tickers: list[str], quotes: dict[str, dict[str, str]], today: dt.date
+) -> dict[str, dict[str, str]]:
+    snapshots = {}
+    targets = {"3M": 90, "6M": 180}
+    for ticker in tickers:
+        spot = parse_float(quotes.get(ticker, {}).get("Close", ""))
+        if math.isnan(spot):
+            continue
+
+        query = urllib.parse.urlencode({"assetclass": "stocks", "fromdate": "all", "limit": "10000"})
+        url = f"https://api.nasdaq.com/api/quote/{ticker}/option-chain?{query}"
+        request = urllib.request.Request(url, headers=NASDAQ_HEADERS)
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                payload = json.loads(response.read().decode("utf-8", errors="replace"))
+        except Exception:
+            continue
+
+        table = ((payload.get("data") or {}).get("table") or {})
+        raw_rows = table.get("rows") or []
+        chain = []
+        current_expiry = None
+        for raw in raw_rows:
+            if raw.get("expirygroup"):
+                current_expiry = parse_expiry(raw.get("expirygroup"))
+                continue
+            strike = parse_float(clean_number(raw.get("strike")))
+            if math.isnan(strike) or current_expiry is None:
+                continue
+            c_bid = parse_float(clean_number(raw.get("c_Bid")))
+            c_ask = parse_float(clean_number(raw.get("c_Ask")))
+            p_bid = parse_float(clean_number(raw.get("p_Bid")))
+            p_ask = parse_float(clean_number(raw.get("p_Ask")))
+            call_mid = option_mid(c_bid, c_ask)
+            put_mid = option_mid(p_bid, p_ask)
+            if math.isnan(call_mid) or math.isnan(put_mid):
+                continue
+            chain.append(
+                {
+                    "expiry": current_expiry,
+                    "strike": strike,
+                    "straddle_pct": ((call_mid + put_mid) / spot) * 100,
+                    "volume": parse_int(raw.get("c_Volume")) + parse_int(raw.get("p_Volume")),
+                    "open_interest": parse_int(raw.get("c_Openinterest")) + parse_int(raw.get("p_Openinterest")),
+                }
+            )
+
+        if not chain:
+            continue
+
+        ticker_snapshot: dict[str, str] = {}
+        total_volume = 0
+        total_open_interest = 0
+        for label, target_days in targets.items():
+            expiries = sorted({row["expiry"] for row in chain if row["expiry"] > today})
+            if not expiries:
+                continue
+            target_expiry = min(expiries, key=lambda expiry: abs((expiry - today).days - target_days))
+            expiry_rows = [row for row in chain if row["expiry"] == target_expiry]
+            atm = min(expiry_rows, key=lambda row: abs(float(row["strike"]) - spot))
+            total_volume += int(atm["volume"])
+            total_open_interest += int(atm["open_interest"])
+            ticker_snapshot[label] = format_option_point(
+                {
+                    "expiry": target_expiry.strftime("%b %d"),
+                    "strike": float(atm["strike"]),
+                    "straddle_pct": float(atm["straddle_pct"]),
+                }
+            )
+
+        ticker_snapshot["Liquidity"] = option_liquidity_read(total_volume, total_open_interest)
+        snapshots[ticker] = ticker_snapshot
+    return snapshots
 
 
 def fetch_yahoo_quotes(tickers: list[str]) -> dict[str, dict[str, str]]:
@@ -196,15 +327,6 @@ def row_pct_change(row: dict[str, str], close: float, open_: float) -> float | N
     if not math.isnan(quoted_change):
         return quoted_change
     return pct_change(close, open_)
-
-
-def parse_float(value: str) -> float:
-    try:
-        if value in {"", "N/D", "N/A", "-"}:
-            return float("nan")
-        return float(value)
-    except ValueError:
-        return float("nan")
 
 
 def vol_read(ticker: str, move: float | None) -> str:
@@ -311,6 +433,24 @@ def generate_report() -> str:
         move_text = "N/A" if move is None else f"{move:+.2f}%"
         market_rows.append([ticker, last, when, move_text, vol_read(ticker, move), RISK_TAGS[ticker]])
 
+    option_source_note = "Nasdaq public option-chain endpoint. Listed option data is delayed/public and used only as an indicative vol/liquidity proxy."
+    option_rows = [["Ticker", "3M ATM straddle proxy", "6M ATM straddle proxy", "Listed options liquidity"]]
+    try:
+        option_snapshot = fetch_nasdaq_option_snapshot(TICKERS, quotes, hk_time.date())
+    except Exception as option_exc:  # noqa: BLE001 - report should still be created
+        option_snapshot = {}
+        option_source_note = f"Option-chain fetch failed: {option_exc!r}."
+    for ticker in TICKERS:
+        snapshot = option_snapshot.get(ticker, {})
+        option_rows.append(
+            [
+                ticker,
+                snapshot.get("3M", "N/A"),
+                snapshot.get("6M", "N/A"),
+                snapshot.get("Liquidity", "N/A"),
+            ]
+        )
+
     basket_rows = [["Rank", "Basket", "Category", "Coupon direction", "Suggested terms", "Key risk", "Action"]]
     for basket in BASKETS:
         names = basket["basket"]
@@ -337,6 +477,14 @@ def generate_report() -> str:
 ## Market Snapshot
 
 {md_table(market_rows)}
+
+## Listed Options Vol Proxy
+
+**Source caveat:** {option_source_note}
+
+{md_table(option_rows)}
+
+Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, and not an autocall model.
 
 ## Basket Pickings
 

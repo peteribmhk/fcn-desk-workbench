@@ -44,7 +44,7 @@ This repo now includes a GitHub Actions cloud runtime:
 
 The workflow runs at **08:30 Hong Kong time, Monday-Friday**, and can also be started manually from the GitHub **Actions** tab. It does not require your laptop to be on.
 
-The generator tries free/public delayed quote sources in this order: Nasdaq public quote endpoint, Yahoo Finance public chart endpoint, then Stooq daily CSV fallback. These are not firm real-time exchange feeds.
+The generator tries free/public delayed quote sources in this order: Nasdaq public quote endpoint, Yahoo Finance public chart endpoint, then Stooq daily CSV fallback. It also uses Nasdaq public option-chain data for an indicative ATM straddle/liquidity proxy. These are not firm real-time exchange feeds.
 
 Phone link:
 
@@ -65,6 +65,7 @@ https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
 - `.github/workflows/fcn-daily-report.yml`: cloud runtime for scheduled reports.
 - `scripts/generate_daily_pickings.py`: dependency-free report generator.
 - `daily/latest.md`: phone-readable latest report.
+- `research/free-market-data-sources.md`: GitHub/open-source and free-data source review.
 
 ## GitHub Upload
 
