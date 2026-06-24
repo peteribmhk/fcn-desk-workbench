@@ -21,18 +21,20 @@ Before using any result with a client, validate:
 Use this prompt in Codex:
 
 ```text
-Refresh FCN market data using the FCN Desk Workbench. Screen the watchlist, rank the best high-coupon baskets, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft client explanation. Label everything indicative only.
+Use `assistant-operating-instructions.md` first, then refresh FCN market data using the FCN Desk Workbench. Screen the watchlist, rank the best high-coupon baskets, use listed-options vol proxy, optimize KI by coupon pickup per KI point, prepare issuer RFQ wording, and draft client explanation. Label everything indicative only.
 ```
 
 Expected output:
 
 1. Market snapshot with timestamp and source caveats.
 2. High-coupon basket ranking.
-3. Coupon driver explanation.
-4. Suggested tenor, KO, KI, and airbag positioning.
-5. Key downside risks.
-6. Issuer RFQ wording.
-7. Short Chinese/English client explanation.
+3. Listed-options vol/liquidity proxy read.
+4. Coupon driver explanation.
+5. Suggested tenor, KO, KI, and airbag positioning.
+6. KI ladder optimization view.
+7. Key downside risks.
+8. Issuer RFQ wording.
+9. Short Chinese/English client explanation.
 
 ## Cloud Runtime And Phone Interface
 
@@ -54,6 +56,7 @@ https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
 
 ## Project Files
 
+- `assistant-operating-instructions.md`: persistent instructions for future ChatGPT/Codex sessions.
 - `watchlist.csv`: default high-volatility ticker universe and basket ideas.
 - `methodology.md`: decision rules for ranking FCN baskets and judging structure terms.
 - `templates/daily-pickings.md`: daily output template.

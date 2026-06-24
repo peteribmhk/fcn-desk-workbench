@@ -36,16 +36,20 @@ Use this project as a GitHub repo and access it from ChatGPT mobile:
 1. Upload the repo to GitHub. If it is public, keep it sanitized and template-only.
 2. In ChatGPT mobile, start a project or chat called `FCN Desk Workbench`.
 3. Add or paste the key files:
+   - `assistant-operating-instructions.md`
    - `README.md`
    - `methodology.md`
    - `watchlist.csv`
+   - `daily/latest.md`
    - `templates/daily-pickings.md`
    - `templates/rfq-template.md`
    - `templates/client-explanation.md`
+   - `templates/ki-optimization.md`
+   - `research/free-market-data-sources.md`
 4. Use this prompt:
 
 ```text
-Use my FCN Desk Workbench. Refresh latest public market data for the watchlist, rank high-coupon FCN baskets, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft bilingual client explanation. Everything must be indicative only, not a firm quote.
+Use my FCN Desk Workbench and read assistant-operating-instructions.md first. Refresh latest public market data for the watchlist, use the listed-options vol proxy, rank high-coupon FCN baskets, optimize KI by coupon pickup per KI point, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft bilingual client explanation. Everything must be indicative only, not a firm quote.
 ```
 
 This works from phone because ChatGPT does the reasoning and live data lookup in the cloud. The laptop does not need to be on.
