@@ -1,7 +1,7 @@
 # FCN Daily Report
 
 **Report date:** 2026-06-24  
-**Generated:** 2026-06-24 08:17 HKT / 2026-06-24 00:17 UTC  
+**Generated:** 2026-06-24 08:23 HKT / 2026-06-24 00:23 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed.
 
