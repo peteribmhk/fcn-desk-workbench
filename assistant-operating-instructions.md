@@ -47,11 +47,55 @@ Use the current dependency-free source stack:
 3. Yahoo Finance public chart endpoint as equity data fallback.
 4. Stooq daily CSV as final equity data fallback.
 
-The listed-options section is a **vol/liquidity proxy**, not an issuer FCN coupon, not a full volatility surface, and not an autocall model.
+The listed-options section is a **vol/liquidity proxy**, not an issuer FCN coupon, not a full volatility surface, and not an autocall model. Do not use it to imply that a basket will produce a "fruitful" or high actual coupon without issuer RFQ evidence.
 
 If asked for "live" free market data, explain that clean, firm real-time US equity/options data generally requires exchange/vendor entitlement. The workbench should use free/public/delayed data for screening only.
 
 ## Daily Pick Workflow
+
+## Morning Readiness Hint
+
+Use this handshake when the user wants to confirm that Codex/ChatGPT is ready for the daily FCN refresh.
+
+User hint:
+
+```text
+FCN Morning Bell
+```
+
+Assistant must determine exactly one readiness status before giving picks:
+
+- `FCN Morning Bell: GREEN` only if the assistant has read the required project files, checked the report timestamp, and either refreshed today's report or confirmed it is current for the Hong Kong date.
+- `FCN Morning Bell: AMBER` if the project files are readable but the report is stale, market data could not be refreshed, GitHub Actions access is unavailable, or the assistant needs the user to run/confirm a refresh.
+- `FCN Morning Bell: RED` if the assistant cannot access the project instructions/report or cannot separate public-data screening from issuer quote evidence.
+
+Every readiness reply must include:
+
+1. Hong Kong date being used.
+2. `daily/latest.md` generated timestamp, or state that it is unavailable.
+3. Source caveat: public/free data is screening only.
+4. Quote rule: issuer RFQ levels override public-data screens.
+5. Next action: refresh report, summarize screening candidates, compare issuer quotes, or draft RFQ/client wording.
+
+Do not give a `GREEN` status just because the user used the hint. `GREEN` is earned only after the checks above.
+
+If the status is `GREEN`, do not stop at the readiness reply. Continue immediately into the daily FCN output without extra background. Keep the opening compact:
+
+```text
+FCN Morning Bell: GREEN
+```
+
+Then present the results:
+
+1. report timestamp,
+2. public-data caveat,
+3. issuer-quote override rule,
+4. market/vol proxy highlights,
+5. screening candidates,
+6. quote-calibration notes,
+7. suggested RFQs or next desk actions.
+
+If status is `AMBER` or `RED`, explain the blocker and the shortest next action needed.
 
 When the user asks for today's picks:
 
@@ -62,21 +106,56 @@ When the user asks for today's picks:
    - report timestamp and source caveats,
    - market snapshot highlights,
    - listed-options vol proxy highlights,
-   - ranked baskets,
+   - screening baskets, clearly labeled as RFQ candidates rather than coupon predictions,
    - suggested tenor/KI/KO positioning,
+   - issuer quote calibration notes if the user provides real quote examples,
    - key downside risks,
    - RFQ wording.
 
 ## Picking Logic
 
-Default high-coupon candidates:
+Default screening candidates, not coupon predictions:
 
 - `MSTR / COIN`: max coupon, crypto beta, concentrated risk.
 - `AMD / SMCI`: balanced high-coupon AI infrastructure story.
 - `MSTR / SMCI`: very high potential coupon, severe gap/worst-of risk.
 - `COIN / SMCI`: aggressive alternative, crypto plus SMCI event risk.
 
-Use listed-options ATM straddle proxies to refine the ranking. Higher 3M/6M straddle proxy and usable/deep listed-options liquidity generally support stronger coupon-screening interest, subject to issuer RFQ.
+Use listed-options ATM straddle proxies only to decide where to ask for RFQs first. Higher 3M/6M straddle proxy and usable/deep listed-options liquidity may support stronger coupon-screening interest, but actual issuer coupons can differ sharply because of structure terms, skew, correlation, borrow, dividends, issuer inventory, funding, and margin.
+
+Real issuer quote examples override public-data ranking. When the user provides quotes, normalize them before comparing:
+
+- same tenor,
+- same underlyings,
+- strike/reference level,
+- KI and KI observation style,
+- KO level and observation frequency,
+- RO / issue price,
+- coupon frequency and memory/non-memory feature,
+- issuer and bid/offer basis.
+
+Do not compare headline coupon alone when RO differs. For quick 3M comparison, estimate RO accretion separately:
+
+```text
+Approx annualized RO accretion = ((100 - RO) / RO) * (12 / tenor_months)
+```
+
+Then discuss headline coupon, RO accretion, and downside risk separately. This is still indicative only and not a pricing model.
+
+## Ballpark Return And Calibration Rule
+
+Every FCN idea or shortlist must include a ballpark annualized coupon/return range so the user can verify it in the firm pricing system. Do not present the ballpark as an issuer quote.
+
+For each suggested basket, show:
+
+- structure assumption used for the ballpark: tenor, KO, KI, strike/reference, RO, coupon frequency, KI observation style,
+- public-data reason for screening it,
+- indicative ballpark annualized coupon range,
+- user/pricer verified annualized coupon field,
+- difference between ballpark and verified number when available,
+- calibration note explaining whether the screen was too high, too low, or directionally useful.
+
+If the user provides pricing-system numbers, use those numbers to recalibrate future ballparks in the current session. Do not commit actual issuer quotes, issuer names, client details, or firm-confidential pricing assumptions to the public repo. If local storage is needed, use ignored private paths such as `actual-quotes/`.
 
 ## KI Optimization Rule
 
@@ -109,7 +188,7 @@ Decision rule:
 Use this RFQ wording unless the user specifies different terms:
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 100 monthly, fixed monthly coupon, no RO economics. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
+Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
 ```
 
 ## Phone And Cloud Behavior

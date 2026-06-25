@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Generate an indicative FCN daily picking report.
+"""Generate an indicative FCN daily screening report.
 
 This script is intentionally dependency-free so it can run on GitHub Actions
-without package installation. It uses public Stooq quote CSV data as a rough
-screening input. Outputs are indicative only and not firm quotes.
+without package installation. It uses public quote and listed-option data as
+rough screening inputs only. Outputs are indicative only and not firm quotes.
 """
 
 from __future__ import annotations
@@ -18,7 +18,7 @@ import urllib.request
 from pathlib import Path
 
 
-TICKERS = ["MSTR", "COIN", "AMD", "SMCI", "NVDA", "TSLA", "PLTR", "HOOD"]
+TICKERS = ["MSTR", "COIN", "AMD", "SMCI", "NVDA", "TSLA", "PLTR", "HOOD", "SNDK", "GOOGL"]
 KI_LADDER = [50, 55, 59, 65, 70]
 NASDAQ_HEADERS = {
     "User-Agent": "Mozilla/5.0",
@@ -31,30 +31,51 @@ BASKETS = [
     {
         "rank": 1,
         "basket": ("MSTR", "COIN"),
-        "category": "Max coupon",
+        "category": "RFQ first",
         "terms": "3M/6M, KO 100 monthly, RFQ KI ladder 50/55/59/65/70",
         "risk": "Concentrated crypto-beta; BTC selloff can hit both names.",
     },
     {
         "rank": 2,
         "basket": ("AMD", "SMCI"),
-        "category": "Balanced high coupon",
+        "category": "Balanced candidate",
         "terms": "3M tactical or 6M if client accepts event risk; optimize KI ladder",
         "risk": "SMCI can dominate worst-of downside; financing and jump risk matter.",
     },
     {
         "rank": 3,
         "basket": ("MSTR", "SMCI"),
-        "category": "Aggressive alternative",
+        "category": "Aggressive candidate",
         "terms": "Prefer 3M; consider lower KI if coupon still works",
         "risk": "Two unstable high-vol names; severe gap and worst-of risk.",
     },
     {
         "rank": 4,
         "basket": ("COIN", "SMCI"),
-        "category": "Aggressive alternative",
+        "category": "Aggressive candidate",
         "terms": "3M/6M; compare coupon pickup per KI point across ladder",
         "risk": "Crypto regulation plus SMCI financing/event risk.",
+    },
+    {
+        "rank": 5,
+        "basket": ("SNDK", "GOOGL"),
+        "category": "Quote-check candidate",
+        "terms": "Use issuer quote evidence; compare KO 98/100/102 and RO 97/100",
+        "risk": "SanDisk idiosyncratic risk plus lower-vol mega-cap anchor; quote may be issuer-specific.",
+    },
+    {
+        "rank": 6,
+        "basket": ("AMD", "SNDK"),
+        "category": "Quote-check candidate",
+        "terms": "Use issuer quote evidence; normalize RO, KO, KI, and strike before ranking",
+        "risk": "Semiconductor/event risk; SanDisk quote behavior may diverge from public vol screen.",
+    },
+    {
+        "rank": 7,
+        "basket": ("GOOGL", "AMD"),
+        "category": "Watch only",
+        "terms": "RFQ only if client wants familiar names; do not assume high coupon",
+        "risk": "Lower actual coupon possible despite recognizable names; quote must drive decision.",
     },
 ]
 
@@ -67,6 +88,8 @@ RISK_TAGS = {
     "TSLA": "Deliveries, margins, CEO/event risk",
     "PLTR": "Valuation, AI software sentiment, earnings risk",
     "HOOD": "Retail activity, crypto revenue, regulation",
+    "SNDK": "Storage cycle, post-separation history, idiosyncratic gap risk",
+    "GOOGL": "AI/search capex, antitrust, ad-cycle and mega-cap valuation risk",
 }
 
 
@@ -339,6 +362,8 @@ def vol_read(ticker: str, move: float | None) -> str:
         "HOOD": "High",
         "AMD": "Medium-high",
         "NVDA": "Medium-high",
+        "SNDK": "High",
+        "GOOGL": "Medium",
     }.get(ticker, "Medium")
 
     if move is not None and abs(move) >= 7:
@@ -351,14 +376,20 @@ def vol_read(ticker: str, move: float | None) -> str:
 def basket_coupon_direction(basket: tuple[str, str]) -> str:
     names = set(basket)
     if names == {"MSTR", "COIN"}:
-        return "Likely highest among core pairs because both names carry crypto-beta and high volatility."
+        return "Screens for RFQ because both names carry crypto-beta and high volatility; actual coupon must come from issuer levels."
     if names == {"AMD", "SMCI"}:
-        return "Likely strong coupon with a clearer AI infrastructure story."
+        return "Screens as an AI-infrastructure candidate, but do not rank coupon value until issuer quotes are normalized."
     if names == {"MSTR", "SMCI"}:
-        return "Potentially very high, but risk is severe because both names can gap."
+        return "Screens as aggressive due to jump risk; use only after issuer RFQ confirms compensation."
     if names == {"COIN", "SMCI"}:
-        return "High coupon; avoids MSTR-specific leverage while keeping crypto plus SMCI risk."
-    return "High coupon potential depends on current vol, correlation, and issuer assumptions."
+        return "Screens as aggressive; actual value depends on issuer correlation, skew, and hedge assumptions."
+    if names == {"SNDK", "GOOGL"}:
+        return "User quote evidence shows this can price strongly; treat issuer quote as calibration, not public-screen output."
+    if names == {"AMD", "SNDK"}:
+        return "User quote evidence suggests headline coupon is not enough; normalize RO 97, KO 102, KI 58, and strike terms."
+    if names == {"GOOGL", "AMD"}:
+        return "User quote evidence shows this may price weakly; avoid assuming popular names produce attractive coupon."
+    return "RFQ interest depends on current issuer quote evidence after normalizing RO, KO, KI, strike, and tenor."
 
 
 def md_table(rows: list[list[str]]) -> str:
@@ -451,7 +482,7 @@ def generate_report() -> str:
             ]
         )
 
-    basket_rows = [["Rank", "Basket", "Category", "Coupon direction", "Suggested terms", "Key risk", "Action"]]
+    basket_rows = [["Rank", "Basket", "Category", "Screening read", "Suggested terms", "Key risk", "Action"]]
     for basket in BASKETS:
         names = basket["basket"]
         basket_rows.append(
@@ -462,7 +493,7 @@ def generate_report() -> str:
                 basket_coupon_direction(names),
                 basket["terms"],
                 basket["risk"],
-                "RFQ if client prioritizes coupon; validate final terms with issuer.",
+                "Request/compare issuer RFQ; do not rank by public screen alone.",
             ]
         )
 
@@ -484,9 +515,22 @@ def generate_report() -> str:
 
 {md_table(option_rows)}
 
-Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, and not an autocall model.
+Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, not an autocall model, and not enough to predict which basket will have the best actual coupon.
 
-## Basket Pickings
+## Issuer Quote Calibration
+
+Real issuer RFQs override this public-data screen. If a real quote contradicts the basket ranking, use the real quote as current calibration evidence and ask what drove the difference: RO, KO, KI, strike/reference, skew, correlation, borrow, dividends, funding, issuer inventory, or margin.
+
+For rough comparison when RO differs:
+
+```text
+Approx annualized RO accretion = ((100 - RO) / RO) * (12 / tenor_months)
+Approx annualized gross carry = coupon p.a. + annualized RO accretion
+```
+
+Example: for a 3M note at RO 97, the rough annualized RO accretion is about 12.4% before considering path risk, autocall timing, issuer bid/offer, and downside redemption risk. Keep headline coupon and RO accretion separate in client discussion.
+
+## Screening Baskets
 
 {md_table(basket_rows)}
 
@@ -498,7 +542,7 @@ Use this section to judge relative listed-option richness and liquidity only. It
 - KO: 100%, monthly observation.
 - KI / airbag: request ladder 50 / 55 / 59 / 65 / 70, observed at maturity unless issuer specifies otherwise.
 - Coupon: fixed coupon, monthly payment.
-- RO: no RO economics unless specifically requested.
+- RO: compare RO 100 and requested RO, such as RO 97, separately; do not compare headline coupon alone.
 
 ## KI Optimization
 
@@ -509,14 +553,14 @@ Decision rule: do not choose KI by habit. Compare the coupon pickup against the 
 ## RFQ Wording
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 100 monthly, fixed monthly coupon, no RO economics. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
+Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
 ```
 
 ## Client Explanation
 
 English:
 
-> The higher coupon comes from the volatility of the underlyings. This is not a risk-free yield. The investor is compensated for taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that stock's negative performance.
+> The coupon is set by issuer pricing for the exact terms, including underlyings, tenor, RO, KO, KI, strike/reference level, volatility, skew, correlation, dividends, borrow, funding, and issuer margin. It is not a risk-free yield. The investor is compensated for taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that stock's negative performance.
 
 中文:
 

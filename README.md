@@ -18,23 +18,39 @@ Before using any result with a client, validate:
 
 ## Daily Workflow
 
+Morning readiness hint:
+
+```text
+FCN Morning Bell
+```
+
+Expected assistant response:
+
+- `FCN Morning Bell: GREEN` means today's Hong Kong-date report is current/refreshed and the assistant has reloaded the project rules.
+- `FCN Morning Bell: AMBER` means the repo is readable but the report is stale, refresh access is missing, or market data could not be refreshed.
+- `FCN Morning Bell: RED` means the assistant cannot access the project instructions/report or cannot safely separate public screens from issuer quote evidence.
+
+Before giving any picks, the assistant must state the Hong Kong date, `daily/latest.md` timestamp, public-data caveat, and that issuer RFQ levels override public-data screens.
+
 Use this prompt in Codex:
 
 ```text
-Use `assistant-operating-instructions.md` first, then refresh FCN market data using the FCN Desk Workbench. Screen the watchlist, rank the best high-coupon baskets, use listed-options vol proxy, optimize KI by coupon pickup per KI point, prepare issuer RFQ wording, and draft client explanation. Label everything indicative only.
+Use `assistant-operating-instructions.md` first, then refresh FCN market data using the FCN Desk Workbench. Screen the watchlist for RFQ candidates, use listed-options vol proxy only as a public screening input, compare any real issuer quotes after normalizing RO/KO/KI/strike/tenor, optimize KI by coupon pickup per KI point, prepare issuer RFQ wording, and draft client explanation. Label everything indicative only.
 ```
 
 Expected output:
 
 1. Market snapshot with timestamp and source caveats.
-2. High-coupon basket ranking.
+2. RFQ candidate screen, not a coupon prediction.
 3. Listed-options vol/liquidity proxy read.
-4. Coupon driver explanation.
-5. Suggested tenor, KO, KI, and airbag positioning.
-6. KI ladder optimization view.
-7. Key downside risks.
-8. Issuer RFQ wording.
-9. Short Chinese/English client explanation.
+4. Ballpark annualized coupon range for each idea, clearly labeled as indicative.
+5. Pricing-system verified number field for user calibration.
+6. Coupon driver explanation, with issuer quote evidence overriding public-data screens.
+7. Suggested tenor, KO, KI, and airbag positioning.
+8. KI ladder optimization view.
+9. Key downside risks.
+10. Issuer RFQ wording.
+11. Short Chinese/English client explanation.
 
 ## Cloud Runtime And Phone Interface
 

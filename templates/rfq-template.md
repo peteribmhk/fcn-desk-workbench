@@ -32,10 +32,10 @@ Please show:
 
 ## Quick Variants
 
-### Max Coupon RFQ
+### Value RFQ
 
 ```text
-Please maximize value, not just coupon, for a USD worst-of FCN on [TICKER 1] / [TICKER 2], KO 100 monthly, monthly coupon, no RO economics. Show 3M, 6M, and 12M levels across KI 50 / 55 / 59 / 65 / 70. Please include coupon p.a. for each KI level.
+Please maximize value, not just coupon, for a USD worst-of FCN on [TICKER 1] / [TICKER 2], KO 98 / 100 / 102 monthly, monthly coupon. Show 3M, 6M, and 12M levels across KI 50 / 55 / 59 / 65 / 70. Please show both RO 100 and requested RO levels where available, and include coupon p.a. for each KI level.
 ```
 
 ### KI Optimization RFQ

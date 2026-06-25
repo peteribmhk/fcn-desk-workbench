@@ -18,12 +18,12 @@
 | PLTR | TBD | TBD | TBD | TBD | Very high / high / medium | TBD | TBD |
 | HOOD | TBD | TBD | TBD | TBD | Very high / high / medium | TBD | TBD |
 
-## Basket Pickings
+## Screening Baskets
 
-| Rank | Basket | Category | Coupon direction | Suggested terms | Key risk | Action |
+| Rank | Basket | Category | Screening read | Suggested terms | Key risk | Action |
 |---:|---|---|---|---|---|---|
-| 1 | TBD | Max coupon | TBD | TBD | TBD | RFQ / watch |
-| 2 | TBD | Balanced high coupon | TBD | TBD | TBD | RFQ / watch |
+| 1 | TBD | RFQ first | TBD | TBD | TBD | RFQ / watch |
+| 2 | TBD | Balanced candidate | TBD | TBD | TBD | RFQ / watch |
 | 3 | TBD | Aggressive alternative | TBD | TBD | TBD | RFQ / watch |
 | 4 | TBD | Watch only | TBD | TBD | TBD | RFQ / watch |
 
@@ -62,7 +62,7 @@ Initial fixing: [live level / today close / specified date]
 Coupon: fixed coupon, paid monthly
 KO: 100%, observed monthly, autocall from [month 1 / month 2 / month 3]
 KI: please quote ladder 50 / 55 / 59 / 65 / 70, observed at maturity
-No RO economics included unless otherwise specified
+Please show RO 100 and requested RO levels where available
 Notional: [amount]
 Please show coupon p.a., issuer estimated value, bid/offer, settlement convention, fee/margin assumptions, and early unwind policy.
 ```
@@ -71,7 +71,7 @@ Please show coupon p.a., issuer estimated value, bid/offer, settlement conventio
 
 English:
 
-> This is an indicative high-coupon FCN idea. The coupon is higher because the underlyings are volatile, and the investor is taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that downside performance.
+> This is an indicative FCN idea. The coupon is set by issuer pricing for the exact terms, including underlyings, tenor, RO, KO, KI, strike/reference level, volatility, skew, correlation, dividends, borrow, funding, and issuer margin. The investor is taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that downside performance.
 
 中文:
 

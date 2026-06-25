@@ -56,7 +56,7 @@ After upload, check:
 Use this prompt in Codex:
 
 ```text
-Refresh FCN market data using my fcn-desk-workbench project. Screen the watchlist, rank high-coupon baskets, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft client explanation. Label everything indicative only.
+Refresh FCN market data using my fcn-desk-workbench project. Screen the watchlist for RFQ candidates, use public listed-options data only as a vol/liquidity proxy, normalize any real issuer quotes by RO/KO/KI/strike/tenor before ranking value, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft client explanation. Label everything indicative only.
 ```
 
 ## If You Later Install Git

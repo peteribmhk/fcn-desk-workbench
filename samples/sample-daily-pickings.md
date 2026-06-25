@@ -11,19 +11,19 @@ This sample demonstrates the output format. It does not embed live prices. Befor
 
 | Ticker | Current role in FCN screen | Volatility read | Main risk |
 |---|---|---|---|
-| MSTR | Strong coupon engine | Very high | BTC beta, balance-sheet leverage, gap risk |
-| COIN | Strong coupon engine | High | Crypto flow, regulation, BTC/ETH sentiment |
+| MSTR | RFQ screening candidate | Very high | BTC beta, balance-sheet leverage, gap risk |
+| COIN | RFQ screening candidate | High | Crypto flow, regulation, BTC/ETH sentiment |
 | AMD | Explainable AI-theme anchor | Medium-high | AI expectations, valuation, competition |
-| SMCI | Strong coupon engine | Very high | Financing/dilution, AI server order cycle, jump risk |
+| SMCI | RFQ screening candidate | Very high | Financing/dilution, AI server order cycle, jump risk |
 
-## Basket Pickings
+## Screening Baskets
 
-| Rank | Basket | Category | Coupon direction | Suggested terms | Key risk | Action |
+| Rank | Basket | Category | Screening read | Suggested terms | Key risk | Action |
 |---:|---|---|---|---|---|---|
-| 1 | MSTR / COIN | Max coupon | Likely highest among listed pairs due to crypto-beta and high volatility | Start with 3M and 6M, KO 100 monthly, quote KI ladder 50/55/59/65/70 | Concentrated crypto exposure; BTC selloff can hit both names | RFQ first if client prioritizes coupon |
-| 2 | AMD / SMCI | Balanced high coupon | Likely strong coupon with clearer AI infrastructure story | 3M for tactical view; 6M if client accepts event risk; optimize KI ladder | SMCI may dominate downside; dilution and financing risk | RFQ as preferred balanced high-coupon idea |
-| 3 | MSTR / SMCI | Aggressive alternative | Potentially very high because both names are jumpy and theme-divergent | 3M only unless client is very risk-tolerant; consider lower KI if coupon allows | Two unstable worst-of candidates; severe gap risk | Use only for aggressive accounts |
-| 4 | COIN / SMCI | Aggressive alternative | High coupon; avoids MSTR-specific leverage but keeps crypto plus SMCI risk | 3M or 6M; compare coupon pickup per KI point across ladder | Crypto regulation plus SMCI financing/event risk | RFQ if client wants high coupon without MSTR |
+| 1 | MSTR / COIN | RFQ first | Screens for RFQ because both names carry crypto-beta and high volatility; actual coupon must come from issuer levels | Start with 3M and 6M, KO 100 monthly, quote KI ladder 50/55/59/65/70 | Concentrated crypto exposure; BTC selloff can hit both names | RFQ first if client prioritizes coupon |
+| 2 | AMD / SMCI | Balanced candidate | Screens as an AI-infrastructure candidate, but do not rank coupon value until issuer quotes are normalized | 3M for tactical view; 6M if client accepts event risk; optimize KI ladder | SMCI may dominate downside; dilution and financing risk | RFQ as candidate, pending issuer quote evidence |
+| 3 | MSTR / SMCI | Aggressive alternative | Screens as aggressive due to jump risk; use only after issuer RFQ confirms compensation | 3M only unless client is very risk-tolerant; consider lower KI if coupon allows | Two unstable worst-of candidates; severe gap risk | Use only for aggressive accounts |
+| 4 | COIN / SMCI | Aggressive alternative | Screens as aggressive; actual value depends on issuer correlation, skew, and hedge assumptions | 3M or 6M; compare coupon pickup per KI point across ladder | Crypto regulation plus SMCI financing/event risk | RFQ if client wants crypto exposure without MSTR |
 
 ## KI Optimization
 
@@ -39,23 +39,23 @@ Decision rule: if coupon pickup is flat, keep the lower KI. If pickup accelerate
 
 ## Suggested RFQs
 
-### RFQ 1: Max Coupon
+### RFQ 1: Value RFQ
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on MSTR / COIN, 3M and 6M tenor, KO 100 monthly, fixed monthly coupon, no RO economics. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
+Please quote indicative and firm levels for a USD worst-of FCN on MSTR / COIN, 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
 ```
 
-### RFQ 2: Balanced High Coupon
+### RFQ 2: Balanced Candidate
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on AMD / SMCI, 3M and 6M tenor, KO 100 monthly, fixed monthly coupon, no RO economics. Please quote KI 50 / 55 / 59 / 65 / 70 and show the incremental coupon pickup per KI point.
+Please quote indicative and firm levels for a USD worst-of FCN on AMD / SMCI, 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please quote KI 50 / 55 / 59 / 65 / 70 and show the incremental coupon pickup per KI point.
 ```
 
 ## Client Explanation Draft
 
 English:
 
-> The higher coupon comes from the volatility of the underlyings. This is not a risk-free yield. The investor is compensated for taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that stock's negative performance.
+> The coupon is set by issuer pricing for the exact terms, including underlyings, tenor, RO, KO, KI, strike/reference level, volatility, skew, correlation, dividends, borrow, funding, and issuer margin. It is not a risk-free yield. The investor is compensated for taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that stock's negative performance.
 
 中文:
 

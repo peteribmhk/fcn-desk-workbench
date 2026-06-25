@@ -1,6 +1,6 @@
 # Methodology
 
-Use this methodology when Codex prepares FCN pickings from public market data. The goal is to rank opportunities and prepare RFQs, not to produce firm tradable coupons.
+Use this methodology when Codex prepares FCN pickings from public market data. The goal is to identify RFQ candidates and compare issuer quotes, not to produce firm tradable coupons or predict actual issuer pricing from public data.
 
 ## Required Labels
 
@@ -17,19 +17,56 @@ Every output must state:
 - Liquidity and bid/ask quality.
 - Event risks: earnings, financing, regulation, product launch, macro, crypto moves.
 - Structure terms: tenor, KO, KI, coupon frequency, observation frequency, airbag level, and KI observation style.
+- RO / issue price and whether headline coupon or total economics are being compared.
+
+## Issuer Quote Override
+
+Issuer RFQ levels are the controlling evidence. Public quotes, listed-option straddles, and volatility labels can explain why a name may be worth asking about, but they cannot rank actual FCN coupon value by themselves.
+
+If the user provides actual issuer quote examples, update the desk view immediately:
+
+- Treat those quotes as calibration evidence for current issuer appetite.
+- Do not keep an old basket ranking if the real quote contradicts it.
+- Compare only like-for-like structures, or clearly list the structural differences.
+- Separate headline coupon from RO/discount economics.
+- Avoid saying a basket is "likely highest coupon" unless issuer quote evidence supports it.
+
+Before comparing two quotes, normalize these fields:
+
+| Field | Why it matters |
+|---|---|
+| Tenor | Annualized coupon can hide different path risk and autocall probability. |
+| Underlyings | One high-vol name can dominate, but issuer correlation/skew assumptions matter. |
+| Strike/reference | Different strike/reference conventions change downside and option value. |
+| KI level and observation | Maturity KI, daily close KI, and continuous KI are not comparable. |
+| KO level and observation | KO 98, 100, and 102 can change expected life and coupon materially. |
+| RO / issue price | RO below par adds discount accretion if redeemed at par, separate from coupon. |
+| Coupon frequency/memory | Payment mechanics change client economics. |
+| Issuer/bid-offer | Issuer inventory, funding, margin, and hedge cost can dominate the screen. |
+
+Quick RO normalization for a rough desk comparison:
+
+```text
+Approx annualized RO accretion = ((100 - RO) / RO) * (12 / tenor_months)
+Approx annualized gross carry = coupon p.a. + annualized RO accretion
+```
+
+This is not a valuation model. It is only a way to avoid comparing a 97 RO note against a 100 RO note by headline coupon alone.
 
 ## Ranking Logic
 
-Rank baskets by the following order:
+For public-data reports, rank baskets as RFQ screening candidates, not as coupon predictions. Use this order:
 
-1. **Volatility and jump risk**: higher vol generally supports higher coupon.
-2. **Worst-of risk**: the weakest or most volatile name usually drives coupon and downside.
-3. **Correlation**: lower correlation can increase worst-of dispersion risk and support coupon; highly correlated baskets may gap together.
-4. **Tenor**: longer tenor usually supports higher annualized coupon but increases time-at-risk.
-5. **KI and airbag**: lower KI / deeper airbag reduces downside trigger risk and lowers coupon; higher KI raises coupon and risk.
-6. **KO level and observation**: lower/easier KO usually increases early redemption probability and can reduce total carry opportunity.
-7. **Liquidity and hedge cost**: wider hedge cost means issuer may retain more margin.
-8. **Client explainability**: a slightly lower coupon basket can be preferable if the story and risks are easier to explain.
+1. **Issuer quote evidence**: real RFQ levels override public-data intuition.
+2. **Structure-normalized economics**: compare tenor, RO, KO, KI, strike, and coupon mechanics before judging value.
+3. **Volatility and jump risk**: higher vol generally supports higher coupon only when terms and issuer assumptions are comparable.
+4. **Worst-of risk**: the weakest or most volatile name usually drives coupon and downside.
+5. **Correlation and skew**: issuer correlation/skew assumptions can make actual quotes diverge from simple vol screens.
+6. **Tenor**: longer tenor usually supports higher annualized coupon but increases time-at-risk.
+7. **KI and airbag**: lower KI / deeper airbag reduces downside trigger risk and lowers coupon; higher KI raises coupon and risk.
+8. **KO level and observation**: lower/easier KO usually increases early redemption probability and can reduce total carry opportunity.
+9. **Liquidity, borrow, dividends, and hedge cost**: issuer hedge economics can dominate public listed-option screens.
+10. **Client explainability**: a slightly lower coupon basket can be preferable if the story and risks are easier to explain.
 
 ## Structure Guidance
 
@@ -88,19 +125,20 @@ Always compare KI levels using the same tenor, KO, basket, issuer, and observati
 
 ## Coupon Language
 
-Avoid false precision. Use ranges:
+Avoid false precision. Prefer screening language:
 
-- "Likely highest coupon basket."
-- "Coupon should screen above the semiconductor basket because volatility and jump risk are higher."
-- "RFQ target range should be validated with issuer."
-- "If issuer quote is far below this range, ask which input is driving the difference: vol, correlation, funding, borrow, or margin."
+- "This basket screens as worth RFQ, but issuer levels are needed before ranking coupon value."
+- "Public vol/liquidity suggests coupon potential; actual terms may differ because of RO, KO, KI, skew, correlation, funding, borrow, dividends, and issuer margin."
+- "The real issuer quote contradicts the screen, so the quote should override the public-data ranking."
+- "If issuer quote is far below or above the screen, ask which input is driving the difference: RO, KO, KI, vol, skew, correlation, funding, borrow, dividends, or margin."
 - "The best KI is where incremental coupon pickup justifies the extra loss-trigger risk."
 
 ## Output Ranking Categories
 
 Use these labels:
 
-- **Max coupon**: highest expected coupon, highest downside risk.
-- **Balanced high coupon**: attractive coupon with clearer client story.
-- **Aggressive alternative**: high coupon but likely unsuitable for conservative clients.
+- **RFQ first**: strongest current reason to request issuer levels, not a coupon prediction.
+- **Quote-supported high coupon**: attractive actual issuer quote after normalizing terms.
+- **Balanced candidate**: potentially useful coupon/story tradeoff, pending issuer RFQ.
+- **Aggressive candidate**: high-risk basket that may be unsuitable for conservative clients.
 - **Watch only**: interesting but not preferred due to event risk, liquidity, or crowded exposure.

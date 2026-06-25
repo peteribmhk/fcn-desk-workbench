@@ -2,9 +2,10 @@ ticker,market,theme,volatility_role,primary_risks,preferred_pairings,notes
 MSTR,US,bitcoin proxy,Very high coupon driver,"BTC beta, balance-sheet leverage, gap risk, premium/discount to BTC exposure","COIN;SMCI;TSLA","Use only for aggressive coupon-seeking clients."
 COIN,US,crypto exchange,High coupon driver,"Crypto flow, regulation, BTC/ETH sentiment, earnings gap risk","MSTR;SMCI;HOOD","Usually cleaner crypto-beta story than MSTR, but still high risk."
 AMD,US,AI semiconductors,Medium-high coupon driver,"AI expectations, valuation, product cycle, competition with NVDA","SMCI;NVDA;TSLA","Often useful as a more explainable AI-theme anchor."
-SMCI,US,AI servers,Very high coupon driver,"Dilution/financing, governance history, order-cycle risk, jump risk","AMD;MSTR;COIN","Strong coupon engine but can dominate worst-of downside."
+SMCI,US,AI servers,Very high coupon driver,"Dilution/financing, governance history, order-cycle risk, jump risk","AMD;MSTR;COIN","Strong RFQ screening name, but actual coupon must be confirmed by issuer and can dominate worst-of downside."
 NVDA,US,AI semiconductors,Medium-high coupon driver,"AI capex cycle, valuation, export controls, crowded positioning","AMD;TSLA;SMCI","Liquid and client-recognizable; coupon may be lower than SMCI/MSTR."
 TSLA,US,EV/AI/robotics,High coupon driver,"Deliveries, margins, valuation, CEO/event risk, China exposure","MSTR;NVDA;AMD","Useful when client wants a familiar high-beta name."
 PLTR,US,AI software,High coupon driver,"Valuation, government/commercial growth, sentiment, earnings risk","HOOD;TSLA;NVDA","High momentum/valuation sensitivity."
 HOOD,US,retail brokerage/crypto,High coupon driver,"Retail activity, crypto revenue, regulation, rate sensitivity","COIN;PLTR;TSLA","Can pair with COIN for trading/crypto activity theme."
-
+SNDK,US,storage/semiconductors,Quote-check coupon driver,"Storage cycle, post-separation trading history, idiosyncratic gap risk","GOOGL;AMD","Use issuer quotes as calibration; public vol screen may miss actual pricing richness."
+GOOGL,US,mega-cap AI/search,Lower-vol anchor,"AI capex, search/ads cycle, antitrust, valuation","SNDK;AMD;NVDA","Familiar client name but may dilute coupon; do not assume popular pairings are attractive."

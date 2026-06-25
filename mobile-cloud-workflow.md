@@ -49,10 +49,26 @@ Use this project as a GitHub repo and access it from ChatGPT mobile:
 4. Use this prompt:
 
 ```text
-Use my FCN Desk Workbench and read assistant-operating-instructions.md first. Refresh latest public market data for the watchlist, use the listed-options vol proxy, rank high-coupon FCN baskets, optimize KI by coupon pickup per KI point, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft bilingual client explanation. Everything must be indicative only, not a firm quote.
+Use my FCN Desk Workbench and read assistant-operating-instructions.md first. Refresh latest public market data for the watchlist, use the listed-options vol proxy only as a public screening input, screen RFQ candidates rather than predicting coupons, normalize any real issuer quotes by RO/KO/KI/strike/tenor, optimize KI by coupon pickup per KI point, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft bilingual client explanation. Everything must be indicative only, not a firm quote.
 ```
 
 This works from phone because ChatGPT does the reasoning and live data lookup in the cloud. The laptop does not need to be on.
+
+## Morning Readiness Hint
+
+Use this quick prompt each morning:
+
+```text
+FCN Morning Bell
+```
+
+The assistant should reply with one of:
+
+- `FCN Morning Bell: GREEN` - project rules loaded, Hong Kong date checked, latest report current/refreshed, and ready to proceed.
+- `FCN Morning Bell: AMBER` - project readable but report/data refresh is stale or unavailable; proceed only with caveats or trigger refresh first.
+- `FCN Morning Bell: RED` - project/report unavailable or rules cannot be verified; do not use for daily picks yet.
+
+The reply must include the report timestamp, source caveat, and reminder that issuer RFQ levels override public-data screens.
 
 ## What Codex Remote Access Means
 

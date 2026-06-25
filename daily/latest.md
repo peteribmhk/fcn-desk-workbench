@@ -33,16 +33,32 @@
 | PLTR | Sep 18 115 ATM straddle 21.2% | Dec 18 115 ATM straddle 30.9% | Usable listed options liquidity |
 | HOOD | Sep 18 105 ATM straddle 26.6% | Dec 18 105 ATM straddle 38.1% | Usable listed options liquidity |
 
-Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, and not an autocall model.
+Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, not an autocall model, and not enough to predict which basket will have the best actual coupon.
 
-## Basket Pickings
+## Issuer Quote Calibration
 
-| Rank | Basket | Category | Coupon direction | Suggested terms | Key risk | Action |
+Real issuer RFQs override this public-data screen. If a real quote contradicts the basket ranking, use the real quote as current calibration evidence and ask what drove the difference: RO, KO, KI, strike/reference, skew, correlation, borrow, dividends, funding, issuer inventory, or margin.
+
+For rough comparison when RO differs:
+
+```text
+Approx annualized RO accretion = ((100 - RO) / RO) * (12 / tenor_months)
+Approx annualized gross carry = coupon p.a. + annualized RO accretion
+```
+
+Example: for a 3M note at RO 97, the rough annualized RO accretion is about 12.4% before considering path risk, autocall timing, issuer bid/offer, and downside redemption risk. Keep headline coupon and RO accretion separate in client discussion.
+
+## Screening Baskets
+
+| Rank | Basket | Category | Screening read | Suggested terms | Key risk | Action |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | MSTR / COIN | Max coupon | Likely highest among core pairs because both names carry crypto-beta and high volatility. | 3M/6M, KO 100 monthly, RFQ KI ladder 50/55/59/65/70 | Concentrated crypto-beta; BTC selloff can hit both names. | RFQ if client prioritizes coupon; validate final terms with issuer. |
-| 2 | AMD / SMCI | Balanced high coupon | Likely strong coupon with a clearer AI infrastructure story. | 3M tactical or 6M if client accepts event risk; optimize KI ladder | SMCI can dominate worst-of downside; financing and jump risk matter. | RFQ if client prioritizes coupon; validate final terms with issuer. |
-| 3 | MSTR / SMCI | Aggressive alternative | Potentially very high, but risk is severe because both names can gap. | Prefer 3M; consider lower KI if coupon still works | Two unstable high-vol names; severe gap and worst-of risk. | RFQ if client prioritizes coupon; validate final terms with issuer. |
-| 4 | COIN / SMCI | Aggressive alternative | High coupon; avoids MSTR-specific leverage while keeping crypto plus SMCI risk. | 3M/6M; compare coupon pickup per KI point across ladder | Crypto regulation plus SMCI financing/event risk. | RFQ if client prioritizes coupon; validate final terms with issuer. |
+| 1 | MSTR / COIN | RFQ first | Screens for RFQ because both names carry crypto-beta and high volatility; actual coupon must come from issuer levels. | 3M/6M, KO 100 monthly, RFQ KI ladder 50/55/59/65/70 | Concentrated crypto-beta; BTC selloff can hit both names. | Request/compare issuer RFQ; do not rank by public screen alone. |
+| 2 | AMD / SMCI | Balanced candidate | Screens as an AI-infrastructure candidate, but do not rank coupon value until issuer quotes are normalized. | 3M tactical or 6M if client accepts event risk; optimize KI ladder | SMCI can dominate worst-of downside; financing and jump risk matter. | Request/compare issuer RFQ; do not rank by public screen alone. |
+| 3 | MSTR / SMCI | Aggressive candidate | Screens as aggressive due to jump risk; use only after issuer RFQ confirms compensation. | Prefer 3M; consider lower KI if coupon still works | Two unstable high-vol names; severe gap and worst-of risk. | Request/compare issuer RFQ; do not rank by public screen alone. |
+| 4 | COIN / SMCI | Aggressive candidate | Screens as aggressive; actual value depends on issuer correlation, skew, and hedge assumptions. | 3M/6M; compare coupon pickup per KI point across ladder | Crypto regulation plus SMCI financing/event risk. | Request/compare issuer RFQ; do not rank by public screen alone. |
+| 5 | SNDK / GOOGL | Quote-check candidate | User quote evidence shows this can price strongly; treat issuer quote as calibration, not public-screen output. | Use issuer quote evidence; compare KO 98/100/102 and RO 97/100 | SanDisk idiosyncratic risk plus lower-vol mega-cap anchor; quote may be issuer-specific. | Request/compare issuer RFQ; do not rank by public screen alone. |
+| 6 | AMD / SNDK | Quote-check candidate | User quote evidence suggests headline coupon is not enough; normalize RO 97, KO 102, KI 58, and strike terms. | Use issuer quote evidence; normalize RO, KO, KI, and strike before ranking | Semiconductor/event risk; SanDisk quote behavior may diverge from public vol screen. | Request/compare issuer RFQ; do not rank by public screen alone. |
+| 7 | GOOGL / AMD | Watch only | User quote evidence shows this may price weakly; avoid assuming popular names produce attractive coupon. | RFQ only if client wants familiar names; do not assume high coupon | Lower actual coupon possible despite recognizable names; quote must drive decision. | Request/compare issuer RFQ; do not rank by public screen alone. |
 
 ## Default Structure For RFQ
 
@@ -52,7 +68,7 @@ Use this section to judge relative listed-option richness and liquidity only. It
 - KO: 100%, monthly observation.
 - KI / airbag: request ladder 50 / 55 / 59 / 65 / 70, observed at maturity unless issuer specifies otherwise.
 - Coupon: fixed coupon, monthly payment.
-- RO: no RO economics unless specifically requested.
+- RO: compare RO 100 and requested RO, such as RO 97, separately; do not compare headline coupon alone.
 
 ## KI Optimization
 
@@ -69,14 +85,14 @@ Decision rule: do not choose KI by habit. Compare the coupon pickup against the 
 ## RFQ Wording
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 100 monthly, fixed monthly coupon, no RO economics. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
+Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [TICKER 2], 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
 ```
 
 ## Client Explanation
 
 English:
 
-> The higher coupon comes from the volatility of the underlyings. This is not a risk-free yield. The investor is compensated for taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that stock's negative performance.
+> The coupon is set by issuer pricing for the exact terms, including underlyings, tenor, RO, KO, KI, strike/reference level, volatility, skew, correlation, dividends, borrow, funding, and issuer margin. It is not a risk-free yield. The investor is compensated for taking worst-of downside risk. If the note does not autocall and the worst-performing stock finishes below the KI level, redemption may be linked to that stock's negative performance.
 
 中文:
 
