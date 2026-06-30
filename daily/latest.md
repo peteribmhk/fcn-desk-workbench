@@ -1,7 +1,7 @@
 # FCN Daily Report
 
-**Report date:** 2026-06-29  
-**Generated:** 2026-06-29 22:53 HKT / 2026-06-29 14:53 UTC  
+**Report date:** 2026-06-30  
+**Generated:** 2026-06-30 19:32 HKT / 2026-06-30 11:32 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed.
 
@@ -9,16 +9,16 @@
 
 | Ticker | Last | Date/Time | Daily move | Volatility read | Main risk |
 | --- | --- | --- | --- | --- | --- |
-| MSTR | 86.61 | Jun 29, 2026 10:53 AM ET Open delayed | +5.22% | Very high; active daily move | BTC beta, leverage, gap risk |
-| COIN | 148.27 | Jun 29, 2026 10:53 AM ET Open delayed | -0.53% | High | Crypto flow, regulation, BTC/ETH sentiment |
-| AMD | 506.31 | Jun 29, 2026 10:53 AM ET Open delayed | -2.93% | Medium-high | AI expectations, valuation, product cycle |
-| SMCI | 29.92 | Jun 29, 2026 10:53 AM ET Open delayed | -2.32% | Very high | Financing/dilution, order-cycle risk, jump risk |
-| NVDA | 194.19 | Jun 29, 2026 10:53 AM ET Open delayed | +0.86% | Medium-high | AI capex cycle, valuation, export controls |
-| TSLA | 396.71 | Jun 29, 2026 10:53 AM ET Open delayed | +4.48% | High; active daily move | Deliveries, margins, CEO/event risk |
-| PLTR | 118.34 | Jun 29, 2026 10:53 AM ET Open delayed | +4.79% | High; active daily move | Valuation, AI software sentiment, earnings risk |
-| HOOD | 100.34 | Jun 29, 2026 10:53 AM ET Open delayed | +1.67% | High | Retail activity, crypto revenue, regulation |
-| SNDK | 1912.55 | Jun 29, 2026 10:53 AM ET Open delayed | -8.52% | High; elevated daily move | Storage cycle, post-separation history, idiosyncratic gap risk |
-| GOOGL | 350.68 | Jun 29, 2026 10:53 AM ET Open delayed | +3.94% | Medium | AI/search capex, antitrust, ad-cycle and mega-cap valuation risk |
+| MSTR | 89.54 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | -3.39% | Very high | BTC beta, leverage, gap risk |
+| COIN | 148.67 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | -1.97% | High | Crypto flow, regulation, BTC/ETH sentiment |
+| AMD | 542.99 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.65% | Medium-high | AI expectations, valuation, product cycle |
+| SMCI | 28.57 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +1.49% | Very high | Financing/dilution, order-cycle risk, jump risk |
+| NVDA | 196.86 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.97% | Medium-high | AI capex cycle, valuation, export controls |
+| TSLA | 408.00 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | -0.93% | High | Deliveries, margins, CEO/event risk |
+| PLTR | 116.70 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.86% | High | Valuation, AI software sentiment, earnings risk |
+| HOOD | 102.31 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.47% | High | Retail activity, crypto revenue, regulation |
+| SNDK | 2098.93 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +2.37% | High | Storage cycle, post-separation history, idiosyncratic gap risk |
+| GOOGL | 355.06 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.40% | Medium | AI/search capex, antitrust, ad-cycle and mega-cap valuation risk |
 
 ## Listed Options Vol Proxy
 
@@ -26,16 +26,16 @@
 
 | Ticker | 3M ATM straddle proxy | 6M ATM straddle proxy | Listed options liquidity |
 | --- | --- | --- | --- |
-| MSTR | Sep 18 85 ATM straddle 35.5% | Dec 18 85 ATM straddle 50.0% | Usable listed options liquidity |
-| COIN | Sep 18 150 ATM straddle 27.7% | Dec 18 150 ATM straddle 40.7% | Usable listed options liquidity |
-| AMD | Sep 18 510 ATM straddle 28.1% | Dec 18 510 ATM straddle 39.7% | Thin listed options liquidity |
-| SMCI | Sep 18 30 ATM straddle 33.6% | Dec 18 30 ATM straddle 47.5% | Usable listed options liquidity |
-| NVDA | Sep 18 195 ATM straddle 15.7% | Dec 18 194 ATM straddle 23.1% | Usable listed options liquidity |
-| TSLA | Sep 18 395 ATM straddle 17.2% | Dec 18 395 ATM straddle 25.7% | Usable listed options liquidity |
-| PLTR | Sep 18 120 ATM straddle 21.4% | Dec 18 120 ATM straddle 30.9% | Usable listed options liquidity |
-| HOOD | Sep 18 100 ATM straddle 26.2% | Dec 18 100 ATM straddle 38.0% | Usable listed options liquidity |
-| SNDK | Sep 18 1910 ATM straddle 43.1% | Dec 18 1910 ATM straddle 61.1% | Thin listed options liquidity |
-| GOOGL | Sep 18 350 ATM straddle 13.8% | Dec 18 350 ATM straddle 20.0% | Usable listed options liquidity |
+| MSTR | Sep 18 90 ATM straddle 35.0% | Dec 18 90 ATM straddle 49.8% | Deep listed options liquidity |
+| COIN | Sep 18 150 ATM straddle 28.2% | Dec 18 150 ATM straddle 40.8% | Usable listed options liquidity |
+| AMD | Sep 18 540 ATM straddle 27.9% | Dec 18 540 ATM straddle 39.3% | Thin listed options liquidity |
+| SMCI | Sep 18 29 ATM straddle 34.6% | Dec 18 29 ATM straddle 48.9% | Usable listed options liquidity |
+| NVDA | Sep 18 195 ATM straddle 15.3% | Dec 18 195 ATM straddle 22.7% | Deep listed options liquidity |
+| TSLA | Sep 18 410 ATM straddle 17.5% | Dec 18 410 ATM straddle 26.2% | Deep listed options liquidity |
+| PLTR | Sep 18 115 ATM straddle 20.7% | Dec 18 115 ATM straddle 30.2% | Deep listed options liquidity |
+| HOOD | Sep 18 100 ATM straddle 26.0% | Dec 18 100 ATM straddle 37.6% | Usable listed options liquidity |
+| SNDK | Sep 18 2100 ATM straddle 41.9% | Dec 18 2100 ATM straddle 60.0% | Thin listed options liquidity |
+| GOOGL | Sep 18 355 ATM straddle 13.6% | Dec 18 355 ATM straddle 19.9% | Usable listed options liquidity |
 
 Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, not an autocall model, and not enough to predict which basket will have the best actual coupon.
 
