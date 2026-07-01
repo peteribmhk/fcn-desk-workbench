@@ -1,7 +1,7 @@
 # FCN Daily Report
 
 **Report date:** 2026-07-01  
-**Generated:** 2026-07-01 10:46 HKT / 2026-07-01 02:46 UTC  
+**Generated:** 2026-07-01 19:47 HKT / 2026-07-01 11:47 UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed.
 **Universe policy:** Crypto-linked tickers are excluded by default. This report screens a diversified non-crypto watchlist across technology, healthcare/biotech, EV, clean energy, China ADRs, cyclicals, and other high-volatility sectors.
@@ -25,23 +25,23 @@ This gate must pass before using the report for ticker suggestions or basket com
 
 | Ticker | Last | Date/Time | Daily move | Volatility read | Main risk |
 | --- | --- | --- | --- | --- | --- |
-| AMD | 580.91 | Jun 30, 2026 Closed delayed | +7.68% | High; elevated daily move | AI expectations, valuation, product cycle, competition with NVDA |
-| SMCI | 29.33 | Jun 30, 2026 Closed delayed | +4.19% | Very high; active daily move | Financing/dilution, governance history, order-cycle risk, jump risk |
-| NVDA | 200.09 | Jun 30, 2026 Closed delayed | +2.63% | High | AI capex cycle, valuation, export controls, crowded positioning |
-| TSLA | 420.60 | Jun 30, 2026 Closed delayed | +2.13% | High | Deliveries, margins, valuation, CEO/event risk, China exposure |
-| PLTR | 116.67 | Jun 30, 2026 Closed delayed | +0.84% | High | Valuation, government/commercial growth, sentiment, earnings risk |
-| SNDK | 2273.73 | Jun 30, 2026 Closed delayed | +10.89% | Quote-check coupon driver; elevated daily move | Storage cycle, post-separation trading history, idiosyncratic gap risk |
-| GOOGL | 357.37 | Jun 30, 2026 Closed delayed | +1.05% | Lower-vol | AI capex, search/ads cycle, antitrust, valuation |
-| HIMS | 34.67 | Jun 30, 2026 Closed delayed | +3.83% | High | Valuation, regulation, telehealth growth, product headline risk |
-| MRNA | 70.03 | Jun 30, 2026 Closed delayed | +0.47% | High | Pipeline risk, trial/regulatory outcomes, revenue reset, event gap risk |
-| IONQ | 53.26 | Jun 30, 2026 Closed delayed | -1.15% | Very high | Speculative technology, valuation, contract credibility, capital raising, gap risk |
-| RKLB | 101.65 | Jun 30, 2026 Closed delayed | +3.71% | High | Launch execution, contract timing, funding, sector sentiment |
-| ENPH | 49.24 | Jun 30, 2026 Closed delayed | +1.86% | High | Rates, residential solar demand, inventory cycle, margin reset |
-| FSLR | 235.96 | Jun 30, 2026 Closed delayed | +1.36% | High | Policy/tariffs, project timing, margin, clean-energy sentiment |
-| BABA | 95.98 | Jun 30, 2026 Closed delayed | +0.49% | High | China macro/regulation, ADR/geopolitical risk, RMB/sentiment |
-| PDD | 76.28 | Jun 30, 2026 Closed delayed | -0.34% | High | China consumer demand, competition, regulatory/geopolitical risk, earnings gap |
-| RIVN | 17.35 | Jun 30, 2026 Closed delayed | +3.21% | Very high | Cash burn, deliveries, production ramp, funding/dilution risk |
-| UAL | 135.99 | Jun 30, 2026 Closed delayed | +0.59% | High | Fuel, labor, travel demand, macro sensitivity, event shocks |
+| AMD | 574.46 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -1.11% | High | AI expectations, valuation, product cycle, competition with NVDA |
+| SMCI | 29.10 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -0.78% | Very high | Financing/dilution, governance history, order-cycle risk, jump risk |
+| NVDA | 198.85 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -0.62% | High | AI capex cycle, valuation, export controls, crowded positioning |
+| TSLA | 419.56 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -0.25% | High | Deliveries, margins, valuation, CEO/event risk, China exposure |
+| PLTR | 119.60 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | +2.51% | High | Valuation, government/commercial growth, sentiment, earnings risk |
+| SNDK | 2194.80 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -3.47% | Quote-check coupon driver | Storage cycle, post-separation trading history, idiosyncratic gap risk |
+| GOOGL | 356.93 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -0.12% | Lower-vol | AI capex, search/ads cycle, antitrust, valuation |
+| HIMS | 34.98 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | +0.89% | High | Valuation, regulation, telehealth growth, product headline risk |
+| MRNA | 69.80 | Jul 1, 2026 7:45 AM ET Pre-Market delayed | -0.33% | High | Pipeline risk, trial/regulatory outcomes, revenue reset, event gap risk |
+| IONQ | 53.30 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | +0.08% | Very high | Speculative technology, valuation, contract credibility, capital raising, gap risk |
+| RKLB | 101.20 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -0.45% | High | Launch execution, contract timing, funding, sector sentiment |
+| ENPH | 49.00 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -0.49% | High | Rates, residential solar demand, inventory cycle, margin reset |
+| FSLR | 236.02 | Jul 1, 2026 7:44 AM ET Pre-Market delayed | +0.03% | High | Policy/tariffs, project timing, margin, clean-energy sentiment |
+| BABA | 95.60 | Jul 1, 2026 7:46 AM ET Pre-Market delayed | -0.40% | High | China macro/regulation, ADR/geopolitical risk, RMB/sentiment |
+| PDD | 76.40 | Jul 1, 2026 7:42 AM ET Pre-Market delayed | +0.16% | High | China consumer demand, competition, regulatory/geopolitical risk, earnings gap |
+| RIVN | 17.27 | Jul 1, 2026 7:47 AM ET Pre-Market delayed | -0.44% | Very high | Cash burn, deliveries, production ramp, funding/dilution risk |
+| UAL | 136.99 | Jul 1, 2026 7:46 AM ET Pre-Market delayed | +0.74% | High | Fuel, labor, travel demand, macro sensitivity, event shocks |
 
 ## Listed Options Vol Proxy
 
@@ -49,23 +49,23 @@ This gate must pass before using the report for ticker suggestions or basket com
 
 | Ticker | 3M ATM straddle proxy | 6M ATM straddle proxy | Listed options liquidity |
 | --- | --- | --- | --- |
-| AMD | Sep 18 580 ATM straddle 28.2% | Dec 18 580 ATM straddle 39.9% | Thin listed options liquidity |
-| SMCI | Sep 18 29 ATM straddle 34.4% | Dec 18 29 ATM straddle 48.6% | Usable listed options liquidity |
-| NVDA | Sep 18 200 ATM straddle 15.3% | Dec 18 200 ATM straddle 22.8% | Deep listed options liquidity |
-| TSLA | Sep 18 420 ATM straddle 17.0% | Dec 18 420 ATM straddle 25.8% | Deep listed options liquidity |
-| PLTR | Sep 18 115 ATM straddle 20.5% | Dec 18 115 ATM straddle 30.4% | Usable listed options liquidity |
-| SNDK | Sep 18 2270 ATM straddle 41.6% | Dec 18 2270 ATM straddle 59.8% | Thin listed options liquidity |
+| AMD | Sep 18 570 ATM straddle 28.5% | Dec 18 570 ATM straddle 40.2% | Thin listed options liquidity |
+| SMCI | Sep 18 29 ATM straddle 34.6% | Dec 18 29 ATM straddle 49.0% | Usable listed options liquidity |
+| NVDA | Sep 18 200 ATM straddle 15.4% | Dec 18 200 ATM straddle 22.9% | Deep listed options liquidity |
+| TSLA | Sep 18 420 ATM straddle 17.1% | Dec 18 420 ATM straddle 25.9% | Deep listed options liquidity |
+| PLTR | Sep 18 120 ATM straddle 20.4% | Dec 18 120 ATM straddle 30.0% | Deep listed options liquidity |
+| SNDK | Sep 18 2190 ATM straddle 42.6% | Dec 18 2190 ATM straddle 61.0% | Thin listed options liquidity |
 | GOOGL | Sep 18 355 ATM straddle 13.1% | Dec 18 355 ATM straddle 19.7% | Usable listed options liquidity |
-| HIMS | Sep 18 35 ATM straddle 37.6% | Dec 18 35 ATM straddle 51.1% | Usable listed options liquidity |
-| MRNA | Sep 18 70 ATM straddle 33.3% | Dec 18 70 ATM straddle 46.7% | Usable listed options liquidity |
+| HIMS | Sep 18 35 ATM straddle 37.2% | Dec 18 35 ATM straddle 50.7% | Usable listed options liquidity |
+| MRNA | Sep 18 70 ATM straddle 33.4% | Dec 18 70 ATM straddle 46.8% | Usable listed options liquidity |
 | IONQ | Sep 18 55 ATM straddle 38.0% | Dec 18 55 ATM straddle 53.5% | Usable listed options liquidity |
-| RKLB | Sep 18 100 ATM straddle 34.5% | Dec 18 100 ATM straddle 49.3% | Usable listed options liquidity |
-| ENPH | Sep 18 50 ATM straddle 35.1% | Dec 18 50 ATM straddle 48.1% | Usable listed options liquidity |
+| RKLB | Sep 18 100 ATM straddle 34.6% | Dec 18 100 ATM straddle 49.6% | Usable listed options liquidity |
+| ENPH | Sep 18 50 ATM straddle 35.3% | Dec 18 50 ATM straddle 48.4% | Usable listed options liquidity |
 | FSLR | Sep 18 240 ATM straddle 25.4% | Dec 18 240 ATM straddle 35.9% | Thin listed options liquidity |
-| BABA | Sep 18 95 ATM straddle 17.5% | Dec 18 95 ATM straddle 25.3% | Deep listed options liquidity |
-| PDD | Sep 18 75 ATM straddle 16.1% | Dec 18 75 ATM straddle 23.1% | Usable listed options liquidity |
-| RIVN | Sep 18 17 ATM straddle 25.9% | Dec 18 18 ATM straddle 39.3% | Deep listed options liquidity |
-| UAL | Sep 18 135 ATM straddle 19.2% | Dec 18 135 ATM straddle 27.6% | Thin listed options liquidity |
+| BABA | Sep 18 95 ATM straddle 17.5% | Dec 18 95 ATM straddle 25.4% | Deep listed options liquidity |
+| PDD | Sep 18 75 ATM straddle 16.1% | Dec 18 75 ATM straddle 23.0% | Usable listed options liquidity |
+| RIVN | Sep 18 17 ATM straddle 26.0% | Dec 18 18 ATM straddle 39.5% | Deep listed options liquidity |
+| UAL | Sep 18 135 ATM straddle 19.1% | Dec 18 135 ATM straddle 27.4% | Thin listed options liquidity |
 
 Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, not an autocall model, and not enough to predict which basket will have the best actual coupon.
 
