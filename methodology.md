@@ -15,9 +15,31 @@ Every output must state:
 - Recent price trend: 1D, 1W, 1M if available.
 - Implied volatility or public options-chain proxy if available.
 - Liquidity and bid/ask quality.
-- Event risks: earnings, financing, regulation, product launch, macro, crypto moves.
+- Event risks: earnings, financing, regulation, product launch, macro, sector stress, geopolitical or idiosyncratic catalysts.
 - Structure terms: tenor, KO, KI, coupon frequency, observation frequency, airbag level, and KI observation style.
 - RO / issue price and whether headline coupon or total economics are being compared.
+
+## Ticker Universe Policy
+
+Crypto-linked ideas are excluded by default. Do not screen MSTR, COIN, BTC miners, crypto exchanges, or crypto-beta baskets unless the user explicitly asks to opt in.
+
+The default watchlist should remain diversified across industries. Do not let the workflow collapse into one theme just because one sector currently has high public volatility. At minimum, consider AI/semis, software, EV, healthcare/biotech, emerging technology, clean energy, China ADRs, cyclicals, and other liquid high-volatility names.
+
+Use public data to decide what is worth RFQ, not to declare which basket has the best coupon. A lower-volatility but issuer-favored basket can beat a higher-volatility public screen once skew, correlation, funding, borrow, dividends, inventory, and margin are included.
+
+## Profile Verification Gate
+
+Run this gate before daily picks, ticker suggestions, basket combinations, RFQ wording, or client-facing commentary:
+
+| Gate | Pass condition | If it fails |
+|---|---|---|
+| User preference | Crypto-linked names are excluded unless the user explicitly opts in. | Remove crypto names and rebuild the screen. |
+| Evidence quality | Public/free data is labeled as delayed/public screening only. | Do not call the output live, firm, or issuer-priced. |
+| Issuer quote override | Real issuer RFQ or firm pricing-system evidence overrides public-data ranking once normalized. | Re-rank from issuer evidence, not from public vol proxy. |
+| Structure normalization | Tenor, strike/reference, KI, KI observation, KO, KO observation, RO, coupon frequency, issuer, bid/offer, dividends, borrow, funding, correlation, skew, and autocall assumptions are checked. | Mark comparison as structural mismatch. |
+| KI value discipline | KI is optimized by coupon pickup per KI point of airbag sacrificed. | Do not recommend the lowest KI or highest headline coupon mechanically. |
+| Repeat discipline | Repeated tickers/baskets are classified as same rationale, changed inputs, structural mismatch, or calibration drift. | Use the requote checklist before suggesting again. |
+| Persistence | Reusable user corrections are written into repo instructions/templates. | Update the project files before relying on the memory later. |
 
 ## Issuer Quote Override
 
@@ -43,6 +65,31 @@ Before comparing two quotes, normalize these fields:
 | RO / issue price | RO below par adds discount accretion if redeemed at par, separate from coupon. |
 | Coupon frequency/memory | Payment mechanics change client economics. |
 | Issuer/bid-offer | Issuer inventory, funding, margin, and hedge cost can dominate the screen. |
+
+## Why Issuer Pricing Can Diverge
+
+Differences versus UBS, JPM, Marex, Leonteq, or another issuer are usually not just "bad data." They can come from:
+
+- different spot/reference timing and live bid/ask,
+- issuer volatility surface, skew, and forward/dividend assumptions,
+- worst-of correlation assumptions and autocall path modeling,
+- borrow, financing, funding curve, issuer credit, and balance-sheet inventory,
+- term-sheet details such as KI observation style, KO start date, coupon memory, strike convention, RO, fees, and settlement,
+- issuer margin, bid/offer, and appetite for the exact underlyings.
+
+Therefore, optimize the workbench as a screening and calibration tool. It should ask better RFQs, normalize real quotes more carefully, and learn from pricing-system feedback, but it should not pretend to replicate a bank issuer pricer from free public data.
+
+## Requote Discipline
+
+Before quoting or suggesting a ticker or basket that appeared before, classify the idea:
+
+- **Fresh idea:** no recent prior rationale.
+- **Repeat, same rationale:** same basket and structure, with today's refreshed market data.
+- **Repeat, changed inputs:** same ticker/basket but spot, listed-options proxy, liquidity, event risk, or structure changed.
+- **Structural mismatch:** tenor, KI, KO, strike/reference, RO, coupon frequency, issuer, or observation style differs.
+- **Calibration drift:** today's issuer/pricing-system result contradicts the old public-data screen.
+
+Use `templates/requote-checklist.md` for the comparison. If real quote evidence contradicts the old view, the real quote wins for current calibration.
 
 Quick RO normalization for a rough desk comparison:
 

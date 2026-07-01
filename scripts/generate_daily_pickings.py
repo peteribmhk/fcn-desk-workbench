@@ -18,8 +18,73 @@ import urllib.request
 from pathlib import Path
 
 
-TICKERS = ["MSTR", "COIN", "AMD", "SMCI", "NVDA", "TSLA", "PLTR", "HOOD", "SNDK", "GOOGL"]
+REPO_ROOT = Path(__file__).resolve().parents[1]
+WATCHLIST_PATH = REPO_ROOT / "watchlist.csv"
+DEFAULT_WATCHLIST = [
+    {
+        "ticker": "AMD",
+        "theme": "AI semiconductors",
+        "volatility_role": "Medium-high coupon driver",
+        "primary_risks": "AI expectations, valuation, product cycle",
+    },
+    {
+        "ticker": "SMCI",
+        "theme": "AI servers",
+        "volatility_role": "Very high coupon driver",
+        "primary_risks": "Financing/dilution, governance history, order-cycle risk, jump risk",
+    },
+    {
+        "ticker": "NVDA",
+        "theme": "AI semiconductors",
+        "volatility_role": "Medium-high coupon driver",
+        "primary_risks": "AI capex cycle, valuation, export controls",
+    },
+    {
+        "ticker": "TSLA",
+        "theme": "EV/AI/robotics",
+        "volatility_role": "High coupon driver",
+        "primary_risks": "Deliveries, margins, valuation, CEO/event risk",
+    },
+    {
+        "ticker": "PLTR",
+        "theme": "AI software",
+        "volatility_role": "High coupon driver",
+        "primary_risks": "Valuation, AI software sentiment, earnings risk",
+    },
+]
+
+
+def load_watchlist() -> list[dict[str, str]]:
+    if not WATCHLIST_PATH.exists():
+        return DEFAULT_WATCHLIST
+    rows: list[dict[str, str]] = []
+    with WATCHLIST_PATH.open(newline="", encoding="utf-8") as file:
+        for row in csv.DictReader(file):
+            ticker = (row.get("ticker") or "").strip().upper()
+            if not ticker:
+                continue
+            cleaned = {key: (value or "").strip() for key, value in row.items()}
+            cleaned["ticker"] = ticker
+            rows.append(cleaned)
+    return rows or DEFAULT_WATCHLIST
+
+
+WATCHLIST = load_watchlist()
+WATCHLIST_BY_TICKER = {row["ticker"]: row for row in WATCHLIST}
+TICKERS = list(WATCHLIST_BY_TICKER)
 KI_LADDER = [50, 55, 59, 65, 70]
+CRYPTO_LINKED_TICKERS = {
+    "MSTR",
+    "COIN",
+    "MARA",
+    "RIOT",
+    "CLSK",
+    "HUT",
+    "BTBT",
+    "BITF",
+    "IREN",
+    "WGMI",
+}
 NASDAQ_HEADERS = {
     "User-Agent": "Mozilla/5.0",
     "Accept": "application/json, text/plain, */*",
@@ -30,67 +95,77 @@ NASDAQ_HEADERS = {
 BASKETS = [
     {
         "rank": 1,
-        "basket": ("MSTR", "COIN"),
+        "basket": ("SMCI", "AMD"),
         "category": "RFQ first",
         "terms": "3M/6M, KO 100 monthly, RFQ KI ladder 50/55/59/65/70",
-        "risk": "Concentrated crypto-beta; BTC selloff can hit both names.",
+        "risk": "SMCI can dominate worst-of downside; financing, governance, and gap risk matter.",
     },
     {
         "rank": 2,
-        "basket": ("AMD", "SMCI"),
+        "basket": ("PLTR", "TSLA"),
         "category": "Balanced candidate",
-        "terms": "3M tactical or 6M if client accepts event risk; optimize KI ladder",
-        "risk": "SMCI can dominate worst-of downside; financing and jump risk matter.",
+        "terms": "3M tactical or 6M if client accepts valuation/event risk; optimize KI ladder",
+        "risk": "High-beta momentum pair; earnings, deliveries, valuation, and sentiment can gap.",
     },
     {
         "rank": 3,
-        "basket": ("MSTR", "SMCI"),
-        "category": "Aggressive candidate",
-        "terms": "Prefer 3M; consider lower KI if coupon still works",
-        "risk": "Two unstable high-vol names; severe gap and worst-of risk.",
+        "basket": ("HIMS", "MRNA"),
+        "category": "Quote-check candidate",
+        "terms": "3M/6M; require issuer availability, liquidity check, and event-risk review",
+        "risk": "Healthcare/biotech headlines, trial/regulatory outcomes, and valuation reset risk.",
     },
     {
         "rank": 4,
-        "basket": ("COIN", "SMCI"),
+        "basket": ("IONQ", "RKLB"),
         "category": "Aggressive candidate",
-        "terms": "3M/6M; compare coupon pickup per KI point across ladder",
-        "risk": "Crypto regulation plus SMCI financing/event risk.",
+        "terms": "Prefer 3M; use lower KI unless pickup per KI point is compelling",
+        "risk": "Speculative emerging-technology pair; funding, execution, and severe gap risk.",
     },
     {
         "rank": 5,
-        "basket": ("SNDK", "GOOGL"),
-        "category": "Quote-check candidate",
-        "terms": "Use issuer quote evidence; compare KO 98/100/102 and RO 97/100",
-        "risk": "SanDisk idiosyncratic risk plus lower-vol mega-cap anchor; quote may be issuer-specific.",
+        "basket": ("ENPH", "FSLR"),
+        "category": "Balanced candidate",
+        "terms": "3M/6M; compare coupon pickup per KI point across ladder",
+        "risk": "Rates, policy, demand cycle, and margin risk can dominate the clean-energy story.",
     },
     {
         "rank": 6,
-        "basket": ("AMD", "SNDK"),
+        "basket": ("BABA", "PDD"),
         "category": "Quote-check candidate",
-        "terms": "Use issuer quote evidence; normalize RO, KO, KI, and strike before ranking",
-        "risk": "Semiconductor/event risk; SanDisk quote behavior may diverge from public vol screen.",
+        "terms": "3M/6M; normalize ADR/geopolitical risk and issuer correlation assumptions",
+        "risk": "China macro, regulation, geopolitics, and ADR sentiment.",
     },
     {
         "rank": 7,
-        "basket": ("GOOGL", "AMD"),
+        "basket": ("SNDK", "AMD"),
+        "category": "Quote-check candidate",
+        "terms": "Use issuer quote evidence; compare KO 98/100/102 and RO 97/100",
+        "risk": "Storage/semiconductor cycle and SanDisk idiosyncratic quote behavior.",
+    },
+    {
+        "rank": 8,
+        "basket": ("GOOGL", "NVDA"),
         "category": "Watch only",
         "terms": "RFQ only if client wants familiar names; do not assume high coupon",
-        "risk": "Lower actual coupon possible despite recognizable names; quote must drive decision.",
+        "risk": "Recognizable names may dilute coupon; valuation and AI capex cycle still matter.",
+    },
+    {
+        "rank": 9,
+        "basket": ("RIVN", "TSLA"),
+        "category": "Aggressive candidate",
+        "terms": "Prefer short tenor; require issuer eligibility, lower KI ladder, and event-risk check",
+        "risk": "EV delivery, cash burn, production ramp, margins, and sentiment risk.",
+    },
+    {
+        "rank": 10,
+        "basket": ("UAL", "TSLA"),
+        "category": "Watch only",
+        "terms": "Use only to broaden cyclicals; compare against cleaner same-sector alternatives",
+        "risk": "Airline macro/fuel/labor risk plus Tesla event risk; mixed-theme explainability.",
     },
 ]
 
-RISK_TAGS = {
-    "MSTR": "BTC beta, leverage, gap risk",
-    "COIN": "Crypto flow, regulation, BTC/ETH sentiment",
-    "AMD": "AI expectations, valuation, product cycle",
-    "SMCI": "Financing/dilution, order-cycle risk, jump risk",
-    "NVDA": "AI capex cycle, valuation, export controls",
-    "TSLA": "Deliveries, margins, CEO/event risk",
-    "PLTR": "Valuation, AI software sentiment, earnings risk",
-    "HOOD": "Retail activity, crypto revenue, regulation",
-    "SNDK": "Storage cycle, post-separation history, idiosyncratic gap risk",
-    "GOOGL": "AI/search capex, antitrust, ad-cycle and mega-cap valuation risk",
-}
+RISK_TAGS = {ticker: row.get("primary_risks", "Review issuer and event risk") for ticker, row in WATCHLIST_BY_TICKER.items()}
 
 
 def clean_number(value: str | None) -> str:
@@ -352,19 +427,20 @@ def row_pct_change(row: dict[str, str], close: float, open_: float) -> float | N
     return pct_change(close, open_)
 
 
+def watchlist_field(ticker: str, field: str, default: str = "") -> str:
+    return WATCHLIST_BY_TICKER.get(ticker, {}).get(field, default) or default
+
+
+def base_vol_label(ticker: str) -> str:
+    role = watchlist_field(ticker, "volatility_role", "Medium")
+    for label in ["Very high", "High", "Medium-high", "Medium", "Lower-vol"]:
+        if label.lower() in role.lower():
+            return label
+    return role
+
+
 def vol_read(ticker: str, move: float | None) -> str:
-    base = {
-        "MSTR": "Very high",
-        "SMCI": "Very high",
-        "COIN": "High",
-        "TSLA": "High",
-        "PLTR": "High",
-        "HOOD": "High",
-        "AMD": "Medium-high",
-        "NVDA": "Medium-high",
-        "SNDK": "High",
-        "GOOGL": "Medium",
-    }.get(ticker, "Medium")
+    base = base_vol_label(ticker)
 
     if move is not None and abs(move) >= 7:
         return f"{base}; elevated daily move"
@@ -375,21 +451,33 @@ def vol_read(ticker: str, move: float | None) -> str:
 
 def basket_coupon_direction(basket: tuple[str, str]) -> str:
     names = set(basket)
-    if names == {"MSTR", "COIN"}:
-        return "Screens for RFQ because both names carry crypto-beta and high volatility; actual coupon must come from issuer levels."
     if names == {"AMD", "SMCI"}:
         return "Screens as an AI-infrastructure candidate, but do not rank coupon value until issuer quotes are normalized."
-    if names == {"MSTR", "SMCI"}:
-        return "Screens as aggressive due to jump risk; use only after issuer RFQ confirms compensation."
-    if names == {"COIN", "SMCI"}:
-        return "Screens as aggressive; actual value depends on issuer correlation, skew, and hedge assumptions."
-    if names == {"SNDK", "GOOGL"}:
-        return "User quote evidence shows this can price strongly; treat issuer quote as calibration, not public-screen output."
+    if names == {"PLTR", "TSLA"}:
+        return "Screens as a liquid high-beta software/EV candidate; actual coupon depends on issuer skew, correlation, and autocall assumptions."
+    if names == {"HIMS", "MRNA"}:
+        return "Screens as a healthcare/biotech event-risk candidate; verify issuer availability and liquidity before ranking."
+    if names == {"IONQ", "RKLB"}:
+        return "Screens as an aggressive emerging-tech candidate; use issuer RFQ to confirm whether coupon compensates for severe gap risk."
+    if names == {"ENPH", "FSLR"}:
+        return "Screens as a clean-energy cyclicality candidate; rates, policy, and margins may drive quote dispersion."
+    if names == {"BABA", "PDD"}:
+        return "Screens as a China ADR candidate; normalize geopolitical, ADR, and correlation assumptions before comparison."
     if names == {"AMD", "SNDK"}:
-        return "User quote evidence suggests headline coupon is not enough; normalize RO 97, KO 102, KI 58, and strike terms."
-    if names == {"GOOGL", "AMD"}:
-        return "User quote evidence shows this may price weakly; avoid assuming popular names produce attractive coupon."
-    return "RFQ interest depends on current issuer quote evidence after normalizing RO, KO, KI, strike, and tenor."
+        return "Quote-check semiconductor/storage candidate; normalize RO, KO, KI, tenor, strike/reference, and issuer basis before ranking."
+    if names == {"GOOGL", "NVDA"}:
+        return "Familiar-name anchor candidate; useful for explainability, but public popularity does not guarantee attractive coupon."
+    if names == {"RIVN", "TSLA"}:
+        return "Aggressive EV candidate; check issuer eligibility, funding risk, and whether lower KI still gives enough coupon."
+    if names == {"UAL", "TSLA"}:
+        return "Broader cyclicals check; use only if mixed-theme explainability and issuer quote quality are acceptable."
+
+    themes = " / ".join(watchlist_field(ticker, "theme", ticker) for ticker in basket)
+    vol_roles = " / ".join(watchlist_field(ticker, "volatility_role", "Review") for ticker in basket)
+    return (
+        f"RFQ interest depends on current issuer quote evidence for {themes}. "
+        f"Public screen roles: {vol_roles}. Normalize RO, KO, KI, strike, tenor, and issuer basis."
+    )
 
 
 def md_table(rows: list[list[str]]) -> str:
@@ -428,6 +516,62 @@ def ki_optimization_rows() -> list[list[str]]:
     return rows
 
 
+def profile_verification_rows(source_note: str, option_source_note: str) -> list[list[str]]:
+    crypto_hits = sorted(set(TICKERS) & CRYPTO_LINKED_TICKERS)
+    rows = [
+        ["Gate", "Status", "Verification", "Required behavior"],
+        [
+            "User preference",
+            "PASS" if not crypto_hits else "BLOCKED",
+            "Crypto-linked tickers excluded" if not crypto_hits else f"Crypto-linked tickers found: {', '.join(crypto_hits)}",
+            "Do not suggest crypto baskets unless the user explicitly opts in.",
+        ],
+        [
+            "Evidence quality",
+            "PASS",
+            "Public quote and option-chain inputs are marked as delayed/public screening data.",
+            "Never present public data as firm real-time market data or issuer pricing.",
+        ],
+        [
+            "Issuer quote override",
+            "PASS",
+            "Report states that issuer RFQs override public-data screens.",
+            "Use real issuer/pricing-system quotes as controlling evidence once terms are normalized.",
+        ],
+        [
+            "Structure normalization",
+            "PASS",
+            "RFQ wording asks for tenor, KO, KI, strike/reference, RO, coupon frequency, issuer assumptions, and bid/offer.",
+            "Do not compare headline coupon unless RO/KO/KI/tenor/strike/frequency/issuer basis match.",
+        ],
+        [
+            "KI value discipline",
+            "PASS",
+            "KI ladder 50 / 55 / 59 / 65 / 70 is required.",
+            "Choose the KI where incremental coupon pickup compensates for airbag sacrificed.",
+        ],
+        [
+            "Ticker repeat discipline",
+            "PASS",
+            "Requote rationale check is required before repeating a ticker or basket.",
+            "Classify repeat ideas as same rationale, changed inputs, structural mismatch, or calibration drift.",
+        ],
+        [
+            "Current data source",
+            "PASS" if "failed" not in source_note.lower() else "AMBER",
+            source_note,
+            "If quote refresh fails, treat the report as a template and do not provide data-driven picks.",
+        ],
+        [
+            "Options proxy source",
+            "PASS" if "failed" not in option_source_note.lower() else "AMBER",
+            option_source_note,
+            "Use listed-options proxy only to prioritize RFQs, not to predict actual FCN coupons.",
+        ],
+    ]
+    return rows
+
+
 def generate_report() -> str:
     now_utc = dt.datetime.now(dt.timezone.utc)
     hk_time = now_utc.astimezone(dt.timezone(dt.timedelta(hours=8)))
@@ -462,7 +606,16 @@ def generate_report() -> str:
         if row:
             when = f"{row.get('Date', 'N/A')} {row.get('Time', '')}".strip()
         move_text = "N/A" if move is None else f"{move:+.2f}%"
-        market_rows.append([ticker, last, when, move_text, vol_read(ticker, move), RISK_TAGS[ticker]])
+        market_rows.append(
+            [
+                ticker,
+                last,
+                when,
+                move_text,
+                vol_read(ticker, move),
+                RISK_TAGS.get(ticker, "Review issuer and event risk"),
+            ]
+        )
 
     option_source_note = "Nasdaq public option-chain endpoint. Listed option data is delayed/public and used only as an indicative vol/liquidity proxy."
     option_rows = [["Ticker", "3M ATM straddle proxy", "6M ATM straddle proxy", "Listed options liquidity"]]
@@ -504,6 +657,13 @@ def generate_report() -> str:
 **Generated:** {hk_time.strftime('%Y-%m-%d %H:%M')} HKT / {now_utc.strftime('%Y-%m-%d %H:%M')} UTC  
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
 **Source caveat:** {source_note}
+**Universe policy:** Crypto-linked tickers are excluded by default. This report screens a diversified non-crypto watchlist across technology, healthcare/biotech, EV, clean energy, China ADRs, cyclicals, and other high-volatility sectors.
+
+## Profile Verification Gate
+
+This gate must pass before using the report for ticker suggestions or basket combinations.
+
+{md_table(profile_verification_rows(source_note, option_source_note))}
 
 ## Market Snapshot
 
@@ -519,7 +679,9 @@ Use this section to judge relative listed-option richness and liquidity only. It
 
 ## Issuer Quote Calibration
 
-Real issuer RFQs override this public-data screen. If a real quote contradicts the basket ranking, use the real quote as current calibration evidence and ask what drove the difference: RO, KO, KI, strike/reference, skew, correlation, borrow, dividends, funding, issuer inventory, or margin.
+Real issuer RFQs override this public-data screen. If a real quote from UBS, JPM, Marex, Leonteq, or another issuer contradicts the basket ranking, use the real quote as current calibration evidence and ask what drove the difference: RO, KO, KI, strike/reference, skew, correlation, borrow, dividends, funding, issuer inventory, margin, or exact autocall assumptions.
+
+The public screen is not expected to match issuer pricing. Issuers use their own spot/reference timing, vol surface, skew, correlation, forward/dividend, borrow, funding, credit, inventory, margin, settlement, and autocall-path assumptions. Use this report to ask better RFQs and normalize quotes, not to replace a bank pricer.
 
 For rough comparison when RO differs:
 
@@ -529,6 +691,12 @@ Approx annualized gross carry = coupon p.a. + annualized RO accretion
 ```
 
 Example: for a 3M note at RO 97, the rough annualized RO accretion is about 12.4% before considering path risk, autocall timing, issuer bid/offer, and downside redemption risk. Keep headline coupon and RO accretion separate in client discussion.
+
+## Requote Rationale Check
+
+Before repeating any ticker or basket from a previous report or chat, classify it as fresh, repeat/same rationale, repeat/changed inputs, structural mismatch, or calibration drift. Cross-check today's spot/reference, 3M/6M listed-options proxy, liquidity, event risk, tenor, KI, KO, strike/reference, RO, coupon frequency, issuer basis, and prior calibration note.
+
+Use `templates/requote-checklist.md` for the full comparison. Do not store actual issuer quotes, issuer names, client details, or firm-confidential pricing assumptions in this public repo.
 
 ## Screening Baskets
 
@@ -579,7 +747,7 @@ Then ask ChatGPT mobile to use this report together with `methodology.md` and `w
 
 
 def main() -> None:
-    output_dir = Path("daily")
+    output_dir = REPO_ROOT / "daily"
     output_dir.mkdir(exist_ok=True)
     report = generate_report()
     (output_dir / "latest.md").write_text(report, encoding="utf-8")

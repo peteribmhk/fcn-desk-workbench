@@ -12,17 +12,20 @@ The long-term goal is phone-accessible operation while the laptop is off. Theref
 - GitHub Actions is the cloud runtime for scheduled refreshes.
 - `daily/latest.md` is the phone-readable output.
 - ChatGPT/Codex should use the repo files as persistent memory.
+- Future AI sessions should update repo files when improving the workflow, not keep durable changes only in conversation.
 
 ## Always Read First
 
 When asked for FCN picks, refreshes, RFQs, or client explanations, read these files first:
 
-1. `README.md`
-2. `methodology.md`
-3. `watchlist.csv`
-4. `daily/latest.md`
-5. `templates/ki-optimization.md`
-6. `research/free-market-data-sources.md`
+1. `AGENTS.md`
+2. `README.md`
+3. `methodology.md`
+4. `watchlist.csv`
+5. `daily/latest.md`
+6. `templates/ki-optimization.md`
+7. `templates/requote-checklist.md`
+8. `research/free-market-data-sources.md`
 
 If editing the project or cloud workflow, also read:
 
@@ -52,6 +55,20 @@ The listed-options section is a **vol/liquidity proxy**, not an issuer FCN coupo
 If asked for "live" free market data, explain that clean, firm real-time US equity/options data generally requires exchange/vendor entitlement. The workbench should use free/public/delayed data for screening only.
 
 ## Daily Pick Workflow
+
+## Profile Verification Gate
+
+Before every daily refresh, ticker suggestion, basket combination, or client-facing draft, run this gate:
+
+1. **User preference:** Crypto-linked names are excluded unless the user explicitly opts in.
+2. **Evidence quality:** Public/free data is screening only, not firm real-time exchange data or issuer pricing.
+3. **Issuer quote override:** Real issuer RFQ or firm pricing-system evidence controls once terms are normalized.
+4. **Structure normalization:** Compare tenor, strike/reference, KI, KI observation, KO, KO observation, RO/issue price, coupon frequency, issuer, bid/offer basis, dividends, borrow, funding, correlation, skew, and autocall assumptions before judging value.
+5. **KI optimization:** Compare coupon pickup per KI point of airbag sacrificed; do not mechanically choose the lowest KI or highest headline coupon.
+6. **Repeat discipline:** Before repeating a ticker or basket, classify it as fresh, repeat/same rationale, repeat/changed inputs, structural mismatch, or calibration drift.
+7. **Persistence:** If the user corrects the workflow or provides reusable desk logic, update the repo files rather than leaving it only in chat.
+
+If any gate fails, say `AMBER` or `BLOCKED`, explain why, and give the shortest next action. Do not provide confident picks until the gate is cleared.
 
 ## Morning Readiness Hint
 
@@ -116,10 +133,15 @@ When the user asks for today's picks:
 
 Default screening candidates, not coupon predictions:
 
-- `MSTR / COIN`: max coupon, crypto beta, concentrated risk.
-- `AMD / SMCI`: balanced high-coupon AI infrastructure story.
-- `MSTR / SMCI`: very high potential coupon, severe gap/worst-of risk.
-- `COIN / SMCI`: aggressive alternative, crypto plus SMCI event risk.
+- Crypto-linked tickers and baskets are excluded unless the user explicitly opts in.
+- `SMCI / AMD`: AI infrastructure screen; normalize issuer terms before ranking coupon.
+- `PLTR / TSLA`: liquid high-beta software/EV screen; watch valuation and event risk.
+- `HIMS / MRNA`: healthcare/biotech event-risk screen; verify issuer availability and liquidity.
+- `IONQ / RKLB`: aggressive emerging-tech screen; use only with strong suitability discipline.
+- `ENPH / FSLR`: clean-energy cyclicality screen; rates and policy can dominate.
+- `BABA / PDD`: China ADR screen; geopolitical, regulatory, and ADR risk must be explicit.
+- `SNDK / AMD`: quote-check semiconductor/storage screen; use real issuer quotes as calibration.
+- `GOOGL / NVDA`: familiar-name anchor screen; may dilute coupon despite client recognition.
 
 Use listed-options ATM straddle proxies only to decide where to ask for RFQs first. Higher 3M/6M straddle proxy and usable/deep listed-options liquidity may support stronger coupon-screening interest, but actual issuer coupons can differ sharply because of structure terms, skew, correlation, borrow, dividends, issuer inventory, funding, and margin.
 
@@ -141,6 +163,16 @@ Approx annualized RO accretion = ((100 - RO) / RO) * (12 / tenor_months)
 ```
 
 Then discuss headline coupon, RO accretion, and downside risk separately. This is still indicative only and not a pricing model.
+
+## Requote Rationale Rule
+
+Before repeating a ticker or basket that has appeared in a prior report or chat:
+
+1. Check `daily/latest.md`, `watchlist.csv`, `methodology.md`, and `templates/requote-checklist.md`.
+2. State whether the idea is fresh, repeat/same rationale, repeat/changed inputs, structural mismatch, or calibration drift.
+3. Compare today's spot/reference, 3M/6M listed-options proxy, liquidity, event risk, tenor, KI, KO, strike/reference, RO, and coupon frequency against the prior rationale.
+4. If the user provides pricing-system numbers, recalibrate the current session immediately.
+5. Do not commit actual issuer quotes, issuer names, client details, or firm-confidential assumptions to the public repo.
 
 ## Ballpark Return And Calibration Rule
 
