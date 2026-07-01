@@ -1,29 +1,39 @@
 # Sample Daily FCN Pickings
 
-**Date:** 2026-06-21  
+**Date:** 2026-06-27
 **Prepared by:** Codex + FCN Desk Workbench  
 **Data timestamp:** Example only. Replace with latest public market data before use.  
 **Status:** Indicative only. Not a firm quote. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.
+**Universe policy:** Crypto-linked tickers are excluded by default unless the user explicitly opts in.
 
 ## Market Snapshot
 
-This sample demonstrates the output format. It does not embed live prices. Before sending any RFQ, refresh spot, volatility, event risk, and liquidity context.
+This sample demonstrates the output format. It does not embed live prices. Before sending any RFQ, refresh spot, volatility, event risk, liquidity context, and issuer quote evidence.
 
 | Ticker | Current role in FCN screen | Volatility read | Main risk |
 |---|---|---|---|
-| MSTR | RFQ screening candidate | Very high | BTC beta, balance-sheet leverage, gap risk |
-| COIN | RFQ screening candidate | High | Crypto flow, regulation, BTC/ETH sentiment |
-| AMD | Explainable AI-theme anchor | Medium-high | AI expectations, valuation, competition |
-| SMCI | RFQ screening candidate | Very high | Financing/dilution, AI server order cycle, jump risk |
+| SMCI | RFQ screening candidate | Very high | Financing/dilution, governance history, order-cycle risk, jump risk |
+| AMD | AI semiconductor anchor | Medium-high | AI expectations, valuation, product cycle |
+| PLTR | Momentum/software candidate | High | Valuation, commercial/government growth, earnings risk |
+| TSLA | Familiar high-beta candidate | High | Deliveries, margins, valuation, CEO/event risk |
+| HIMS | Healthcare/consumer growth candidate | High | Regulation, telehealth growth, product headline risk |
+| IONQ | Emerging-tech aggressive candidate | Very high | Speculative valuation, funding, contract credibility, gap risk |
+| ENPH | Clean-energy cyclicality candidate | High | Rates, demand cycle, inventory, margins |
+| BABA | China ADR candidate | Medium-high | China macro, regulation, geopolitics, ADR sentiment |
 
 ## Screening Baskets
 
 | Rank | Basket | Category | Screening read | Suggested terms | Key risk | Action |
 |---:|---|---|---|---|---|---|
-| 1 | MSTR / COIN | RFQ first | Screens for RFQ because both names carry crypto-beta and high volatility; actual coupon must come from issuer levels | Start with 3M and 6M, KO 100 monthly, quote KI ladder 50/55/59/65/70 | Concentrated crypto exposure; BTC selloff can hit both names | RFQ first if client prioritizes coupon |
-| 2 | AMD / SMCI | Balanced candidate | Screens as an AI-infrastructure candidate, but do not rank coupon value until issuer quotes are normalized | 3M for tactical view; 6M if client accepts event risk; optimize KI ladder | SMCI may dominate downside; dilution and financing risk | RFQ as candidate, pending issuer quote evidence |
-| 3 | MSTR / SMCI | Aggressive alternative | Screens as aggressive due to jump risk; use only after issuer RFQ confirms compensation | 3M only unless client is very risk-tolerant; consider lower KI if coupon allows | Two unstable worst-of candidates; severe gap risk | Use only for aggressive accounts |
-| 4 | COIN / SMCI | Aggressive alternative | Screens as aggressive; actual value depends on issuer correlation, skew, and hedge assumptions | 3M or 6M; compare coupon pickup per KI point across ladder | Crypto regulation plus SMCI financing/event risk | RFQ if client wants crypto exposure without MSTR |
+| 1 | SMCI / AMD | RFQ first | Screens as AI infrastructure, but coupon value must be issuer-verified | Start with 3M and 6M, KO 100 monthly, quote KI ladder 50/55/59/65/70 | SMCI can dominate worst-of downside | RFQ first, pending issuer quote evidence |
+| 2 | PLTR / TSLA | Balanced candidate | Liquid high-beta software/EV screen | 3M tactical or 6M if client accepts event risk | Valuation and event risk can gap both names | RFQ as candidate |
+| 3 | HIMS / MRNA | Quote-check candidate | Healthcare/biotech event-risk screen | 3M/6M; verify issuer availability and liquidity | Regulatory, trial, product headline, and revenue reset risk | RFQ only after liquidity check |
+| 4 | IONQ / RKLB | Aggressive candidate | Emerging-tech high-volatility screen | Prefer 3M and lower KI unless pickup is compelling | Severe gap, funding, and execution risk | Use only for aggressive suitability |
+| 5 | ENPH / FSLR | Balanced candidate | Clean-energy cyclicality screen | 3M/6M; compare coupon pickup per KI point | Rates, policy, demand, and margin risk | RFQ as diversified sector candidate |
+
+## Requote Rationale Check
+
+If any basket appeared before, do not reuse the old conclusion blindly. Classify it as fresh, repeat/same rationale, repeat/changed inputs, structural mismatch, or calibration drift. Compare spot/reference, listed-options proxy, liquidity, event risk, tenor, KI, KO, strike/reference, RO, coupon frequency, issuer basis, and any user-provided pricing-system calibration.
 
 ## KI Optimization
 
@@ -42,13 +52,13 @@ Decision rule: if coupon pickup is flat, keep the lower KI. If pickup accelerate
 ### RFQ 1: Value RFQ
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on MSTR / COIN, 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
+Please quote indicative and firm levels for a USD worst-of FCN on SMCI / AMD, 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please show coupon p.a. across KI 50 / 55 / 59 / 65 / 70 at maturity, plus coupon pickup per KI point, issuer estimated value, bid/offer, assumptions, and early unwind policy.
 ```
 
-### RFQ 2: Balanced Candidate
+### RFQ 2: Sector Diversification RFQ
 
 ```text
-Please quote indicative and firm levels for a USD worst-of FCN on AMD / SMCI, 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please show both RO 100 and requested RO levels where available. Please quote KI 50 / 55 / 59 / 65 / 70 and show the incremental coupon pickup per KI point.
+Please quote indicative and firm levels for a USD worst-of FCN on ENPH / FSLR, 3M and 6M tenor, KO 98 / 100 / 102 monthly, fixed monthly coupon. Please quote KI 50 / 55 / 59 / 65 / 70 and show the incremental coupon pickup per KI point.
 ```
 
 ## Client Explanation Draft
@@ -63,7 +73,7 @@ English:
 
 ## Desk Notes
 
-- If issuer quote is much lower than expected, ask whether the driver is volatility, correlation, dividends, borrow, funding, margin, or autocall assumptions.
+- If issuer quote is much lower or higher than expected, ask whether the driver is volatility, skew, correlation, dividends, borrow, funding, inventory, margin, or autocall assumptions.
 - Do not default to a mid-50s KI by habit. Compare KI 50 / 55 / 59 / 65 / 70 and show coupon pickup per KI point.
-- If the basket is MSTR-related, explicitly explain BTC sensitivity.
-- If the basket includes SMCI, explicitly explain financing/dilution and jump risk.
+- If a ticker or basket is repeated, run the requote checklist before presenting it again.
+- If terms differ by RO, KO, KI, strike, tenor, or observation style, call it a structural mismatch until normalized.

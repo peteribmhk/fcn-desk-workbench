@@ -49,3 +49,9 @@ Please compare KI 50 / 55 / 59 / 65 / 70 for the same basket, tenor, KO, observa
 ```text
 Your coupon appears below my indicative screen. Please clarify whether the difference is mainly driven by vol, correlation, dividends, borrow, funding, issuer margin, or autocall assumptions.
 ```
+
+### Requote / Same-Ticker Check
+
+```text
+Please requote the same basket using today's live reference levels and confirm what changed versus the prior indication. Please keep tenor, KO, KI observation, coupon frequency, RO, and settlement basis unchanged unless stated otherwise. If the level differs materially, please identify whether the driver is spot/reference move, volatility surface, skew, correlation, dividends, borrow, funding, inventory, margin, bid/offer, or autocall assumptions.
+```

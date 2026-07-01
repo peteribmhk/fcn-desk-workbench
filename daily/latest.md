@@ -1,78 +1,75 @@
 # FCN Daily Report
 
-**Report date:** 2026-06-30  
-**Generated:** 2026-06-30 19:32 HKT / 2026-06-30 11:32 UTC  
+**Report date:** 2026-06-27
+**Generated:** 2026-06-27 10:14 HKT / 2026-06-27 02:14 UTC
 **Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
-**Source caveat:** Public quote source: Nasdaq public quote endpoint. Data is delayed/public and not a firm exchange feed.
+**Source caveat:** Policy refresh only. Public market data was not refreshed in the local sandbox. Trigger the GitHub Actions workflow to overwrite this file with the latest public quote and listed-options proxy data.
+**Universe policy:** Crypto-linked tickers are excluded by default. This report uses the diversified non-crypto watchlist.
 
 ## Market Snapshot
 
-| Ticker | Last | Date/Time | Daily move | Volatility read | Main risk |
-| --- | --- | --- | --- | --- | --- |
-| MSTR | 89.54 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | -3.39% | Very high | BTC beta, leverage, gap risk |
-| COIN | 148.67 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | -1.97% | High | Crypto flow, regulation, BTC/ETH sentiment |
-| AMD | 542.99 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.65% | Medium-high | AI expectations, valuation, product cycle |
-| SMCI | 28.57 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +1.49% | Very high | Financing/dilution, order-cycle risk, jump risk |
-| NVDA | 196.86 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.97% | Medium-high | AI capex cycle, valuation, export controls |
-| TSLA | 408.00 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | -0.93% | High | Deliveries, margins, CEO/event risk |
-| PLTR | 116.70 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.86% | High | Valuation, AI software sentiment, earnings risk |
-| HOOD | 102.31 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.47% | High | Retail activity, crypto revenue, regulation |
-| SNDK | 2098.93 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +2.37% | High | Storage cycle, post-separation history, idiosyncratic gap risk |
-| GOOGL | 355.06 | Jun 30, 2026 7:32 AM ET Pre-Market delayed | +0.40% | Medium | AI/search capex, antitrust, ad-cycle and mega-cap valuation risk |
+Current public quotes were not fetched in this local update. Use the GitHub Actions refresh before relying on spot, move, or listed-options proxy fields.
+
+| Ticker | Theme | Volatility role | Main risk |
+| --- | --- | --- | --- |
+| AMD | AI semiconductors | Medium-high coupon driver | AI expectations, valuation, product cycle, competition with NVDA |
+| SMCI | AI servers | Very high coupon driver | Financing/dilution, governance history, order-cycle risk, jump risk |
+| NVDA | AI semiconductors | Medium-high coupon driver | AI capex cycle, valuation, export controls, crowded positioning |
+| TSLA | EV/AI/robotics | High coupon driver | Deliveries, margins, valuation, CEO/event risk, China exposure |
+| PLTR | AI software | High coupon driver | Valuation, government/commercial growth, sentiment, earnings risk |
+| SNDK | Storage/semiconductors | Quote-check coupon driver | Storage cycle, post-separation trading history, idiosyncratic gap risk |
+| GOOGL | Mega-cap AI/search | Lower-vol anchor | AI capex, search/ads cycle, antitrust, valuation |
+| HIMS | Digital health | High coupon driver | Valuation, regulation, telehealth growth, product headline risk |
+| MRNA | Biotech | High coupon driver | Pipeline risk, trial/regulatory outcomes, revenue reset, event gap risk |
+| IONQ | Quantum computing | Very high coupon driver | Speculative technology, valuation, contract credibility, capital raising, gap risk |
+| RKLB | Space/aerospace | High coupon driver | Launch execution, contract timing, funding, sector sentiment |
+| ENPH | Solar technology | High coupon driver | Rates, residential solar demand, inventory cycle, margin reset |
+| FSLR | Solar manufacturing | Medium-high coupon driver | Policy/tariffs, project timing, margin, clean-energy sentiment |
+| BABA | China internet ADR | Medium-high coupon driver | China macro/regulation, ADR/geopolitical risk, RMB/sentiment |
+| PDD | China e-commerce ADR | High coupon driver | China consumer demand, competition, regulatory/geopolitical risk, earnings gap |
+| RIVN | EV manufacturer | Very high coupon driver | Cash burn, deliveries, production ramp, funding/dilution risk |
+| UAL | Airlines/cyclicals | Medium-high coupon driver | Fuel, labor, travel demand, macro sensitivity, event shocks |
 
 ## Listed Options Vol Proxy
 
-**Source caveat:** Nasdaq public option-chain endpoint. Listed option data is delayed/public and used only as an indicative vol/liquidity proxy.
-
-| Ticker | 3M ATM straddle proxy | 6M ATM straddle proxy | Listed options liquidity |
-| --- | --- | --- | --- |
-| MSTR | Sep 18 90 ATM straddle 35.0% | Dec 18 90 ATM straddle 49.8% | Deep listed options liquidity |
-| COIN | Sep 18 150 ATM straddle 28.2% | Dec 18 150 ATM straddle 40.8% | Usable listed options liquidity |
-| AMD | Sep 18 540 ATM straddle 27.9% | Dec 18 540 ATM straddle 39.3% | Thin listed options liquidity |
-| SMCI | Sep 18 29 ATM straddle 34.6% | Dec 18 29 ATM straddle 48.9% | Usable listed options liquidity |
-| NVDA | Sep 18 195 ATM straddle 15.3% | Dec 18 195 ATM straddle 22.7% | Deep listed options liquidity |
-| TSLA | Sep 18 410 ATM straddle 17.5% | Dec 18 410 ATM straddle 26.2% | Deep listed options liquidity |
-| PLTR | Sep 18 115 ATM straddle 20.7% | Dec 18 115 ATM straddle 30.2% | Deep listed options liquidity |
-| HOOD | Sep 18 100 ATM straddle 26.0% | Dec 18 100 ATM straddle 37.6% | Usable listed options liquidity |
-| SNDK | Sep 18 2100 ATM straddle 41.9% | Dec 18 2100 ATM straddle 60.0% | Thin listed options liquidity |
-| GOOGL | Sep 18 355 ATM straddle 13.6% | Dec 18 355 ATM straddle 19.9% | Usable listed options liquidity |
-
-Use this section to judge relative listed-option richness and liquidity only. It is not an issuer FCN coupon, not a volatility surface, not an autocall model, and not enough to predict which basket will have the best actual coupon.
+Not refreshed in this local update. The cloud generator should fetch Nasdaq public option-chain data and use it only as an indicative vol/liquidity proxy. It is not an issuer FCN coupon, not a volatility surface, and not an autocall model.
 
 ## Issuer Quote Calibration
 
-Real issuer RFQs override this public-data screen. If a real quote contradicts the basket ranking, use the real quote as current calibration evidence and ask what drove the difference: RO, KO, KI, strike/reference, skew, correlation, borrow, dividends, funding, issuer inventory, or margin.
+Real issuer RFQs override this public-data screen. If a real quote from UBS, JPM, Marex, Leonteq, or another issuer contradicts the basket ranking, use the real quote as current calibration evidence after normalizing tenor, strike/reference, KI, KO, RO, coupon frequency, issuer basis, bid/offer, dividends, borrow, funding, skew, correlation, margin, and autocall assumptions.
 
-For rough comparison when RO differs:
+The public screen is not expected to match issuer pricing. Use this report to ask better RFQs and normalize quotes, not to replace a bank issuer pricer.
 
-```text
-Approx annualized RO accretion = ((100 - RO) / RO) * (12 / tenor_months)
-Approx annualized gross carry = coupon p.a. + annualized RO accretion
-```
+## Requote Rationale Check
 
-Example: for a 3M note at RO 97, the rough annualized RO accretion is about 12.4% before considering path risk, autocall timing, issuer bid/offer, and downside redemption risk. Keep headline coupon and RO accretion separate in client discussion.
+Before repeating any ticker or basket from a previous report or chat, classify it as fresh, repeat/same rationale, repeat/changed inputs, structural mismatch, or calibration drift. Cross-check today's spot/reference, 3M/6M listed-options proxy, liquidity, event risk, tenor, KI, KO, strike/reference, RO, coupon frequency, issuer basis, and prior calibration note.
 
-## Screening Baskets
+Use `templates/requote-checklist.md` for the full comparison. Do not store actual issuer quotes, issuer names, client details, or firm-confidential pricing assumptions in this public repo.
+
+## Standing Screening Map
+
+These are standing RFQ candidates, not today's ranked coupon predictions. Refresh public market data and compare issuer quotes before using them.
 
 | Rank | Basket | Category | Screening read | Suggested terms | Key risk | Action |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | MSTR / COIN | RFQ first | Screens for RFQ because both names carry crypto-beta and high volatility; actual coupon must come from issuer levels. | 3M/6M, KO 100 monthly, RFQ KI ladder 50/55/59/65/70 | Concentrated crypto-beta; BTC selloff can hit both names. | Request/compare issuer RFQ; do not rank by public screen alone. |
-| 2 | AMD / SMCI | Balanced candidate | Screens as an AI-infrastructure candidate, but do not rank coupon value until issuer quotes are normalized. | 3M tactical or 6M if client accepts event risk; optimize KI ladder | SMCI can dominate worst-of downside; financing and jump risk matter. | Request/compare issuer RFQ; do not rank by public screen alone. |
-| 3 | MSTR / SMCI | Aggressive candidate | Screens as aggressive due to jump risk; use only after issuer RFQ confirms compensation. | Prefer 3M; consider lower KI if coupon still works | Two unstable high-vol names; severe gap and worst-of risk. | Request/compare issuer RFQ; do not rank by public screen alone. |
-| 4 | COIN / SMCI | Aggressive candidate | Screens as aggressive; actual value depends on issuer correlation, skew, and hedge assumptions. | 3M/6M; compare coupon pickup per KI point across ladder | Crypto regulation plus SMCI financing/event risk. | Request/compare issuer RFQ; do not rank by public screen alone. |
-| 5 | SNDK / GOOGL | Quote-check candidate | User quote evidence shows this can price strongly; treat issuer quote as calibration, not public-screen output. | Use issuer quote evidence; compare KO 98/100/102 and RO 97/100 | SanDisk idiosyncratic risk plus lower-vol mega-cap anchor; quote may be issuer-specific. | Request/compare issuer RFQ; do not rank by public screen alone. |
-| 6 | AMD / SNDK | Quote-check candidate | User quote evidence suggests headline coupon is not enough; normalize RO 97, KO 102, KI 58, and strike terms. | Use issuer quote evidence; normalize RO, KO, KI, and strike before ranking | Semiconductor/event risk; SanDisk quote behavior may diverge from public vol screen. | Request/compare issuer RFQ; do not rank by public screen alone. |
-| 7 | GOOGL / AMD | Watch only | User quote evidence shows this may price weakly; avoid assuming popular names produce attractive coupon. | RFQ only if client wants familiar names; do not assume high coupon | Lower actual coupon possible despite recognizable names; quote must drive decision. | Request/compare issuer RFQ; do not rank by public screen alone. |
+| 1 | SMCI / AMD | RFQ first | AI-infrastructure candidate; issuer quotes must verify coupon value. | 3M/6M, KO 100 monthly, RFQ KI ladder 50/55/59/65/70 | SMCI can dominate worst-of downside. | Refresh data and request issuer RFQ. |
+| 2 | PLTR / TSLA | Balanced candidate | Liquid high-beta software/EV candidate. | 3M tactical or 6M if client accepts valuation/event risk | Earnings, deliveries, valuation, and sentiment can gap. | Refresh data and request issuer RFQ. |
+| 3 | HIMS / MRNA | Quote-check candidate | Healthcare/biotech event-risk candidate. | 3M/6M; require issuer availability and liquidity check | Healthcare headlines and trial/regulatory risk. | Quote only after liquidity check. |
+| 4 | IONQ / RKLB | Aggressive candidate | Emerging-tech high-volatility candidate. | Prefer 3M; use lower KI unless pickup per KI point is compelling | Speculative valuation, funding, and severe gap risk. | Use only with strong suitability discipline. |
+| 5 | ENPH / FSLR | Balanced candidate | Clean-energy cyclicality candidate. | 3M/6M; compare coupon pickup per KI point | Rates, policy, demand, and margin risk. | RFQ as diversified sector candidate. |
+| 6 | BABA / PDD | Quote-check candidate | China ADR candidate. | 3M/6M; normalize ADR/geopolitical risk and issuer correlation assumptions | China macro, regulation, geopolitics, ADR sentiment. | RFQ only after risk disclosure is clear. |
+| 7 | SNDK / AMD | Quote-check candidate | Semiconductor/storage candidate. | Compare KO 98/100/102 and RO 97/100 | SanDisk idiosyncratic quote behavior. | Use issuer quotes as calibration. |
+| 8 | GOOGL / NVDA | Watch only | Familiar-name anchor candidate. | RFQ only if client wants recognizable names | May dilute coupon despite explainability. | Do not assume attractive coupon. |
 
 ## Default Structure For RFQ
 
 - Product: worst-of FCN / autocallable FCN.
 - Currency: USD.
 - Tenor: compare 3M and 6M first; add 12M only if client accepts longer event risk.
-- KO: 100%, monthly observation.
+- KO: 98 / 100 / 102, monthly observation.
 - KI / airbag: request ladder 50 / 55 / 59 / 65 / 70, observed at maturity unless issuer specifies otherwise.
 - Coupon: fixed coupon, monthly payment.
-- RO: compare RO 100 and requested RO, such as RO 97, separately; do not compare headline coupon alone.
+- RO: compare RO 100 and requested RO separately; do not compare headline coupon alone.
 
 ## KI Optimization
 
@@ -82,9 +79,9 @@ Example: for a 3M note at RO 97, the rough annualized RO accretion is about 12.4
 | 55% | 45% | Issuer RFQ | Calculate | Calculate | Move up only if pickup justifies airbag sacrificed |
 | 59% | 41% | Issuer RFQ | Calculate | Calculate | Move up only if pickup justifies airbag sacrificed |
 | 65% | 35% | Issuer RFQ | Calculate | Calculate | Move up only if pickup justifies airbag sacrificed |
-| 70% | 30% | Issuer RFQ | Calculate | Calculate | Move up only if pickup justifies airbag sacrificed |
+| 70% | 30% | Issuer RFQ | Calculate | Calculate | Use only if pickup is strong |
 
-Decision rule: do not choose KI by habit. Compare the coupon pickup against the airbag sacrificed. If the pickup is flat, keep the lower KI. If a higher KI gives a sharply better coupon pickup per KI point, flag that level as the best-value candidate subject to client risk appetite.
+Decision rule: do not choose KI by habit. Compare the coupon pickup against the airbag sacrificed. If the pickup is flat, keep the lower KI.
 
 ## RFQ Wording
 
@@ -110,4 +107,4 @@ Open this file on your phone:
 https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
 ```
 
-Then ask ChatGPT mobile to use this report together with `methodology.md` and `watchlist.csv` for follow-up RFQ or client-explanation drafting.
+Then ask ChatGPT mobile to use this report together with `AGENTS.md`, `methodology.md`, `watchlist.csv`, and `templates/requote-checklist.md` for follow-up RFQ or client-explanation drafting.

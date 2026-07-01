@@ -31,6 +31,12 @@ Keep the GitHub Action dependency-free for phone reliability:
 4. Do not call this "real-time" or "firm"; label as public/delayed.
 5. If production-grade live data becomes required, move to an approved vendor or firm market-data system.
 
+## Issuer Pricing Gap
+
+Public data will not replicate UBS, JPM, Marex, Leonteq, or other issuer pricing. The workbench sees public spot and listed-option proxies; issuers price exact autocall terms with their own volatility surface, skew, correlation, dividends, borrow, funding, inventory, credit, margin, settlement, and autocall-path assumptions.
+
+Use public data to screen and prepare sharper RFQs. Use issuer quotes and firm-approved systems to rank real coupon value.
+
 ## Next Upgrade Ideas
 
 - Compute rough Black-Scholes implied volatility from ATM option mids using a dependency-free solver.
