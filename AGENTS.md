@@ -7,6 +7,29 @@ Use this file as the first handoff note for any AI assistant working in this rep
 - Treat GitHub as the persistent source of truth for this workbench.
 - When you improve the workflow, instructions, templates, or generator, update the repository files rather than leaving the improvement only in chat.
 - Keep `daily/latest.md` phone-readable and public-safe.
+- Keep `daily/index.md` and `daily/archive/` as accumulated refresh memory.
+- Read `desk-memory.md` before FCN picks, refreshes, RFQs, or client explanations.
+
+## Repository Readback And Memory
+
+Before suggesting tickers, basket combinations, KI/KO/tenor settings, RFQ wording, or client commentary, reread the repository memory from scratch:
+
+1. `AGENTS.md`
+2. `assistant-operating-instructions.md`
+3. `desk-memory.md`
+4. `README.md`
+5. `methodology.md`
+6. `watchlist.csv`
+7. `daily/latest.md`
+8. `daily/index.md`
+9. Relevant recent files under `daily/archive/`
+10. `templates/ki-optimization.md`
+11. `templates/requote-checklist.md`
+12. `research/free-market-data-sources.md`
+
+If any required memory file cannot be read, mark the FCN Morning Bell status `AMBER` or `RED` before giving picks.
+
+Every refresh should commit both the latest report and a timestamped archive report to GitHub. Durable user corrections should be saved in public-safe repo files, not left only in the chat.
 
 ## User Preference
 

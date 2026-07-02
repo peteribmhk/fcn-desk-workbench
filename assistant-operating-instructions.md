@@ -11,6 +11,8 @@ The long-term goal is phone-accessible operation while the laptop is off. Theref
 - GitHub is the source of truth for the workbench.
 - GitHub Actions is the cloud runtime for scheduled refreshes.
 - `daily/latest.md` is the phone-readable output.
+- `daily/index.md` and `daily/archive/` are the accumulated refresh memory.
+- `desk-memory.md` is the durable user profile and workflow memory.
 - ChatGPT/Codex should use the repo files as persistent memory.
 - Future AI sessions should update repo files when improving the workflow, not keep durable changes only in conversation.
 
@@ -19,13 +21,17 @@ The long-term goal is phone-accessible operation while the laptop is off. Theref
 When asked for FCN picks, refreshes, RFQs, or client explanations, read these files first:
 
 1. `AGENTS.md`
-2. `README.md`
-3. `methodology.md`
-4. `watchlist.csv`
-5. `daily/latest.md`
-6. `templates/ki-optimization.md`
-7. `templates/requote-checklist.md`
-8. `research/free-market-data-sources.md`
+2. `assistant-operating-instructions.md`
+3. `desk-memory.md`
+4. `README.md`
+5. `methodology.md`
+6. `watchlist.csv`
+7. `daily/latest.md`
+8. `daily/index.md`
+9. Relevant recent files under `daily/archive/`
+10. `templates/ki-optimization.md`
+11. `templates/requote-checklist.md`
+12. `research/free-market-data-sources.md`
 
 If editing the project or cloud workflow, also read:
 
@@ -53,8 +59,19 @@ Use the current dependency-free source stack:
 The listed-options section is a **vol/liquidity proxy**, not an issuer FCN coupon, not a full volatility surface, and not an autocall model. Do not use it to imply that a basket will produce a "fruitful" or high actual coupon without issuer RFQ evidence.
 
 If asked for "live" free market data, explain that clean, firm real-time US equity/options data generally requires exchange/vendor entitlement. The workbench should use free/public/delayed data for screening only.
-
 ## Daily Pick Workflow
+
+## Repository Readback Rule
+
+Before suggesting tickers, basket combinations, KI/KO/tenor settings, RFQ wording, or client commentary, reread the repository memory from scratch instead of relying only on chat history. Use the `Always Read First` list above, then check the latest archived refreshes in `daily/index.md` for repeated ideas, changed market inputs, and prior rationale.
+
+Every refresh must persist new public-safe information back to GitHub by updating:
+
+1. `daily/latest.md`
+2. a timestamped report under `daily/archive/`
+3. `daily/index.md`
+
+If GitHub readback or refresh persistence is unavailable, mark status `AMBER` and say exactly what could not be verified.
 
 ## Profile Verification Gate
 
@@ -225,7 +242,7 @@ Please quote indicative and firm levels for a USD worst-of FCN on [TICKER 1] / [
 
 ## Phone And Cloud Behavior
 
-GitHub Actions can refresh and commit `daily/latest.md` while the laptop is off.
+GitHub Actions can refresh and commit `daily/latest.md`, `daily/index.md`, and timestamped reports under `daily/archive/` while the laptop is off.
 
 Normal ChatGPT mobile can read, discuss, and reason from the repo/report, but it does not automatically update GitHub unless the session has GitHub/Codex-style tools with write/run permissions.
 
@@ -236,6 +253,7 @@ For urgent manual refresh from phone:
 3. Select **FCN Daily Report**.
 4. Tap **Run workflow**.
 5. Open `daily/latest.md`.
+6. Use `daily/index.md` to review prior refreshes and repeated idea rationale.
 
 ## Public Repo Hygiene
 

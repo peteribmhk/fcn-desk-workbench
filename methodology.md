@@ -27,6 +27,12 @@ The default watchlist should remain diversified across industries. Do not let th
 
 Use public data to decide what is worth RFQ, not to declare which basket has the best coupon. A lower-volatility but issuer-favored basket can beat a higher-volatility public screen once skew, correlation, funding, borrow, dividends, inventory, and margin are included.
 
+## Repository Memory
+
+Before giving picks, reread the repo memory from scratch: `AGENTS.md`, `assistant-operating-instructions.md`, `desk-memory.md`, `watchlist.csv`, `daily/latest.md`, `daily/index.md`, and relevant recent reports under `daily/archive/`.
+
+Every refresh should save a new public-safe historical snapshot to `daily/archive/` and update `daily/index.md`. Use these archived refreshes to decide whether an idea is fresh, repeated with the same rationale, repeated with changed inputs, structurally mismatched, or affected by calibration drift.
+
 ## Profile Verification Gate
 
 Run this gate before daily picks, ticker suggestions, basket combinations, RFQ wording, or client-facing commentary:

@@ -20,6 +20,8 @@ This repo includes the recommended cloud runtime and phone interface:
 - **Cloud runtime:** GitHub Actions workflow `.github/workflows/fcn-daily-report.yml`
 - **Report generator:** `scripts/generate_daily_pickings.py`
 - **Phone-readable report:** `daily/latest.md`
+- **Refresh memory:** `daily/index.md` and timestamped reports under `daily/archive/`
+- **Durable profile:** `desk-memory.md`
 
 The workflow runs at 08:30 Hong Kong time, Monday-Friday, and can also be run manually from GitHub's **Actions** tab.
 
@@ -27,6 +29,12 @@ Open from phone:
 
 ```text
 https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
+```
+
+Open refresh history from phone:
+
+```text
+https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/index.md
 ```
 
 ## Recommended V1 Setup
@@ -40,7 +48,9 @@ Use this project as a GitHub repo and access it from ChatGPT mobile:
    - `README.md`
    - `methodology.md`
    - `watchlist.csv`
+   - `desk-memory.md`
    - `daily/latest.md`
+   - `daily/index.md`
    - `templates/daily-pickings.md`
    - `templates/rfq-template.md`
    - `templates/client-explanation.md`
@@ -49,7 +59,7 @@ Use this project as a GitHub repo and access it from ChatGPT mobile:
 4. Use this prompt:
 
 ```text
-Use my FCN Desk Workbench and read assistant-operating-instructions.md first. Refresh latest public market data for the watchlist, use the listed-options vol proxy only as a public screening input, screen RFQ candidates rather than predicting coupons, normalize any real issuer quotes by RO/KO/KI/strike/tenor, optimize KI by coupon pickup per KI point, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft bilingual client explanation. Everything must be indicative only, not a firm quote.
+Use my FCN Desk Workbench and read assistant-operating-instructions.md, AGENTS.md, desk-memory.md, daily/latest.md, and daily/index.md first. Refresh latest public market data for the watchlist, save the refresh back to GitHub if you have write access, use the listed-options vol proxy only as a public screening input, screen RFQ candidates rather than predicting coupons, normalize any real issuer quotes by RO/KO/KI/strike/tenor, optimize KI by coupon pickup per KI point, suggest tenor/KI/KO/airbag positioning, prepare issuer RFQ wording, and draft bilingual client explanation. Everything must be indicative only, not a firm quote.
 ```
 
 This works from phone because ChatGPT does the reasoning and live data lookup in the cloud. The laptop does not need to be on.
@@ -84,10 +94,11 @@ Possible workflow:
 
 1. A scheduled GitHub Actions job runs after the US close.
 2. It fetches public market data from approved/free sources or an API key stored in GitHub Secrets.
-3. It writes a new Markdown file under `daily/YYYY-MM-DD.md`.
-4. It commits the file back to the repo.
+3. It writes a new Markdown file under `daily/archive/YYYY-MM-DD-HHMM-HKT.md`.
+4. It updates `daily/latest.md` and `daily/index.md`.
+5. It commits the files back to the repo.
 
-This requires adding scripts and a workflow file later. It is not part of V1 because the current repo intentionally has no runtime dependency.
+The current repo already includes this basic GitHub Actions path using public/free sources only. Treat the output as screening, not issuer pricing.
 
 ## Optional V3: Codespaces
 

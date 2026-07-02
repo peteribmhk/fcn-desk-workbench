@@ -572,8 +572,9 @@ def profile_verification_rows(source_note: str, option_source_note: str) -> list
     return rows
 
 
-def generate_report() -> str:
-    now_utc = dt.datetime.now(dt.timezone.utc)
+def generate_report(now_utc: dt.datetime | None = None) -> str:
+    if now_utc is None:
+        now_utc = dt.datetime.now(dt.timezone.utc)
     hk_time = now_utc.astimezone(dt.timezone(dt.timedelta(hours=8)))
 
     try:
@@ -743,14 +744,58 @@ https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
 ```
 
 Then ask ChatGPT mobile to use this report together with `methodology.md` and `watchlist.csv` for follow-up RFQ or client-explanation drafting.
+
+For refresh memory, also open:
+
+```text
+https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/index.md
+```
 """
 
 
+def update_daily_index(output_dir: Path, archive_dir: Path) -> None:
+    archive_files = sorted(archive_dir.glob("*.md"), reverse=True)
+    rows = ["| Refresh timestamp | Report |", "|---|---|"]
+    for path in archive_files[:120]:
+        label = path.stem.replace("-", " ")
+        rows.append(f"| {label} | [archive/{path.name}](archive/{path.name}) |")
+
+    if len(rows) == 2:
+        rows.append("| No archived refreshes yet | - |")
+
+    index = f"""# FCN Daily Report Archive
+
+**Status:** Indicative only. Not a firm quote. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.
+
+Use this page as the persistent refresh memory for the FCN Desk Workbench. Before suggesting tickers or basket combinations, read `latest.md`, this archive index, and the relevant recent archived reports so repeated ideas can be checked against prior rationale.
+
+## Latest Report
+
+- [latest.md](latest.md)
+
+## Archived Refreshes
+
+{chr(10).join(rows)}
+
+## Memory Rule
+
+Every refresh should commit both the latest report and a timestamped archive file to GitHub. If a future assistant cannot read this index or the latest report, it should mark the FCN Morning Bell status `AMBER` or `RED` rather than giving confident picks.
+"""
+    (output_dir / "index.md").write_text(index, encoding="utf-8")
+
+
 def main() -> None:
+    now_utc = dt.datetime.now(dt.timezone.utc)
+    hk_time = now_utc.astimezone(dt.timezone(dt.timedelta(hours=8)))
     output_dir = REPO_ROOT / "daily"
     output_dir.mkdir(exist_ok=True)
-    report = generate_report()
+    archive_dir = output_dir / "archive"
+    archive_dir.mkdir(exist_ok=True)
+    report = generate_report(now_utc)
     (output_dir / "latest.md").write_text(report, encoding="utf-8")
+    archive_name = hk_time.strftime("%Y-%m-%d-%H%M-HKT.md")
+    (archive_dir / archive_name).write_text(report, encoding="utf-8")
+    update_daily_index(output_dir, archive_dir)
 
 
 if __name__ == "__main__":
