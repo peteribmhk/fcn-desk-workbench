@@ -51,6 +51,7 @@ Before suggesting tickers, baskets, KI levels, RFQ wording, or client commentary
 11. `templates/ki-optimization.md`
 12. `templates/requote-checklist.md`
 13. `research/free-market-data-sources.md`
+14. `research/market-data-source-hierarchy.md`
 
 If these files cannot be read, mark the morning status `AMBER` or `RED` rather than giving confident picks.
 
@@ -60,6 +61,7 @@ Every daily output should include a profile verification gate covering:
 
 - user preference: crypto excluded unless explicitly opted in,
 - evidence quality: public data is only screening,
+- paid-source access: use licensed paid or firm-approved sources when connected, but do not bypass paywalls, credentials, exchange entitlements, or firm controls,
 - issuer quote override: normalized issuer RFQ controls,
 - structure normalization: tenor, strike/reference, KI, KI observation, KO, KO observation, RO/issue price, coupon frequency, issuer, bid/offer, dividends, borrow, funding, correlation, skew, and autocall assumptions,
 - KI value discipline: coupon pickup per KI point,

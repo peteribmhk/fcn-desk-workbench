@@ -35,6 +35,7 @@ When asked for FCN picks, refreshes, RFQs, or client explanations, read these fi
 11. `templates/ki-optimization.md`
 12. `templates/requote-checklist.md`
 13. `research/free-market-data-sources.md`
+14. `research/market-data-source-hierarchy.md`
 
 If editing the project or cloud workflow, also read:
 
@@ -54,7 +55,17 @@ Do not describe public web data as firm real-time exchange data. Public/free sou
 
 ## Market Data Policy
 
-Use the current dependency-free source stack:
+Use the best legally accessible market-data tier available in the current session:
+
+1. Firm-approved issuer RFQ or pricing-system evidence, manually supplied by the user when public-safe.
+2. Licensed institutional terminal/API data, such as Bloomberg, LSEG Workspace, FactSet, or firm market-data platform, only when connected and authorized.
+3. Licensed options market-data API, such as Massive/Polygon Options, Cboe DataShop/LiveVol, OPRA-based vendor, or broker API, only when credentials and exchange entitlements are authorized.
+4. Public/free sources used by the dependency-free GitHub Action.
+5. General public web/news search for qualitative market pulse.
+
+Do not attempt to bypass paywalls, credentials, exchange entitlements, or firm market-data controls. If paid or firm data is not connected, say so plainly and use public data as screening evidence only.
+
+Use the current dependency-free source stack when paid/firm data is not connected:
 
 1. Nasdaq public quote endpoint for equity spot/market-status snapshot.
 2. Nasdaq public option-chain endpoint for listed-option bid/ask, volume, open interest, and ATM straddle proxy.
@@ -64,6 +75,7 @@ Use the current dependency-free source stack:
 The listed-options section is a **vol/liquidity proxy**, not an issuer FCN coupon, not a full volatility surface, and not an autocall model. Do not use it to imply that a basket will produce a "fruitful" or high actual coupon without issuer RFQ evidence.
 
 If asked for "live" free market data, explain that clean, firm real-time US equity/options data generally requires exchange/vendor entitlement. The workbench should use free/public/delayed data for screening only.
+If asked to use paid resources, explain that they require an authorized API key, terminal/API connection, broker API, or user-supplied firm-approved figures. Use those sources when connected; otherwise fall back to public screening data.
 ## Daily Pick Workflow
 
 ## Repository Readback Rule
@@ -96,11 +108,12 @@ Before every daily refresh, ticker suggestion, basket combination, or client-fac
 
 1. **User preference:** Crypto-linked names are excluded unless the user explicitly opts in.
 2. **Evidence quality:** Public/free data is screening only, not firm real-time exchange data or issuer pricing.
-3. **Issuer quote override:** Real issuer RFQ or firm pricing-system evidence controls once terms are normalized.
-4. **Structure normalization:** Compare tenor, strike/reference, KI, KI observation, KO, KO observation, RO/issue price, coupon frequency, issuer, bid/offer basis, dividends, borrow, funding, correlation, skew, and autocall assumptions before judging value.
-5. **KI optimization:** Compare coupon pickup per KI point of airbag sacrificed; do not mechanically choose the lowest KI or highest headline coupon.
-6. **Repeat discipline:** Before repeating a ticker or basket, classify it as fresh, repeat/same rationale, repeat/changed inputs, structural mismatch, or calibration drift.
-7. **Persistence:** If the user corrects the workflow or provides reusable desk logic, update the repo files rather than leaving it only in chat.
+3. **Paid-source access:** Licensed paid or firm-approved data should be used when actually connected, but never through unauthorized access.
+4. **Issuer quote override:** Real issuer RFQ or firm pricing-system evidence controls once terms are normalized.
+5. **Structure normalization:** Compare tenor, strike/reference, KI, KI observation, KO, KO observation, RO/issue price, coupon frequency, issuer, bid/offer basis, dividends, borrow, funding, correlation, skew, and autocall assumptions before judging value.
+6. **KI optimization:** Compare coupon pickup per KI point of airbag sacrificed; do not mechanically choose the lowest KI or highest headline coupon.
+7. **Repeat discipline:** Before repeating a ticker or basket, classify it as fresh, repeat/same rationale, repeat/changed inputs, structural mismatch, or calibration drift.
+8. **Persistence:** If the user corrects the workflow or provides reusable desk logic, update the repo files rather than leaving it only in chat.
 
 If any gate fails, say `AMBER` or `BLOCKED`, explain why, and give the shortest next action. Do not provide confident picks until the gate is cleared.
 

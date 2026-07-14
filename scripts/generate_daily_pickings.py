@@ -533,6 +533,12 @@ def profile_verification_rows(source_note: str, option_source_note: str) -> list
             "Never present public data as firm real-time market data or issuer pricing.",
         ],
         [
+            "Paid-source access",
+            "PASS",
+            "No licensed paid or firm-approved feed is connected in this dependency-free GitHub Action run.",
+            "Use paid/firm data first when authorized; otherwise state public fallback and do not bypass paywalls or exchange entitlements.",
+        ],
+        [
             "Issuer quote override",
             "PASS",
             "Report states that issuer RFQs override public-data screens.",
@@ -654,9 +660,10 @@ def generate_report(now_utc: dt.datetime | None = None) -> str:
     report_date = hk_time.strftime("%Y-%m-%d")
     return f"""# FCN Daily Report
 
-**Report date:** {report_date}  
-**Generated:** {hk_time.strftime('%Y-%m-%d %H:%M')} HKT / {now_utc.strftime('%Y-%m-%d %H:%M')} UTC  
-**Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.  
+**Report date:** {report_date}
+**Generated:** {hk_time.strftime('%Y-%m-%d %H:%M')} HKT / {now_utc.strftime('%Y-%m-%d %H:%M')} UTC
+**Status:** Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.
+**Data-access tier:** Public/free GitHub Action fallback. Use licensed paid or firm-approved data first when it is connected and authorized; do not bypass paywalls, credentials, exchange entitlements, or firm data controls.
 **Source caveat:** {source_note}
 **Universe policy:** Crypto-linked tickers are excluded by default. This report screens a diversified non-crypto watchlist across technology, healthcare/biotech, EV, clean energy, China ADRs, cyclicals, and other high-volatility sectors.
 

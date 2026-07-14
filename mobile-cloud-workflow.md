@@ -59,6 +59,7 @@ Use this project as a GitHub repo and access it from ChatGPT mobile:
    - `templates/client-explanation.md`
    - `templates/ki-optimization.md`
    - `research/free-market-data-sources.md`
+   - `research/market-data-source-hierarchy.md`
 4. Use this prompt:
 
 ```text

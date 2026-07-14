@@ -32,6 +32,7 @@ Then reread the project memory:
 10. `templates/ki-optimization.md`
 11. `templates/requote-checklist.md`
 12. `research/free-market-data-sources.md`
+13. `research/market-data-source-hierarchy.md`
 
 If sync or readback fails, mark the FCN Morning Bell status `AMBER` or `RED` before giving picks.
 

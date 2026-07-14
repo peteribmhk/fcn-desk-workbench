@@ -10,6 +10,7 @@ Every output must state:
 
 ## Inputs To Collect
 
+- Market-data source tier actually used: issuer RFQ / firm system, licensed paid API or terminal, public/free data, or public web/news.
 - Underlyings and market.
 - Spot price and timestamp.
 - Recent price trend: 1D, 1W, 1M if available.
@@ -27,6 +28,18 @@ The default watchlist should remain diversified across industries. Do not let th
 
 Use public data to decide what is worth RFQ, not to declare which basket has the best coupon. A lower-volatility but issuer-favored basket can beat a higher-volatility public screen once skew, correlation, funding, borrow, dividends, inventory, and margin are included.
 
+## Data Source Hierarchy
+
+Use the highest-quality legally accessible source available:
+
+1. Firm-approved issuer RFQ or pricing-system evidence controls final coupon judgement once terms are normalized.
+2. Licensed institutional terminal/API data, such as Bloomberg, LSEG Workspace, FactSet, or a firm market-data platform, should be used when connected and authorized.
+3. Licensed options market-data API data, such as Massive/Polygon Options, Cboe DataShop/LiveVol, OPRA-based vendor, or broker API, is preferred for listed-options IV, Greeks, skew, term structure, open interest, and NBBO.
+4. Public/free sources are fallback screening inputs only.
+5. Public web/news search is useful for market pulse and event risk, not for firm pricing.
+
+Do not bypass paywalls, credentials, exchange entitlements, or firm data controls. If paid or firm data is not connected, label the output as public-data screening and state the limitation.
+
 ## Repository Memory
 
 Before giving picks, reread the repo memory from scratch: `AGENTS.md`, `assistant-operating-instructions.md`, `desk-memory.md`, `watchlist.csv`, `daily/latest.md`, `daily/index.md`, and relevant recent reports under `daily/archive/`.
@@ -41,6 +54,7 @@ Run this gate before daily picks, ticker suggestions, basket combinations, RFQ w
 |---|---|---|
 | User preference | Crypto-linked names are excluded unless the user explicitly opts in. | Remove crypto names and rebuild the screen. |
 | Evidence quality | Public/free data is labeled as delayed/public screening only. | Do not call the output live, firm, or issuer-priced. |
+| Paid-source access | Licensed paid or firm-approved data is used when actually connected, and unavailable otherwise. | State paid/firm data is not connected; fall back to public screening data. |
 | Issuer quote override | Real issuer RFQ or firm pricing-system evidence overrides public-data ranking once normalized. | Re-rank from issuer evidence, not from public vol proxy. |
 | Structure normalization | Tenor, strike/reference, KI, KI observation, KO, KO observation, RO, coupon frequency, issuer, bid/offer, dividends, borrow, funding, correlation, skew, and autocall assumptions are checked. | Mark comparison as structural mismatch. |
 | KI value discipline | KI is optimized by coupon pickup per KI point of airbag sacrificed. | Do not recommend the lowest KI or highest headline coupon mechanically. |

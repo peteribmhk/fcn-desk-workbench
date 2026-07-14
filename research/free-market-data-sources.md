@@ -2,6 +2,8 @@
 
 **Status:** Indicative only. This note is for FCN screening workflow design, not firm pricing or client-facing market-data redistribution.
 
+For the full paid/public source hierarchy, also read `market-data-source-hierarchy.md`. The workbench should use licensed paid or firm-approved data when it is actually connected and authorized; this file only describes the fallback public stack.
+
 ## Practical Ranking For This Workbench
 
 | Rank | Source / Project | Best Use | Limitation |
@@ -30,6 +32,7 @@ Keep the GitHub Action dependency-free for phone reliability:
 3. Keep Yahoo and Stooq as fallbacks.
 4. Do not call this "real-time" or "firm"; label as public/delayed.
 5. If production-grade live data becomes required, move to an approved vendor or firm market-data system.
+6. Do not try to access paid resources through unauthorized scraping or paywall bypass. Use paid data only through licensed APIs, connected terminals, approved secrets, broker APIs, or user-supplied firm-approved figures.
 
 ## Issuer Pricing Gap
 

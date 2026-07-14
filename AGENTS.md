@@ -31,6 +31,7 @@ Before suggesting tickers, basket combinations, KI/KO/tenor settings, RFQ wordin
 11. `templates/ki-optimization.md`
 12. `templates/requote-checklist.md`
 13. `research/free-market-data-sources.md`
+14. `research/market-data-source-hierarchy.md`
 
 If any required memory file cannot be read, mark the FCN Morning Bell status `AMBER` or `RED` before giving picks.
 
@@ -48,11 +49,12 @@ Run this gate before every daily refresh, ticker suggestion, basket combination,
 
 1. Confirm crypto-linked names are excluded unless the user explicitly opts in.
 2. Confirm public/free data is only a screening input, not firm real-time data or issuer pricing.
-3. Confirm issuer RFQ or firm pricing-system evidence overrides public-data rankings once terms are normalized.
-4. Confirm comparisons normalize tenor, strike/reference, KI, KI observation, KO, KO observation, RO/issue price, coupon frequency, issuer, bid/offer basis, dividends, borrow, funding, correlation, skew, and autocall assumptions.
-5. Confirm KI is optimized by coupon pickup per KI point of airbag sacrificed, not by mechanically choosing the lowest KI.
-6. Confirm repeat tickers/baskets are checked against prior rationale and classified as fresh, same rationale, changed inputs, structural mismatch, or calibration drift.
-7. If any gate fails, say `AMBER` or `BLOCKED` and explain the shortest next action instead of giving confident picks.
+3. Confirm licensed paid or firm-approved data is used when actually connected, but never by bypassing paywalls, credentials, exchange entitlements, or firm controls.
+4. Confirm issuer RFQ or firm pricing-system evidence overrides public-data rankings once terms are normalized.
+5. Confirm comparisons normalize tenor, strike/reference, KI, KI observation, KO, KO observation, RO/issue price, coupon frequency, issuer, bid/offer basis, dividends, borrow, funding, correlation, skew, and autocall assumptions.
+6. Confirm KI is optimized by coupon pickup per KI point of airbag sacrificed, not by mechanically choosing the lowest KI.
+7. Confirm repeat tickers/baskets are checked against prior rationale and classified as fresh, same rationale, changed inputs, structural mismatch, or calibration drift.
+8. If any gate fails, say `AMBER` or `BLOCKED` and explain the shortest next action instead of giving confident picks.
 
 ## Pricing Discipline
 
