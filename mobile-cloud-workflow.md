@@ -19,9 +19,12 @@ This repo includes the recommended cloud runtime and phone interface:
 
 - **Cloud runtime:** GitHub Actions workflow `.github/workflows/fcn-daily-report.yml`
 - **Report generator:** `scripts/generate_daily_pickings.py`
+- **Codex sync:** `scripts/sync-from-github.ps1`
+- **Codex publish:** `scripts/publish-to-github.ps1`
 - **Phone-readable report:** `daily/latest.md`
 - **Refresh memory:** `daily/index.md` and timestamped reports under `daily/archive/`
 - **Durable profile:** `desk-memory.md`
+- **Sync protocol:** `SYNC_PROTOCOL.md`
 
 The workflow runs at 08:30 Hong Kong time, Monday-Friday, and can also be run manually from GitHub's **Actions** tab.
 
@@ -63,6 +66,8 @@ Use my FCN Desk Workbench and read assistant-operating-instructions.md, AGENTS.m
 ```
 
 This works from phone because ChatGPT does the reasoning and live data lookup in the cloud. The laptop does not need to be on.
+
+For Codex, use GitHub as the master copy. At the start of a Codex session, run `scripts/sync-from-github.ps1`; after durable Codex changes, run `scripts/publish-to-github.ps1`.
 
 ## Morning Readiness Hint
 

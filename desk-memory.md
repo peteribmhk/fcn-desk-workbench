@@ -7,6 +7,8 @@ This file stores durable, public-safe instructions learned from the user's FCN w
 - The user is a Hong Kong securities salesperson using this repo for FCN idea screening, issuer RFQ preparation, and client-facing explanation drafts.
 - The goal is a phone-accessible workflow that still works when the laptop is off.
 - GitHub is the persistent source of truth. GitHub Actions is the cloud refresh runtime.
+- Codex local folders are caches of GitHub, not the master copy.
+- Codex should run `scripts/sync-from-github.ps1` before FCN work and `scripts/publish-to-github.ps1` after durable repo changes.
 - The repo is public-safe. Do not store client data, suitability records, actual issuer quotes, firm pricing-system screenshots, or confidential issuer assumptions here.
 
 ## Durable Preferences
@@ -39,15 +41,16 @@ Before suggesting tickers, baskets, KI levels, RFQ wording, or client commentary
 1. `AGENTS.md`
 2. `assistant-operating-instructions.md`
 3. `desk-memory.md`
-4. `README.md`
-5. `methodology.md`
-6. `watchlist.csv`
-7. `daily/latest.md`
-8. `daily/index.md`
-9. Relevant recent files under `daily/archive/`
-10. `templates/ki-optimization.md`
-11. `templates/requote-checklist.md`
-12. `research/free-market-data-sources.md`
+4. `SYNC_PROTOCOL.md`
+5. `README.md`
+6. `methodology.md`
+7. `watchlist.csv`
+8. `daily/latest.md`
+9. `daily/index.md`
+10. Relevant recent files under `daily/archive/`
+11. `templates/ki-optimization.md`
+12. `templates/requote-checklist.md`
+13. `research/free-market-data-sources.md`
 
 If these files cannot be read, mark the morning status `AMBER` or `RED` rather than giving confident picks.
 

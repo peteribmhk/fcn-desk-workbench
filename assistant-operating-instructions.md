@@ -9,10 +9,12 @@ The user is a Hong Kong securities salesperson using this project for daily Fixe
 The long-term goal is phone-accessible operation while the laptop is off. Therefore:
 
 - GitHub is the source of truth for the workbench.
+- The local Codex folder is a cache of GitHub, not the master copy.
 - GitHub Actions is the cloud runtime for scheduled refreshes.
 - `daily/latest.md` is the phone-readable output.
 - `daily/index.md` and `daily/archive/` are the accumulated refresh memory.
 - `desk-memory.md` is the durable user profile and workflow memory.
+- `SYNC_PROTOCOL.md` defines the GitHub-master synchronization model.
 - ChatGPT/Codex should use the repo files as persistent memory.
 - Future AI sessions should update repo files when improving the workflow, not keep durable changes only in conversation.
 
@@ -23,21 +25,24 @@ When asked for FCN picks, refreshes, RFQs, or client explanations, read these fi
 1. `AGENTS.md`
 2. `assistant-operating-instructions.md`
 3. `desk-memory.md`
-4. `README.md`
-5. `methodology.md`
-6. `watchlist.csv`
-7. `daily/latest.md`
-8. `daily/index.md`
-9. Relevant recent files under `daily/archive/`
-10. `templates/ki-optimization.md`
-11. `templates/requote-checklist.md`
-12. `research/free-market-data-sources.md`
+4. `SYNC_PROTOCOL.md`
+5. `README.md`
+6. `methodology.md`
+7. `watchlist.csv`
+8. `daily/latest.md`
+9. `daily/index.md`
+10. Relevant recent files under `daily/archive/`
+11. `templates/ki-optimization.md`
+12. `templates/requote-checklist.md`
+13. `research/free-market-data-sources.md`
 
 If editing the project or cloud workflow, also read:
 
 1. `.github/workflows/fcn-daily-report.yml`
 2. `scripts/generate_daily_pickings.py`
 3. `mobile-cloud-workflow.md`
+4. `scripts/sync-from-github.ps1`
+5. `scripts/publish-to-github.ps1`
 
 ## Non-Negotiable Labels
 
@@ -63,6 +68,12 @@ If asked for "live" free market data, explain that clean, firm real-time US equi
 
 ## Repository Readback Rule
 
+When running inside Codex with shell access, sync from GitHub first:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/sync-from-github.ps1
+```
+
 Before suggesting tickers, basket combinations, KI/KO/tenor settings, RFQ wording, or client commentary, reread the repository memory from scratch instead of relying only on chat history. Use the `Always Read First` list above, then check the latest archived refreshes in `daily/index.md` for repeated ideas, changed market inputs, and prior rationale.
 
 Every refresh must persist new public-safe information back to GitHub by updating:
@@ -72,6 +83,12 @@ Every refresh must persist new public-safe information back to GitHub by updatin
 3. `daily/index.md`
 
 If GitHub readback or refresh persistence is unavailable, mark status `AMBER` and say exactly what could not be verified.
+
+After durable Codex edits to memory, methodology, templates, watchlists, scripts, or workflows, publish back to GitHub:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/publish-to-github.ps1 -Message "Update FCN workbench"
+```
 
 ## Profile Verification Gate
 

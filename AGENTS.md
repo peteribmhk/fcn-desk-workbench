@@ -5,6 +5,10 @@ Use this file as the first handoff note for any AI assistant working in this rep
 ## Source Of Truth
 
 - Treat GitHub as the persistent source of truth for this workbench.
+- Treat the local Codex folder as a cache of GitHub, not as the master copy.
+- At the start of a Codex session, run `powershell -ExecutionPolicy Bypass -File scripts/sync-from-github.ps1` before FCN work when shell access is available.
+- After durable Codex changes, run `powershell -ExecutionPolicy Bypass -File scripts/publish-to-github.ps1 -Message "Update FCN workbench"` so ChatGPT and future Codex sessions see the same workbench.
+- Follow `SYNC_PROTOCOL.md` for the GitHub-master sync model.
 - When you improve the workflow, instructions, templates, or generator, update the repository files rather than leaving the improvement only in chat.
 - Keep `daily/latest.md` phone-readable and public-safe.
 - Keep `daily/index.md` and `daily/archive/` as accumulated refresh memory.
@@ -17,15 +21,16 @@ Before suggesting tickers, basket combinations, KI/KO/tenor settings, RFQ wordin
 1. `AGENTS.md`
 2. `assistant-operating-instructions.md`
 3. `desk-memory.md`
-4. `README.md`
-5. `methodology.md`
-6. `watchlist.csv`
-7. `daily/latest.md`
-8. `daily/index.md`
-9. Relevant recent files under `daily/archive/`
-10. `templates/ki-optimization.md`
-11. `templates/requote-checklist.md`
-12. `research/free-market-data-sources.md`
+4. `SYNC_PROTOCOL.md`
+5. `README.md`
+6. `methodology.md`
+7. `watchlist.csv`
+8. `daily/latest.md`
+9. `daily/index.md`
+10. Relevant recent files under `daily/archive/`
+11. `templates/ki-optimization.md`
+12. `templates/requote-checklist.md`
+13. `research/free-market-data-sources.md`
 
 If any required memory file cannot be read, mark the FCN Morning Bell status `AMBER` or `RED` before giving picks.
 
