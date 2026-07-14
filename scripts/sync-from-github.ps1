@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$RepoRoot = "",
+    [string]$Repo = "peteribmhk/fcn-desk-workbench",
     [string]$Remote = "origin",
     [string]$Branch = "main"
 )
@@ -27,7 +28,7 @@ function Resolve-Tool {
 
 function Invoke-Git {
     $gitArgs = $args
-    & $script:Git -c "safe.directory=$($script:RepoRoot)" -C $script:RepoRoot @gitArgs
+    & $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot @gitArgs
     if ($LASTEXITCODE -ne 0) {
         throw "git $($gitArgs -join ' ') failed with exit code $LASTEXITCODE"
     }
@@ -39,7 +40,9 @@ if ([string]::IsNullOrWhiteSpace($RepoRoot)) {
 }
 
 $script:RepoRoot = (Resolve-Path -LiteralPath $RepoRoot).Path
+$script:SafeRepoRoot = $script:RepoRoot.Replace("\", "/")
 $script:Git = Resolve-Tool "git" "C:\Program Files\Git\cmd\git.exe"
+$script:Gh = Resolve-Tool "gh" "C:\Program Files\GitHub CLI\gh.exe"
 
 Write-Host "FCN GitHub master sync"
 Write-Host "Repo: $script:RepoRoot"
@@ -55,10 +58,32 @@ if ($dirty) {
 }
 
 Write-Host "Fetching latest GitHub state..."
-Invoke-Git fetch $Remote $Branch
+$fetchOk = $true
+try {
+    Invoke-Git fetch $Remote $Branch
+} catch {
+    $fetchOk = $false
+    Write-Host "Git fetch failed: $($_.Exception.Message)"
+}
 
-$localHead = (& $script:Git -c "safe.directory=$($script:RepoRoot)" -C $script:RepoRoot rev-parse HEAD).Trim()
-$remoteHead = (& $script:Git -c "safe.directory=$($script:RepoRoot)" -C $script:RepoRoot rev-parse "$Remote/$Branch").Trim()
+$localHead = (& $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot rev-parse HEAD).Trim()
+
+if (-not $fetchOk) {
+    $remoteHeadFromApi = (& $script:Gh api "repos/$Repo/commits/$Branch" --jq .sha).Trim()
+    if ($LASTEXITCODE -ne 0) {
+        throw "Git fetch failed and GitHub API readback also failed."
+    }
+
+    if ($localHead -eq $remoteHeadFromApi) {
+        Write-Host "Git fetch failed, but GitHub API confirms local HEAD already matches $Repo/$Branch."
+        Write-Host "Sync complete: $($localHead.Substring(0, 7))"
+        exit 0
+    }
+
+    throw "Git fetch failed and GitHub is newer ($($remoteHeadFromApi.Substring(0, 7))). Retry sync when Git transport is available."
+}
+
+$remoteHead = (& $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot rev-parse "$Remote/$Branch").Trim()
 
 if ($localHead -ne $remoteHead) {
     $backupBranch = "backup/local-before-sync-$stamp"

@@ -29,7 +29,7 @@ function Resolve-Tool {
 
 function Invoke-Git {
     $gitArgs = $args
-    & $script:Git -c "safe.directory=$($script:RepoRoot)" -C $script:RepoRoot @gitArgs
+    & $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot @gitArgs
     if ($LASTEXITCODE -ne 0) {
         throw "git $($gitArgs -join ' ') failed with exit code $LASTEXITCODE"
     }
@@ -37,7 +37,7 @@ function Invoke-Git {
 
 function Invoke-GitCapture {
     $gitArgs = $args
-    $output = & $script:Git -c "safe.directory=$($script:RepoRoot)" -C $script:RepoRoot @gitArgs
+    $output = & $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot @gitArgs
     if ($LASTEXITCODE -ne 0) {
         throw "git $($gitArgs -join ' ') failed with exit code $LASTEXITCODE"
     }
@@ -133,6 +133,7 @@ if ([string]::IsNullOrWhiteSpace($RepoRoot)) {
 }
 
 $script:RepoRoot = (Resolve-Path -LiteralPath $RepoRoot).Path
+$script:SafeRepoRoot = $script:RepoRoot.Replace("\", "/")
 $script:Git = Resolve-Tool "git" "C:\Program Files\Git\cmd\git.exe"
 $script:Gh = Resolve-Tool "gh" "C:\Program Files\GitHub CLI\gh.exe"
 
@@ -144,7 +145,7 @@ Invoke-Git rev-parse --is-inside-work-tree | Out-Null
 
 Invoke-Git add -A
 $hasStagedChanges = $true
-& $script:Git -c "safe.directory=$($script:RepoRoot)" -C $script:RepoRoot diff --cached --quiet
+& $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot diff --cached --quiet
 if ($LASTEXITCODE -eq 0) {
     $hasStagedChanges = $false
 } elseif ($LASTEXITCODE -ne 1) {
@@ -159,7 +160,7 @@ if ($hasStagedChanges) {
 
 try {
     Invoke-Git fetch $Remote $Branch
-    & $script:Git -c "safe.directory=$($script:RepoRoot)" -C $script:RepoRoot merge-base --is-ancestor "$Remote/$Branch" HEAD
+    & $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot merge-base --is-ancestor "$Remote/$Branch" HEAD
     if ($LASTEXITCODE -eq 1) {
         throw "GitHub has newer commits than this local branch. Run scripts/sync-from-github.ps1 first, then reapply or republish the intended changes."
     } elseif ($LASTEXITCODE -ne 0) {
