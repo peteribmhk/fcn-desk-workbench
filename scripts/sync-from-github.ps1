@@ -51,7 +51,7 @@ Write-Host "Remote branch: $Remote/$Branch"
 Invoke-Git rev-parse --is-inside-work-tree | Out-Null
 
 $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
-$dirty = & $script:Git -C $script:RepoRoot status --porcelain
+$dirty = & $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot status --porcelain
 if ($dirty) {
     Write-Host "Local uncommitted work found. Saving it in a Git stash before sync."
     Invoke-Git stash push -u -m "codex-sync-autostash-$stamp"
@@ -95,6 +95,6 @@ if ($localHead -ne $remoteHead) {
     Write-Host "Local branch already matches GitHub master copy."
 }
 
-$latest = (& $script:Git -C $script:RepoRoot log -1 --pretty="%h %s").Trim()
+$latest = (& $script:Git -c "safe.directory=$($script:SafeRepoRoot)" -C $script:RepoRoot log -1 --pretty="%h %s").Trim()
 Write-Host "Sync complete: $latest"
 Write-Host "Next: reread AGENTS.md, assistant-operating-instructions.md, desk-memory.md, daily/latest.md, and daily/index.md."
