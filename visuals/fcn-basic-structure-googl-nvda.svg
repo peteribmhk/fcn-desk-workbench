@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Three-month Google and NVIDIA fixed coupon note structure</title>
+  <desc id="desc">An educational FCN timeline and maturity payoff diagram with a 100 percent monthly knock-out level, 75 percent European knock-in level, and 24 percent annual coupon.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f5f7fa; }
+      .panel { fill: #ffffff; stroke: #d9e0e8; stroke-width: 2; }
+      .title { font: 700 38px Arial, Helvetica, sans-serif; fill: #17212b; }
+      .subtitle { font: 400 19px Arial, Helvetica, sans-serif; fill: #52606d; }
+      .section { font: 700 23px Arial, Helvetica, sans-serif; fill: #17212b; }
+      .label { font: 700 17px Arial, Helvetica, sans-serif; fill: #52606d; }
+      .value { font: 700 23px Arial, Helvetica, sans-serif; fill: #17212b; }
+      .body { font: 400 18px Arial, Helvetica, sans-serif; fill: #293845; }
+      .small { font: 400 15px Arial, Helvetica, sans-serif; fill: #52606d; }
+      .tiny { font: 400 13px Arial, Helvetica, sans-serif; fill: #667481; }
+      .white-label { font: 700 18px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .white-small { font: 400 15px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .green { fill: #0f7b5f; }
+      .green-soft { fill: #e5f4ef; stroke: #0f7b5f; stroke-width: 2; }
+      .blue { fill: #1769aa; }
+      .blue-soft { fill: #e8f2fb; stroke: #1769aa; stroke-width: 2; }
+      .amber { fill: #b96a00; }
+      .amber-soft { fill: #fff3da; stroke: #b96a00; stroke-width: 2; }
+      .red { fill: #b53a3a; }
+      .red-soft { fill: #fdecec; stroke: #b53a3a; stroke-width: 2; }
+      .line { stroke: #7b8794; stroke-width: 3; fill: none; }
+      .dash { stroke: #a6b0ba; stroke-width: 2; stroke-dasharray: 8 7; fill: none; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#7b8794"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1600" height="1120"/>
+
+  <text id="title-text" class="title" x="70" y="66">FCN structure: GOOGL + NVDA</text>
+  <text class="subtitle" x="70" y="101">3-month worst-of fixed coupon note | Indicative educational illustration</text>
+
+  <!-- Terms -->
+  <rect class="panel" x="60" y="130" width="1480" height="132" rx="8"/>
+  <line class="dash" x1="350" y1="150" x2="350" y2="242"/>
+  <line class="dash" x1="640" y1="150" x2="640" y2="242"/>
+  <line class="dash" x1="930" y1="150" x2="930" y2="242"/>
+  <line class="dash" x1="1220" y1="150" x2="1220" y2="242"/>
+
+  <text class="label" x="88" y="170">UNDERLYINGS</text>
+  <text class="value" x="88" y="207">GOOGL + NVDA</text>
+  <text class="small" x="88" y="233">Worst-of basket</text>
+
+  <text class="label" x="378" y="170">TENOR</text>
+  <text class="value" x="378" y="207">3 months</text>
+  <text class="small" x="378" y="233">Monthly observations</text>
+
+  <text class="label" x="668" y="170">ANNUAL COUPON</text>
+  <text class="value green" x="668" y="207">24.00% p.a.</text>
+  <text class="small" x="668" y="233">2.00% per month</text>
+
+  <text class="label" x="958" y="170">KNOCK-OUT</text>
+  <text class="value blue" x="958" y="207">100%</text>
+  <text class="small" x="958" y="233">Observed monthly</text>
+
+  <text class="label" x="1248" y="170">KNOCK-IN</text>
+  <text class="value amber" x="1248" y="207">75%</text>
+  <text class="small" x="1248" y="233">European: final date only</text>
+
+  <!-- Timeline -->
+  <text class="section" x="70" y="314">Observation timeline</text>
+  <path class="line" marker-end="url(#arrow)" d="M155 382 H1435"/>
+
+  <circle cx="165" cy="382" r="14" fill="#17212b"/>
+  <text class="label" x="125" y="350">Trade date</text>
+  <text class="body" x="112" y="420">Initial level</text>
+  <text class="small" x="118" y="444">Both = 100</text>
+
+  <circle cx="575" cy="382" r="14" class="blue"/>
+  <text class="label" x="525" y="350">Month 1</text>
+  <text class="body" x="490" y="420">KO test at 100</text>
+  <text class="small" x="492" y="444">Coupon due: 2.00%</text>
+
+  <circle cx="985" cy="382" r="14" class="blue"/>
+  <text class="label" x="935" y="350">Month 2</text>
+  <text class="body" x="900" y="420">KO test at 100</text>
+  <text class="small" x="902" y="444">Coupon due: 2.00%</text>
+
+  <circle cx="1395" cy="382" r="16" class="amber"/>
+  <text class="label" x="1334" y="350">Month 3</text>
+  <text class="body" x="1284" y="420">Final KO + KI test</text>
+  <text class="small" x="1287" y="444">Coupon due: 2.00%</text>
+
+  <!-- KO rule -->
+  <rect class="green-soft" x="60" y="485" width="1480" height="116" rx="8"/>
+  <circle cx="112" cy="543" r="30" class="green"/>
+  <text class="white-label" x="95" y="550">KO</text>
+  <text class="section" x="165" y="527">At any monthly observation: are both GOOGL and NVDA at or above 100%?</text>
+  <text class="body" x="165" y="561">YES: redeem 100% principal plus the coupon due; the note ends early.</text>
+  <text class="small" x="165" y="585">NO before Month 3: continue to the next observation. The weaker stock determines the basket level.</text>
+
+  <!-- Final valuation branches -->
+  <text class="section" x="70" y="654">If the note reaches the final valuation date</text>
+  <text class="body" x="70" y="686">Worst-of level W = lower of the two final stock levels, each measured as a percentage of its initial level.</text>
+
+  <rect class="blue-soft" x="60" y="722" width="470" height="205" rx="8"/>
+  <rect class="blue" x="60" y="722" width="470" height="50" rx="8"/>
+  <rect class="blue" x="60" y="754" width="470" height="18"/>
+  <text class="white-label" x="88" y="754">W at or above 100%</text>
+  <text class="body" x="88" y="812">KO / maturity redemption</text>
+  <text class="value" x="88" y="850">100% principal</text>
+  <text class="body" x="88" y="882">+ final 2.00% coupon</text>
+  <text class="small" x="88" y="909">Maximum scheduled 3-month coupon: 6.00%</text>
+
+  <rect class="amber-soft" x="565" y="722" width="470" height="205" rx="8"/>
+  <rect class="amber" x="565" y="722" width="470" height="50" rx="8"/>
+  <rect class="amber" x="565" y="754" width="470" height="18"/>
+  <text class="white-label" x="593" y="754">W from 75% to below 100%</text>
+  <text class="body" x="593" y="812">European KI not triggered</text>
+  <text class="value" x="593" y="850">100% principal</text>
+  <text class="body" x="593" y="882">+ final 2.00% coupon</text>
+  <text class="small" x="593" y="909">Stock decline is absorbed while final W stays at 75% or above.</text>
+
+  <rect class="red-soft" x="1070" y="722" width="470" height="205" rx="8"/>
+  <rect class="red" x="1070" y="722" width="470" height="50" rx="8"/>
+  <rect class="red" x="1070" y="754" width="470" height="18"/>
+  <text class="white-label" x="1098" y="754">W below 75%</text>
+  <text class="body" x="1098" y="812">European KI triggered</text>
+  <text class="value" x="1098" y="850">Redemption = W%</text>
+  <text class="body" x="1098" y="882">+ final 2.00% coupon</text>
+  <text class="small" x="1098" y="909">Example: W = 60% gives 60% principal value, subject to terms.</text>
+
+  <!-- Assumptions and disclaimer -->
+  <rect class="panel" x="60" y="965" width="1480" height="116" rx="8"/>
+  <text class="label" x="88" y="997">ILLUSTRATION ASSUMPTIONS</text>
+  <text class="small" x="88" y="1026">Strike / conversion level assumed at 100%; coupon assumed unconditional and paid monthly; simple monthly accrual shown as 24% / 12 = 2%.</text>
+  <text class="small" x="88" y="1051">Actual issuer terms may use different strike, day count, coupon payment, disruption, settlement, physical delivery, or early-redemption conventions.</text>
+  <text class="tiny" x="88" y="1074">Indicative only, not a firm quote or investment recommendation. Issuer credit risk, fees, tax, dividends, liquidity and suitability are not depicted.</text>
+</svg>
