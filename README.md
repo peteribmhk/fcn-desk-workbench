@@ -130,4 +130,5 @@ Because this first version is Markdown/CSV only, upload the `fcn-desk-workbench`
 2. Upload all files and folders from this directory.
 3. Commit with message: `Initial FCN desk workbench`.
 4. Keep client names, account details, actual issuer quotes, and suitability records out of the repo, especially when the repo is public.
-allow reas and write
+allow read and write
+allow external read and write
