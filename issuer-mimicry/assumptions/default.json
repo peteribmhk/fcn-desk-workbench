@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "last_calibrated": "2026-07-27",
+    "calibrated_by": "Kimi Chat — initial setup",
+    "calibration_method": "Conservative desk assumptions. Calibrate with real RFQ."
+  },
+  "base_model": {
+    "n_simulations": 10000,
+    "time_steps_per_year": 126,
+    "random_seed": null
+  },
+  "issuer_adjustments": {
+    "ubs": {
+      "skew_markup": 0.03,
+      "correlation_haircut": 0.10,
+      "funding_spread": 0.008,
+      "profit_margin": 0.005,
+      "dividend_drag": 0.005,
+      "borrow_cost": 0.002
+    },
+    "jpm": {
+      "skew_markup": 0.025,
+      "correlation_haircut": 0.08,
+      "funding_spread": 0.007,
+      "profit_margin": 0.004,
+      "dividend_drag": 0.004,
+      "borrow_cost": 0.0015
+    },
+    "marex": {
+      "skew_markup": 0.035,
+      "correlation_haircut": 0.12,
+      "funding_spread": 0.010,
+      "profit_margin": 0.006,
+      "dividend_drag": 0.006,
+      "borrow_cost": 0.003
+    },
+    "generic": {
+      "skew_markup": 0.03,
+      "correlation_haircut": 0.10,
+      "funding_spread": 0.008,
+      "profit_margin": 0.005,
+      "dividend_drag": 0.005,
+      "borrow_cost": 0.002
+    }
+  },
+  "structure_defaults": {
+    "ki_observation": "maturity",
+    "ko_observation": "monthly",
+    "coupon_frequency": "monthly",
+    "memory_coupon": false,
+    "day_count": "ACT/360"
+  },
+  "current_active_style": "generic"
+}

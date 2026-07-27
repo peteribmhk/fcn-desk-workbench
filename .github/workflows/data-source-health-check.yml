@@ -1,0 +1,35 @@
+name: Data Source Health Check
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'  # Every 4 hours
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install scipy
+
+      - name: Run source validator
+        run: python data-sources/discovery/source-validator.py
+        continue-on-error: true
+
+      - name: Commit updated registry
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add data-sources/registry.json
+          git diff --cached --quiet || git commit -m "data-sources: health check update $(date -u +%Y-%m-%d-%H%M%Z)"
+          git push || echo "Nothing to push"
