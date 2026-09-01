@@ -75,3 +75,63 @@ Save public-safe workflow improvements, watchlist logic, methodology changes, da
 ## What Not To Save
 
 Do not save actual client information, suitability assessments, account details, issuer quote screenshots, firm pricing-system outputs, confidential bank levels, compliance notes, or any non-public information in this public repo.
+
+---
+
+Append this section to `desk-memory.md`. All items are public-safe: no client data, no issuer/channel quote levels, no firm-confidential material.
+
+## Entry-Quality Framework ("deep drawdown + vol not dispersed")
+
+- Prefer underlyings roughly 20–50% below their 6-month high where 20-day realized vol is still elevated. This is where worst-of coupons screen richest without buying a fresh uptrend top.
+- Never anchor KI/strike levels to parabolic or immediately post-event prints. A strike set against a spike high bakes in a reference price the market has already abandoned.
+- Conversely, avoid names sitting AT their 6-month high with vol already crushed — the coupon rarely compensates.
+
+## Falling-Knife Rule (2-session stabilization)
+
+- Never anchor strikes on a fresh heavy down day. Wait for two consecutive stabilization sessions (price holds a level, no new low) before activating a basket on a falling name.
+- Conditional baskets stay conditional until the stabilization test passes; say so explicitly in the daily output rather than silently re-sending them.
+
+## Post-Earnings Clearance Window
+
+- The best entry is often right AFTER a binary event clears: event risk removed, implied/realized vol residual still pricing rich, and the next scheduled event falls outside a 3M tenor.
+- Discipline: hold RFQs into the event ("event hold"), re-mark strikes the morning after ("event cleared"), then apply the stabilization rule if the reaction was sharply negative.
+
+## Worst-of Correlation Tradeoff
+
+- Lower inter-leg correlation raises the worst-of coupon AND delivers genuine diversification.
+- Same-sector pairs (correlation often 0.8+) are pseudo-diversification: both legs fall together in a sector shock. Prefer cross-theme pairs (e.g., AI infra + nuclear, semis + software, healthcare high-vol + anchor).
+
+## Event Calendar Discipline
+
+- Before locking any 3M tenor, map earnings, FDA/trial dates, launches, and macro prints (FOMC, payrolls, CPI) falling inside the tenor.
+- Treat a known mid-tenor macro event as a one-time shock assumption when sizing KI, not as a reason to abandon the structure.
+
+## Requote Classification Taxonomy
+
+Classify every repeated idea instead of silently re-sending it:
+
+- fresh — new idea or new inputs
+- repeat-same-rationale — thesis unchanged, levels re-marked
+- repeat-changed-inputs — same names, materially different spot/vol
+- structural mismatch — quoted structure differs from screen assumptions
+- calibration drift — issuer levels drifting from public-data screen
+- event hold — paused into a binary event
+- event cleared — resumed after the event, levels re-marked
+
+## Like-for-Like Vol Comparison
+
+- When comparing implied vol day over day, compare the SAME expiry. Switching expiries between readings creates false vol-spike or vol-crush signals.
+
+## Option Expiry Quirks
+
+- Mid-caps frequently skip standard monthly cycles. Always verify available expiries before fetching chains or sending an RFQ. See `reference/option-expiry-quirks.md`.
+
+## Data Hygiene
+
+- Public/free market data is screening evidence only — never present it as a firm quote.
+- Free datasources are slow and occasionally drop calls; batch fetches in the background with retry loops, and verify file counts before computing.
+
+## Internal Calibration Sources
+
+- Firm-permitted internal/channel calibration material may be used as a negotiation ruler for what a fair coupon looks like.
+- Its actual levels are confidential: never commit them to this public repo. Record only the METHOD (calibrate, classify drift, requote), never the numbers.
