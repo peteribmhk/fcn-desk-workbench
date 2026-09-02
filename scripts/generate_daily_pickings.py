@@ -322,17 +322,21 @@ def fetch_nasdaq_option_snapshot(
             if not expiries:
                 continue
             target_expiry = min(expiries, key=lambda expiry: abs((expiry - today).days - target_days))
+            tenor_gap = abs((target_expiry - today).days - target_days)
             expiry_rows = [row for row in chain if row["expiry"] == target_expiry]
             atm = min(expiry_rows, key=lambda row: abs(float(row["strike"]) - spot))
             total_volume += int(atm["volume"])
             total_open_interest += int(atm["open_interest"])
-            ticker_snapshot[label] = format_option_point(
+            point_text = format_option_point(
                 {
                     "expiry": target_expiry.strftime("%b %d"),
                     "strike": float(atm["strike"]),
                     "straddle_pct": float(atm["straddle_pct"]),
                 }
             )
+            if tenor_gap > 45:
+                point_text += " (TENOR GAP: nearest listed expiry far from target - see reference/option-expiry-quirks.md)"
+            ticker_snapshot[label] = point_text
 
         ticker_snapshot["Liquidity"] = option_liquidity_read(total_volume, total_open_interest)
         snapshots[ticker] = ticker_snapshot

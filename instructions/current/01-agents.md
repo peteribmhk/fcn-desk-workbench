@@ -1,10 +1,6 @@
-# 01 — AI Continuity Rules
+# AI Continuity Rules
 
-**Version:** v1.0.0  
-**Last Updated:** 2026-07-27  
-**Read Order:** 1st (always read this first)
-
----
+Use this file as the first handoff note for any AI assistant working in this repository.
 
 ## Source Of Truth
 
@@ -12,33 +8,30 @@
 - Treat the local Codex folder as a cache of GitHub, not as the master copy.
 - At the start of a Codex session, run `powershell -ExecutionPolicy Bypass -File scripts/sync-from-github.ps1` before FCN work when shell access is available.
 - After durable Codex changes, run `powershell -ExecutionPolicy Bypass -File scripts/publish-to-github.ps1 -Message "Update FCN workbench"` so ChatGPT and future Codex sessions see the same workbench.
-- Follow `04-sync-protocol.md` for the GitHub-master sync model.
+- Follow `SYNC_PROTOCOL.md` for the GitHub-master sync model.
 - When you improve the workflow, instructions, templates, or generator, update the repository files rather than leaving the improvement only in chat.
 - Keep `daily/latest.md` phone-readable and public-safe.
 - Keep `daily/index.md` and `daily/archive/` as accumulated refresh memory.
-- Read `03-desk-memory.md` before FCN picks, refreshes, RFQs, or client explanations.
+- Read `desk-memory.md` before FCN picks, refreshes, RFQs, or client explanations.
 
 ## Repository Readback And Memory
 
 Before suggesting tickers, basket combinations, KI/KO/tenor settings, RFQ wording, or client commentary, reread the repository memory from scratch:
 
-01. `instructions/current/01-agents.md` (this file)
-02. `instructions/current/02-operating-instructions.md`
-03. `instructions/current/03-desk-memory.md`
-04. `instructions/current/04-sync-protocol.md`
-05. `instructions/current/05-methodology.md`
-06. `instructions/current/06-data-policy.md`
-07. `README.md`
-08. `watchlist.csv`
-09. `daily/latest.md`
-10. `daily/index.md`
-11. Relevant recent files under `daily/archive/`
-12. `templates/ki-optimization.md`
-13. `templates/requote-checklist.md`
-14. `templates/pricing-comparison.md`
-15. `data-sources/registry.json`
-16. `issuer-mimicry/assumptions/default.json`
-17. `issuer-mimicry/README.md`
+1. `AGENTS.md`
+2. `assistant-operating-instructions.md`
+3. `desk-memory.md`
+4. `SYNC_PROTOCOL.md`
+5. `README.md`
+6. `methodology.md`
+7. `watchlist.csv`
+8. `daily/latest.md`
+9. `daily/index.md`
+10. Relevant recent files under `daily/archive/`
+11. `templates/ki-optimization.md`
+12. `templates/requote-checklist.md`
+13. `research/free-market-data-sources.md`
+14. `research/market-data-source-hierarchy.md`
 
 If any required memory file cannot be read, mark the FCN Morning Bell status `AMBER` or `RED` before giving picks.
 
@@ -74,10 +67,10 @@ Run this gate before every daily refresh, ticker suggestion, basket combination,
 
 Before repeating a ticker or basket on a later day:
 
-- Check `daily/latest.md`, `watchlist.csv`, `methodology.md`, `templates/quote-calibration.md`, `templates/requote-checklist.md`, and `issuer-mimicry/calibration/drift-tracker.md`.
+- Check `daily/latest.md`, `methodology.md`, `watchlist.csv`, `templates/quote-calibration.md`, and `templates/requote-checklist.md`.
 - State whether the idea is fresh, repeated with the same rationale, repeated with changed market inputs, or structurally different.
-- Compare today's spot/reference, 3M/6M listed-options proxy, liquidity, event risk, tenor, KI, KO, strike/reference, RO, and coupon frequency against the prior rationale.
-- If the user provides pricing-system numbers, use them for session calibration, but keep actual quote records in ignored/private storage such as `actual-quotes/`.
+- Compare today's spot, listed-options proxy, liquidity, event risk, and requested structure against the previous rationale.
+- If the user provides private pricing-system numbers, use them for session calibration, but keep actual quote records in ignored/private storage such as `actual-quotes/`.
 
 ## Required Label
 

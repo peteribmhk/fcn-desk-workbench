@@ -28,7 +28,11 @@ def check_source(source):
     name = source["name"]
     endpoint = source.get("endpoint")
     if not endpoint or "{" in endpoint:  # template endpoint, skip direct probe
-        return {**source, "status": "HEALTHY", "last_success": now_iso(), "notes": source.get("notes", "") + " (template endpoint — not probed directly)"}
+        note = "(template endpoint — not probed directly)"
+        notes = source.get("notes", "")
+        if note not in notes:
+            notes = (notes + " " + note).strip()
+        return {**source, "status": "HEALTHY", "last_success": now_iso(), "notes": notes}
 
     headers = {"User-Agent": "FCN-Desk-Workbench/1.0 (peteribmhk)"}
     req = urllib.request.Request(endpoint, headers=headers, method="HEAD")

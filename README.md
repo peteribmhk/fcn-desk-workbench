@@ -22,7 +22,9 @@ This repository is the persistent source of truth for future Codex, ChatGPT, Cla
 
 The workbench should accumulate memory through GitHub:
 
-- `desk-memory.md` stores durable user preferences and workflow rules.
+- `desk-memory.md` stores durable user preferences and workflow rules, including the Living Watchlist Protocol: the watchlist is a candidate pool, and daily observation is driven by the market (event-driven adds, vol-spike scans, weekly prune).
+- `watchlist.csv` is the candidate pool (69 names as of 2026-09-02); `watchlist-changelog.md` logs every add/freeze/removal with reasons.
+- `reference/option-expiry-quirks.md` and `reference/event-calendar.md` are verified operational references checked before any RFQ.
 - `SYNC_PROTOCOL.md` defines GitHub as the master copy and Codex as a local cache.
 - `daily/latest.md` stores the phone-readable latest refresh.
 - `daily/index.md` lists timestamped refresh history.
