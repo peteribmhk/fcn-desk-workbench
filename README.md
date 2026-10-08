@@ -73,4 +73,4 @@ daily/                      latest report, JSON record, archive
   `python scripts/generate_daily_pickings.py --fixture your_saved_data.json --out /tmp/test`
 - Keep anything confidential out. The `actual-quotes/`, `client-notes/` and `suitability-records/` folders are git-ignored for local use only.
 
-The pre-restructure version of this repo is preserved under the git tag `legacy-2026-10-08`.
+The pre-restructure version of this repo is preserved under the branch `legacy-2026-10-08`.

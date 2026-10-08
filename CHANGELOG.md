@@ -7,4 +7,4 @@
 - **One rulebook.** `desk-memory.md`, `methodology.md`, `assistant-operating-instructions.md`, `SYNC_PROTOCOL.md` and the duplicate `instructions/` tree are merged into `PLAYBOOK.md`. All the desk rules are kept: entry quality, falling knife, post-earnings window, correlation trade-off, KI value discipline, quote normalization, requote taxonomy, living watchlist.
 - **AI guidance slimmed.** `CLAUDE.md` / `AGENTS.md` now treat the repo as reference material behind the user's own instructions and live data. The 14-file read ritual and the "Morning Bell" protocol are removed.
 - **Removed:** PowerShell sync/publish scripts, Codex/ChatGPT setup guides, the data-source health-check workflow (it committed noise daily), committed `__pycache__`, old archive reports.
-- The previous version is preserved under the git tag `legacy-2026-10-08`.
+- The previous version is preserved under the branch `legacy-2026-10-08`.
