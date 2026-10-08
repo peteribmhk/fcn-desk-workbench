@@ -1,6 +1,6 @@
 # Event Calendar — 事件日历（公开信息，每次晨钟维护）
 
-Purpose: any 3M FCN tenor must be checked against this calendar before RFQ. Binary events inside a tenor are either priced in deliberately (macro) or excluded by timing (idiosyncratic). Update at every morning bell; strike through events once passed.
+Purpose: any 3M FCN tenor must be checked against this calendar before RFQ. Binary events inside a tenor are either priced in deliberately (macro) or excluded by timing (idiosyncratic). **Last maintained 2026-09-02: dates below are stale; refresh from public IR calendars before each RFQ.** Strike through events once passed.
 
 ## Macro (all tenors)
 
@@ -23,5 +23,5 @@ Purpose: any 3M FCN tenor must be checked against this calendar before RFQ. Bina
 ## Rules
 
 1. An earnings date inside the tenor = event hold, unless the structure deliberately targets the event (rare).
-2. Post-earnings clearance window: after the print, apply the 2-session stabilization rule before activating (see desk-memory).
+2. Post-earnings clearance window: after the print, apply the 2-session stabilization rule before activating (see PLAYBOOK.md §4).
 3. This file is public information only — dates from public IR calendars and macro schedules.

@@ -1,6 +1,6 @@
 # Quote Calibration Template
 
-Use this template to compare Codex's indicative ballpark against the user's firm pricing-system result.
+Use this template to compare the indicative ballpark (daily screen or `scripts/fcn_model.py`) against a firm pricing-system result. Fill it in privately; do not commit real numbers.
 
 **Status:** Indicative only. Not a firm quote. Do not store issuer names, client details, or firm-confidential pricing assumptions in the public repo.
 
@@ -19,7 +19,7 @@ Use this template to compare Codex's indicative ballpark against the user's firm
 | RO / issue price | [100 / 97 / other] |
 | Coupon frequency | [monthly / quarterly / other] |
 | Issuer/pricing source | [private user input; do not commit issuer-sensitive detail] |
-| Codex ballpark coupon p.a. | [range] |
+| Ballpark coupon p.a. | [range] |
 | Pricing-system coupon p.a. | [user input] |
 | Difference | [pricing-system result minus midpoint of ballpark] |
 | Difference driver | [vol / skew / correlation / dividends / borrow / funding / issuer inventory / margin / autocall assumption / structure] |

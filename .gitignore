@@ -8,3 +8,7 @@ client-notes/
 actual-quotes/
 suitability-records/
 
+
+# Python
+__pycache__/
+*.pyc

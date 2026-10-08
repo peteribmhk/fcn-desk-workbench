@@ -1,136 +1,76 @@
 # FCN Desk Workbench
 
-Public-safe working repository for daily Fixed Coupon Note (FCN) screening, issuer RFQ preparation, and client explanation drafts.
+A shared toolkit for screening **worst-of Fixed Coupon Notes (FCNs) on US stocks**: desk rules, a daily data-driven basket screen, a ballpark coupon model, and ready-to-use RFQ and client-explanation templates.
 
-This project is a sales workflow aid, not a tradable pricing system. It uses public or manually entered market context to help judge which baskets may produce higher coupons and whether the structure terms are reasonable. Do not store client-specific information, actual issuer quotes, suitability records, or firm-confidential materials in this public repository.
+> **Indicative only. Not a firm quote. Not investment advice.** Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems. This repo is public: never commit client details, actual issuer quotes or firm-confidential material.
 
-## Core Disclaimer
+## Start here
 
-All outputs from this workbench are **indicative only, not firm quotes, not investment advice, and not a substitute for an issuer pricer or firm-approved market-data system**.
+| You want to… | Open |
+|---|---|
+| See today's screened baskets on your phone | [`daily/latest.md`](daily/latest.md) |
+| Learn the desk rules (entry quality, KI ladder, event holds, quote comparison) | [`PLAYBOOK.md`](PLAYBOOK.md) |
+| Send an RFQ | [`templates/rfq-template.md`](templates/rfq-template.md) |
+| Explain an idea to a client (EN / 中文) | [`templates/client-explanation.md`](templates/client-explanation.md) |
+| Choose a KI level from an issuer ladder | [`templates/ki-optimization.md`](templates/ki-optimization.md) |
+| Check an idea you suggested before | [`templates/requote-checklist.md`](templates/requote-checklist.md) |
+| Compare a quote with the ballpark | [`templates/quote-calibration.md`](templates/quote-calibration.md) |
+| See the candidate universe | [`watchlist.csv`](watchlist.csv) and [`watchlist-changelog.md`](watchlist-changelog.md) |
 
-Before using any result with a client, validate:
+## The daily screen
 
-- live spot and bid/ask levels,
-- issuer pricing and final coupon,
-- volatility, dividend, borrow, rate, and funding assumptions,
-- product documentation and term sheet,
-- suitability, risk disclosure, and internal compliance requirements.
+A GitHub Action runs every weekday at about **08:30 Hong Kong time**, after the US close, and publishes [`daily/latest.md`](daily/latest.md). Past runs are kept in [`daily/archive/`](daily/index.md).
 
-## Continuity And Universe Policy
+What it does, using free public data:
 
-This repository is the persistent source of truth for future Codex, ChatGPT, Claude, or other AI-assisted work on the FCN desk workflow. Improvements should be committed back into the project files instead of living only in a chat thread.
+1. For every watchlist name: last price, 1-day move, distance from the 6-month high, 20-day realized vol, implied vol from listed ATM straddles, option open interest, next earnings date.
+2. Holds back names that fail a gate: fresh heavy drop (falling-knife rule), earnings within two weeks, thin options, or extreme vol.
+3. Builds **cross-theme 2-stock and 3-stock baskets**, using real correlation from price history, across risk profiles (balanced / higher coupon / aggressive), plus a familiar-name anchor.
+4. Prices each basket with the ballpark model (6M, KO 100% monthly, KI ladder 50/55/59/65/70 at maturity), shows the KI pickup per point, and labels repeats versus the previous run.
 
-The workbench should accumulate memory through GitHub:
+The **Data status** line tells you whether to trust a run: GREEN means good coverage, AMBER means partial data (use with care), and RED means no picks were produced.
 
-- `desk-memory.md` stores durable user preferences and workflow rules, including the Living Watchlist Protocol: the watchlist is a candidate pool, and daily observation is driven by the market (event-driven adds, vol-spike scans, weekly prune).
-- `watchlist.csv` is the candidate pool (69 names as of 2026-09-02); `watchlist-changelog.md` logs every add/freeze/removal with reasons.
-- `reference/option-expiry-quirks.md` and `reference/event-calendar.md` are verified operational references checked before any RFQ.
-- `SYNC_PROTOCOL.md` defines GitHub as the master copy and Codex as a local cache.
-- `daily/latest.md` stores the phone-readable latest refresh.
-- `daily/index.md` lists timestamped refresh history.
-- `daily/archive/` stores each refresh as a public-safe historical snapshot.
+To refresh manually: GitHub → **Actions** → **FCN Daily Screen** → **Run workflow**.
 
-Before giving picks or client-facing wording, the assistant should sync from GitHub when possible and reread the repo memory from scratch instead of relying only on chat memory.
+## Using it with Claude (or another AI assistant)
 
-Default screening is **non-crypto**. Do not suggest crypto-linked tickers or baskets unless the user explicitly opts in. The watchlist should stay open-minded and diversified across high-volatility sectors such as AI/semis, software, EV, healthcare/biotech, emerging technology, clean energy, China ADRs, cyclicals, and other liquid names where issuer RFQs may show worthwhile coupon.
+Point the assistant at this repo or paste the relevant file. It works best as **reference material**: the assistant should still pull today's market data itself and use its own judgment. [`CLAUDE.md`](CLAUDE.md) tells AI assistants how to use the repo without letting it override your own instructions.
 
-Before repeating a ticker or basket from an earlier run, cross-check today's spot, listed-options proxy, liquidity, event risk, and exact requested structure against the prior rationale. If the structure differs by tenor, KI, KO, strike/reference, RO, coupon frequency, or issuer basis, treat it as a structural mismatch until normalized.
-
-## Daily Workflow
-
-Morning readiness hint:
+Example prompt:
 
 ```text
-FCN Morning Bell
+Using the FCN Desk Workbench playbook (github.com/peteribmhk/fcn-desk-workbench), give me today's FCN picks
+on US stocks: 2–3 names per basket, across risk profiles, with ballpark coupons, KI ladder view, risks and RFQ wording.
 ```
 
-Expected assistant response:
+## Ballpark model
 
-- `FCN Morning Bell: GREEN` means today's Hong Kong-date report is current/refreshed and the assistant has reloaded the project rules.
-- `FCN Morning Bell: AMBER` means the repo is readable but the report is stale, refresh access is missing, or market data could not be refreshed.
-- `FCN Morning Bell: RED` means the assistant cannot access the project instructions/report or cannot safely separate public screens from issuer quote evidence.
+```bash
+python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --tenor 6
+```
 
-Before giving any picks, the assistant must state the Hong Kong date, `daily/latest.md` timestamp, public-data caveat, and that issuer RFQ levels override public-data screens.
+The model prints a coupon range, the KO probability, the probability of loss at maturity, and the expected life for each KI level. It has no dependencies and works with plain Python 3.10+. Its limits are listed in `PLAYBOOK.md` §10.
 
-Use this prompt in Codex:
+## Folder map
 
 ```text
-Use `AGENTS.md` and `assistant-operating-instructions.md` first, then refresh FCN market data using the FCN Desk Workbench. Screen the non-crypto diversified watchlist for RFQ candidates, use listed-options vol proxy only as a public screening input, compare any real issuer quotes after normalizing RO/KO/KI/strike/tenor, cross-check repeat tickers against prior rationale, optimize KI by coupon pickup per KI point, prepare issuer RFQ wording, and draft client explanation. Label everything indicative only.
+PLAYBOOK.md                 desk rules (the core of the repo)
+CLAUDE.md / AGENTS.md       guidance for AI assistants
+watchlist.csv               candidate pool (living, see PLAYBOOK §11)
+watchlist-changelog.md      every add / freeze / removal with reason
+reference/                  option-expiry quirks, event calendar
+templates/                  RFQ, client explanation, KI ladder, requote, calibration
+scripts/fcn_model.py        ballpark worst-of FCN coupon model
+scripts/generate_daily_pickings.py   daily screen (run by GitHub Actions)
+daily/                      latest report, JSON record, archive
 ```
 
-Expected output:
+## Contributing
 
-1. Profile verification gate: user preference, evidence quality, issuer quote override, structure normalization, KI value discipline, repeat discipline, and persistence.
-2. Market snapshot with timestamp and source caveats.
-3. RFQ candidate screen, not a coupon prediction.
-4. Listed-options vol/liquidity proxy read.
-5. Ballpark annualized coupon range for each idea, clearly labeled as indicative.
-6. Pricing-system verified number field for user calibration.
-7. Coupon driver explanation, with issuer quote evidence overriding public-data screens.
-8. Suggested tenor, KO, KI, and airbag positioning.
-9. KI ladder optimization view.
-10. Requote rationale check for any repeated ticker or basket.
-11. Key downside risks.
-12. Issuer RFQ wording.
-13. Short Chinese/English client explanation.
+- Improve the rules in `PLAYBOOK.md`; keep it short and practical.
+- Log watchlist changes in `watchlist-changelog.md` with a reason.
+- To edit the screen's thresholds, change the settings block at the top of `scripts/generate_daily_pickings.py`, then test it without network:
+  `python scripts/generate_daily_pickings.py --fixture your_saved_data.json --out /tmp/test`
+- Keep anything confidential out. The `actual-quotes/`, `client-notes/` and `suitability-records/` folders are git-ignored for local use only.
 
-## Cloud Runtime And Phone Interface
-
-This repo now includes a GitHub Actions cloud runtime:
-
-- Workflow: `.github/workflows/fcn-daily-report.yml`
-- Generator: `scripts/generate_daily_pickings.py`
-- Codex sync script: `scripts/sync-from-github.ps1`
-- Codex publish script: `scripts/publish-to-github.ps1`
-- Phone-readable report: `daily/latest.md`
-- Refresh archive index: `daily/index.md`
-- Timestamped refresh history: `daily/archive/`
-
-The workflow runs at **08:30 Hong Kong time, Monday-Friday**, and can also be started manually from the GitHub **Actions** tab. It does not require your laptop to be on.
-
-The generator tries free/public delayed quote sources in this order: Nasdaq public quote endpoint, Yahoo Finance public chart endpoint, then Stooq daily CSV fallback. It also uses Nasdaq public option-chain data for an indicative ATM straddle/liquidity proxy. These are not firm real-time exchange feeds.
-
-If licensed paid or firm-approved data is connected later, the workbench should use that higher-quality source first and state the source/timestamp clearly. Paid resources must be accessed only through authorized API keys, terminal/API connections, broker APIs, or user-supplied firm-approved figures. Do not bypass paywalls, credentials, exchange entitlements, or firm data controls.
-
-Phone link:
-
-```text
-https://github.com/peteribmhk/fcn-desk-workbench/blob/main/daily/latest.md
-```
-## Project Files
-
-- `AGENTS.md`: first-read continuity rules for future AI assistants.
-- `assistant-operating-instructions.md`: persistent instructions for future ChatGPT/Codex sessions.
-- `desk-memory.md`: durable user preferences, verification loop, and public-safe memory rules.
-- `SYNC_PROTOCOL.md`: GitHub-master synchronization protocol for Codex and ChatGPT usage.
-- `watchlist.csv`: default high-volatility ticker universe and basket ideas.
-- `methodology.md`: decision rules for ranking FCN baskets and judging structure terms.
-- `templates/daily-pickings.md`: daily output template.
-- `templates/rfq-template.md`: issuer RFQ template.
-- `templates/client-explanation.md`: bilingual client explanation blocks.
-- `templates/ki-optimization.md`: KI ladder and coupon-pickup comparison template.
-- `templates/requote-checklist.md`: repeat-ticker/rationale cross-check template.
-- `samples/sample-daily-pickings.md`: example output format using qualitative assumptions.
-- `mobile-cloud-workflow.md`: how to use this project from phone/ChatGPT when the laptop is off.
-- `.github/workflows/fcn-daily-report.yml`: cloud runtime for scheduled reports.
-- `scripts/generate_daily_pickings.py`: dependency-free report generator.
-- `scripts/sync-from-github.ps1`: align local Codex workspace to GitHub master copy.
-- `scripts/publish-to-github.ps1`: publish durable Codex changes back to GitHub.
-- `daily/latest.md`: phone-readable latest report.
-- `daily/index.md`: archive index generated by the refresh workflow.
-- `daily/archive/`: timestamped refresh reports generated by the refresh workflow.
-- `research/free-market-data-sources.md`: GitHub/open-source and free-data source review.
-- `research/market-data-source-hierarchy.md`: paid/public/firm data-source priority rule for future refreshes.
-
-## GitHub Upload
-
-Current repo setting: **public**.
-
-Because this first version is Markdown/CSV only, upload the `fcn-desk-workbench` folder directly through GitHub web UI if you are recreating it:
-
-1. Create a new GitHub repository named `fcn-desk-workbench`.
-2. Upload all files and folders from this directory.
-3. Commit with message: `Initial FCN desk workbench`.
-4. Keep client names, account details, actual issuer quotes, and suitability records out of the repo, especially when the repo is public.
-allow read and write
-allow external read and write
+The pre-restructure version of this repo is preserved under the git tag `legacy-2026-10-08`.

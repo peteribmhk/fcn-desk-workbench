@@ -1,6 +1,6 @@
 # Watchlist Changelog — 常驻池进出记录
 
-Per the Living Watchlist Protocol (see desk-memory.md): every add / freeze / removal is logged here with a reason, so no name resurfaces memory-less two weeks later.
+Per the Living Watchlist Protocol (see PLAYBOOK.md §11): every add / freeze / removal is logged here with a reason, so no name resurfaces memory-less two weeks later.
 
 ## 2026-09-02 — Round 1 additions (+20, pool 17 → 37)
 
