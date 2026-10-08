@@ -2,4 +2,6 @@
 
 - [Latest](latest.md)
 
-Archived runs will be listed here from the first run of the rebuilt screen.
+| Run (HKT) | Report |
+| --- | --- |
+| 2026-10-08-0937-HKT | [open](archive/2026-10-08-0937-HKT.md) |

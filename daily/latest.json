@@ -1,0 +1,166 @@
+{
+  "generated_hkt": "2026-10-08T09:37:07.231552+08:00",
+  "us_close": "2026-10-07",
+  "status": "GREEN",
+  "baskets": [
+    {
+      "key": "BIDU/MU",
+      "tickers": [
+        "BIDU",
+        "MU"
+      ],
+      "vols": [
+        0.4256,
+        0.4944
+      ],
+      "avg_corr": 0.179,
+      "coupon_headline_ki": [
+        0.1563,
+        0.2133
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "BABA/MU",
+      "tickers": [
+        "BABA",
+        "MU"
+      ],
+      "vols": [
+        0.4055,
+        0.4944
+      ],
+      "avg_corr": -0.017,
+      "coupon_headline_ki": [
+        0.1464,
+        0.2034
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "HIMS/SMCI",
+      "tickers": [
+        "HIMS",
+        "SMCI"
+      ],
+      "vols": [
+        0.7471,
+        0.7409
+      ],
+      "avg_corr": 0.258,
+      "coupon_headline_ki": [
+        0.4897,
+        0.5449
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "DKNG/SMCI",
+      "tickers": [
+        "SMCI",
+        "DKNG"
+      ],
+      "vols": [
+        0.7409,
+        0.6606
+      ],
+      "avg_corr": -0.101,
+      "coupon_headline_ki": [
+        0.4591,
+        0.5171
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "LUNR/NTLA",
+      "tickers": [
+        "NTLA",
+        "LUNR"
+      ],
+      "vols": [
+        0.801,
+        0.9008
+      ],
+      "avg_corr": 0.288,
+      "coupon_headline_ki": [
+        0.6025,
+        0.6535
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "GEV/MU/NVO",
+      "tickers": [
+        "NVO",
+        "MU",
+        "GEV"
+      ],
+      "vols": [
+        0.3798,
+        0.4944,
+        0.4767
+      ],
+      "avg_corr": 0.065,
+      "coupon_headline_ki": [
+        0.1822,
+        0.2404
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "DKNG/HIMS/SMCI",
+      "tickers": [
+        "HIMS",
+        "SMCI",
+        "DKNG"
+      ],
+      "vols": [
+        0.7471,
+        0.7409,
+        0.6606
+      ],
+      "avg_corr": 0.125,
+      "coupon_headline_ki": [
+        0.5797,
+        0.638
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "CRDO/DKNG/NTLA",
+      "tickers": [
+        "CRDO",
+        "NTLA",
+        "DKNG"
+      ],
+      "vols": [
+        0.8093,
+        0.801,
+        0.6606
+      ],
+      "avg_corr": 0.084,
+      "coupon_headline_ki": [
+        0.6405,
+        0.6969
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "NVO/ORCL",
+      "tickers": [
+        "NVO",
+        "ORCL"
+      ],
+      "vols": [
+        0.3798,
+        0.5463
+      ],
+      "avg_corr": -0.102,
+      "coupon_headline_ki": [
+        0.1703,
+        0.2254
+      ],
+      "requote": "fresh"
+    }
+  ]
+}
