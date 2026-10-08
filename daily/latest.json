@@ -1,5 +1,5 @@
 {
-  "generated_hkt": "2026-10-08T09:37:07.231552+08:00",
+  "generated_hkt": "2026-10-08T14:32:21.523580+08:00",
   "us_close": "2026-10-07",
   "status": "GREEN",
   "baskets": [
@@ -15,10 +15,10 @@
       ],
       "avg_corr": 0.179,
       "coupon_headline_ki": [
-        0.1563,
-        0.2133
+        0.1572,
+        0.2141
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "BABA/MU",
@@ -32,10 +32,10 @@
       ],
       "avg_corr": -0.017,
       "coupon_headline_ki": [
-        0.1464,
-        0.2034
+        0.1473,
+        0.2038
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "HIMS/SMCI",
@@ -49,10 +49,10 @@
       ],
       "avg_corr": 0.258,
       "coupon_headline_ki": [
-        0.4897,
-        0.5449
+        0.4903,
+        0.5457
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "DKNG/SMCI",
@@ -66,10 +66,10 @@
       ],
       "avg_corr": -0.101,
       "coupon_headline_ki": [
-        0.4591,
-        0.5171
+        0.4597,
+        0.5176
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "LUNR/NTLA",
@@ -83,10 +83,10 @@
       ],
       "avg_corr": 0.288,
       "coupon_headline_ki": [
-        0.6025,
-        0.6535
+        0.6029,
+        0.6542
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "GEV/MU/NVO",
@@ -102,10 +102,10 @@
       ],
       "avg_corr": 0.065,
       "coupon_headline_ki": [
-        0.1822,
-        0.2404
+        0.183,
+        0.2412
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "DKNG/HIMS/SMCI",
@@ -121,10 +121,10 @@
       ],
       "avg_corr": 0.125,
       "coupon_headline_ki": [
-        0.5797,
-        0.638
+        0.5801,
+        0.6384
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "CRDO/DKNG/NTLA",
@@ -140,10 +140,10 @@
       ],
       "avg_corr": 0.084,
       "coupon_headline_ki": [
-        0.6405,
-        0.6969
+        0.6408,
+        0.6974
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
       "key": "NVO/ORCL",
@@ -157,10 +157,10 @@
       ],
       "avg_corr": -0.102,
       "coupon_headline_ki": [
-        0.1703,
-        0.2254
+        0.1714,
+        0.2263
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     }
   ]
 }
