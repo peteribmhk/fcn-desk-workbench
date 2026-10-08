@@ -37,7 +37,7 @@ class FCNTerms:
     tenor_months: int = 6
     ko: float = 1.00
     ki_levels: list[float] = field(default_factory=lambda: [0.50, 0.55, 0.59, 0.65, 0.70])
-    rate: float = 0.0375  # USD short rate assumption; edit when the rate regime changes
+    rate: float = 0.039  # USD short rate (Fed funds 3.75-4.00% after the 2026-09-16 hike); edit when it changes
     funding_spread: float = 0.005  # issuer funding over the rate, passed to the investor via discounting
     ko_start_month: int = 1
 
@@ -188,7 +188,7 @@ def _main() -> None:
     parser.add_argument("--corr", type=float, default=0.5, help="Flat pairwise correlation")
     parser.add_argument("--tenor", type=int, default=6, help="Tenor in months")
     parser.add_argument("--ko", type=float, default=100, help="KO level in percent")
-    parser.add_argument("--rate", type=float, default=3.75, help="USD rate in percent")
+    parser.add_argument("--rate", type=float, default=3.9, help="USD rate in percent")
     parser.add_argument("--paths", type=int, default=20000)
     args = parser.parse_args()
     n = len(args.vols)

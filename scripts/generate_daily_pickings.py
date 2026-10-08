@@ -47,7 +47,7 @@ LABEL = "Indicative only. Not a firm quote. Not investment advice. Final coupon 
 CRYPTO_LINKED = {"MSTR", "COIN", "MARA", "RIOT", "CLSK", "HUT", "BTBT", "BITF", "IREN", "WGMI", "CIFR", "CORZ", "HOOD_CRYPTO"}
 
 # Screen settings (edit here, documented in PLAYBOOK.md)
-TERMS = FCNTerms(tenor_months=6, ko=1.00, ki_levels=[0.50, 0.55, 0.59, 0.65, 0.70], rate=0.0375)
+TERMS = FCNTerms(tenor_months=6, ko=1.00, ki_levels=[0.50, 0.55, 0.59, 0.65, 0.70], rate=0.039)
 HEADLINE_KI = 0.59
 MIN_ATM_OI = 1000            # ATM call+put open interest across the two proxy expiries
 FALLING_KNIFE_MOVE = -6.0    # % one-day drop that triggers the 2-session stabilization rule
