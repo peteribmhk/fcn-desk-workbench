@@ -1,58 +1,41 @@
 {
-  "generated_hkt": "2026-10-08T14:32:21.523580+08:00",
-  "us_close": "2026-10-07",
+  "generated_hkt": "2026-10-09T14:33:39.579199+08:00",
+  "us_close": "2026-10-08",
   "status": "GREEN",
   "baskets": [
     {
-      "key": "BIDU/MU",
+      "key": "AVGO/GEV",
       "tickers": [
-        "BIDU",
-        "MU"
+        "AVGO",
+        "GEV"
       ],
       "vols": [
-        0.4256,
-        0.4944
+        0.4345,
+        0.4797
       ],
-      "avg_corr": 0.179,
+      "avg_corr": 0.405,
       "coupon_headline_ki": [
-        0.1572,
-        0.2141
+        0.1467,
+        0.2039
       ],
-      "requote": "repeat, same rationale"
+      "requote": "fresh"
     },
     {
-      "key": "BABA/MU",
+      "key": "MU/NVO",
       "tickers": [
-        "BABA",
-        "MU"
+        "MU",
+        "NVO"
       ],
       "vols": [
-        0.4055,
-        0.4944
+        0.4941,
+        0.3806
       ],
-      "avg_corr": -0.017,
+      "avg_corr": -0.172,
       "coupon_headline_ki": [
-        0.1473,
-        0.2038
+        0.1333,
+        0.1889
       ],
-      "requote": "repeat, same rationale"
-    },
-    {
-      "key": "HIMS/SMCI",
-      "tickers": [
-        "HIMS",
-        "SMCI"
-      ],
-      "vols": [
-        0.7471,
-        0.7409
-      ],
-      "avg_corr": 0.258,
-      "coupon_headline_ki": [
-        0.4903,
-        0.5457
-      ],
-      "requote": "repeat, same rationale"
+      "requote": "fresh"
     },
     {
       "key": "DKNG/SMCI",
@@ -61,106 +44,123 @@
         "DKNG"
       ],
       "vols": [
-        0.7409,
-        0.6606
+        0.7335,
+        0.6225
       ],
-      "avg_corr": -0.101,
+      "avg_corr": -0.119,
       "coupon_headline_ki": [
-        0.4597,
-        0.5176
+        0.4323,
+        0.4905
       ],
       "requote": "repeat, same rationale"
     },
     {
-      "key": "LUNR/NTLA",
+      "key": "APP/SMCI",
       "tickers": [
-        "NTLA",
-        "LUNR"
+        "SMCI",
+        "APP"
       ],
       "vols": [
-        0.801,
-        0.9008
+        0.7335,
+        0.672
       ],
-      "avg_corr": 0.288,
+      "avg_corr": 0.133,
       "coupon_headline_ki": [
-        0.6029,
-        0.6542
+        0.4534,
+        0.5103
       ],
-      "requote": "repeat, same rationale"
+      "requote": "fresh"
+    },
+    {
+      "key": "CRDO/NTLA",
+      "tickers": [
+        "NTLA",
+        "CRDO"
+      ],
+      "vols": [
+        0.8294,
+        0.7918
+      ],
+      "avg_corr": 0.214,
+      "coupon_headline_ki": [
+        0.5659,
+        0.6178
+      ],
+      "requote": "fresh"
     },
     {
       "key": "GEV/MU/NVO",
       "tickers": [
-        "NVO",
         "MU",
+        "NVO",
         "GEV"
       ],
       "vols": [
-        0.3798,
-        0.4944,
-        0.4767
+        0.4941,
+        0.3806,
+        0.4797
       ],
-      "avg_corr": 0.065,
+      "avg_corr": 0.073,
       "coupon_headline_ki": [
-        0.183,
-        0.2412
+        0.1867,
+        0.2469
       ],
-      "requote": "repeat, same rationale"
+      "requote": "repeat, changed inputs"
     },
     {
-      "key": "DKNG/HIMS/SMCI",
+      "key": "APP/DKNG/SMCI",
       "tickers": [
-        "HIMS",
         "SMCI",
-        "DKNG"
+        "DKNG",
+        "APP"
       ],
       "vols": [
-        0.7471,
-        0.7409,
-        0.6606
+        0.7335,
+        0.6225,
+        0.672
       ],
-      "avg_corr": 0.125,
+      "avg_corr": 0.046,
       "coupon_headline_ki": [
-        0.5801,
-        0.6384
+        0.5395,
+        0.6015
       ],
-      "requote": "repeat, same rationale"
+      "requote": "fresh"
     },
     {
       "key": "CRDO/DKNG/NTLA",
       "tickers": [
-        "CRDO",
         "NTLA",
+        "CRDO",
         "DKNG"
       ],
       "vols": [
-        0.8093,
-        0.801,
-        0.6606
+        0.8294,
+        0.7918,
+        0.6225
       ],
-      "avg_corr": 0.084,
+      "avg_corr": 0.091,
       "coupon_headline_ki": [
-        0.6408,
-        0.6974
+        0.6311,
+        0.6877
       ],
       "requote": "repeat, same rationale"
     },
     {
-      "key": "NVO/ORCL",
+      "key": "NVO/PLTR",
       "tickers": [
-        "NVO",
-        "ORCL"
+        "PLTR",
+        "NVO"
       ],
       "vols": [
-        0.3798,
-        0.5463
+        0.5178,
+        0.3806
       ],
-      "avg_corr": -0.102,
+      "avg_corr": -0.176,
       "coupon_headline_ki": [
-        0.1714,
-        0.2263
+        0.1493,
+        0.2044
       ],
-      "requote": "repeat, same rationale"
+      "requote": "fresh"
     }
   ]
 }
