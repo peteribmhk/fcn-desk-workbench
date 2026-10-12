@@ -651,7 +651,7 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict) -> tuple[str, dict]
     lines += ["", "## Conditional / watch only", ""]
     if conditional:
         crow = []
-        for x in sorted(conditional, key=lambda x: -x["vol"])[:15]:
+        for x in sorted(conditional, key=lambda x: -x["vol"]):
             crow.append([x["ticker"], fmt_pct(x["move_1d"], 1, True), fmt_pct(x["drawdown"], 0), f"{x['vol']*100:.0f}%", "; ".join(x["flags"])])
         lines.append(md_table(["Ticker", "1D", "vs 6M high", "Vol", "Why held back"], crow))
     else:
@@ -689,6 +689,16 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict) -> tuple[str, dict]
         "- Crypto-linked names are excluded by default.",
         "",
         f"_{LABEL}_",
+    ]
+    record["names"] = [
+        {
+            "ticker": x["ticker"], "theme": x["theme"], "bucket": x["bucket"], "status": x["status"],
+            "spot": round(x["spot"], 4), "move_1d": round(x["move_1d"], 2), "drawdown": round(x["drawdown"], 2),
+            "vol": round(x["vol"], 4), "vol_src": x["vol_src"],
+            "rv20": None if math.isnan(x["rv20"]) else round(x["rv20"], 4),
+            "oi": x.get("oi", 0), "earnings": x.get("earnings"), "entry": x["entry"], "flags": x["flags"],
+        }
+        for x in with_data
     ]
     return "\n".join(lines) + "\n", record
 
