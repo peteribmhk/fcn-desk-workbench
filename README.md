@@ -19,7 +19,7 @@ A shared toolkit for screening **worst-of Fixed Coupon Notes (FCNs) on US stocks
 
 ## The daily screen
 
-A GitHub Action runs every weekday at early morning Hong Kong time (scheduled 06:17 HKT; GitHub sometimes starts it late), after the US close, and publishes [`daily/latest.md`](daily/latest.md). Past runs are kept in [`daily/archive/`](daily/index.md).
+A GitHub Action runs every weekday in the early morning, Hong Kong time (scheduled 06:17 HKT; GitHub sometimes starts it late), after the US close, and publishes [`daily/latest.md`](daily/latest.md). Past runs are kept in [`daily/archive/`](daily/index.md).
 
 What it does, using free public data:
 
