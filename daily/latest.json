@@ -1,39 +1,39 @@
 {
-  "generated_hkt": "2026-10-09T14:33:39.579199+08:00",
-  "us_close": "2026-10-08",
+  "generated_hkt": "2026-10-12T08:28:51.674433+08:00",
+  "us_close": "2026-10-09",
   "status": "GREEN",
   "baskets": [
     {
-      "key": "AVGO/GEV",
-      "tickers": [
-        "AVGO",
-        "GEV"
-      ],
-      "vols": [
-        0.4345,
-        0.4797
-      ],
-      "avg_corr": 0.405,
-      "coupon_headline_ki": [
-        0.1467,
-        0.2039
-      ],
-      "requote": "fresh"
-    },
-    {
       "key": "MU/NVO",
       "tickers": [
-        "MU",
-        "NVO"
+        "NVO",
+        "MU"
       ],
       "vols": [
-        0.4941,
-        0.3806
+        0.3818,
+        0.4892
       ],
-      "avg_corr": -0.172,
+      "avg_corr": -0.168,
       "coupon_headline_ki": [
-        0.1333,
-        0.1889
+        0.1331,
+        0.1881
+      ],
+      "requote": "repeat, changed inputs"
+    },
+    {
+      "key": "MU/PDD",
+      "tickers": [
+        "PDD",
+        "MU"
+      ],
+      "vols": [
+        0.362,
+        0.4892
+      ],
+      "avg_corr": -0.2,
+      "coupon_headline_ki": [
+        0.1247,
+        0.1787
       ],
       "requote": "fresh"
     },
@@ -44,30 +44,30 @@
         "DKNG"
       ],
       "vols": [
-        0.7335,
-        0.6225
+        0.7316,
+        0.6494
       ],
-      "avg_corr": -0.119,
+      "avg_corr": -0.106,
       "coupon_headline_ki": [
-        0.4323,
-        0.4905
+        0.4469,
+        0.504
       ],
       "requote": "repeat, same rationale"
     },
     {
-      "key": "APP/SMCI",
+      "key": "CRWV/DKNG",
       "tickers": [
-        "SMCI",
-        "APP"
+        "CRWV",
+        "DKNG"
       ],
       "vols": [
-        0.7335,
-        0.672
+        0.6957,
+        0.6494
       ],
-      "avg_corr": 0.133,
+      "avg_corr": -0.039,
       "coupon_headline_ki": [
-        0.4534,
-        0.5103
+        0.4216,
+        0.4801
       ],
       "requote": "fresh"
     },
@@ -78,51 +78,51 @@
         "CRDO"
       ],
       "vols": [
-        0.8294,
-        0.7918
+        0.8295,
+        0.7807
       ],
-      "avg_corr": 0.214,
+      "avg_corr": 0.22,
       "coupon_headline_ki": [
-        0.5659,
-        0.6178
+        0.5594,
+        0.6115
+      ],
+      "requote": "repeat, same rationale"
+    },
+    {
+      "key": "MU/NVO/VST",
+      "tickers": [
+        "NVO",
+        "MU",
+        "VST"
+      ],
+      "vols": [
+        0.3818,
+        0.4892,
+        0.4922
+      ],
+      "avg_corr": 0.116,
+      "coupon_headline_ki": [
+        0.1941,
+        0.255
       ],
       "requote": "fresh"
     },
     {
-      "key": "GEV/MU/NVO",
+      "key": "CRWV/DKNG/SMCI",
       "tickers": [
-        "MU",
-        "NVO",
-        "GEV"
-      ],
-      "vols": [
-        0.4941,
-        0.3806,
-        0.4797
-      ],
-      "avg_corr": 0.073,
-      "coupon_headline_ki": [
-        0.1867,
-        0.2469
-      ],
-      "requote": "repeat, changed inputs"
-    },
-    {
-      "key": "APP/DKNG/SMCI",
-      "tickers": [
+        "CRWV",
         "SMCI",
-        "DKNG",
-        "APP"
+        "DKNG"
       ],
       "vols": [
-        0.7335,
-        0.6225,
-        0.672
+        0.6957,
+        0.7316,
+        0.6494
       ],
-      "avg_corr": 0.046,
+      "avg_corr": 0.108,
       "coupon_headline_ki": [
-        0.5395,
-        0.6015
+        0.5405,
+        0.5999
       ],
       "requote": "fresh"
     },
@@ -134,31 +134,31 @@
         "DKNG"
       ],
       "vols": [
-        0.8294,
-        0.7918,
-        0.6225
+        0.8295,
+        0.7807,
+        0.6494
       ],
-      "avg_corr": 0.091,
+      "avg_corr": 0.089,
       "coupon_headline_ki": [
-        0.6311,
-        0.6877
+        0.6377,
+        0.6947
       ],
       "requote": "repeat, same rationale"
     },
     {
-      "key": "NVO/PLTR",
+      "key": "ORCL/XPEV",
       "tickers": [
-        "PLTR",
-        "NVO"
+        "ORCL",
+        "XPEV"
       ],
       "vols": [
-        0.5178,
-        0.3806
+        0.5438,
+        0.5471
       ],
-      "avg_corr": -0.176,
+      "avg_corr": 0.223,
       "coupon_headline_ki": [
-        0.1493,
-        0.2044
+        0.2562,
+        0.3166
       ],
       "requote": "fresh"
     }
