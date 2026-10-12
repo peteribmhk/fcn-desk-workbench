@@ -1,6 +1,6 @@
 # FCN Daily Screen
 
-**Generated:** 2026-10-12 08:28 HKT  |  **US close used:** 2026-10-09  |  **Data status:** GREEN
+**Generated:** 2026-10-12 08:42 HKT  |  **US close used:** 2026-10-09  |  **Data status:** GREEN
 
 > Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.
 > Public/delayed data, used only to decide what to RFQ. Issuer RFQ levels override everything below.
@@ -13,25 +13,25 @@ Structure assumed for the ballpark: USD worst-of FCN, 6M, KO 100% monthly from m
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | NVO / MU | Biotech/Health + Semis/AI HW | 38 / 49 | -0.17 | 13-19% | 10% | Balanced | repeat, changed inputs |
-| 2 | PDD / MU | China ADR + Semis/AI HW | 36 / 49 | -0.20 | 12-18% | 9% | Balanced | fresh |
+| 1 | NVO / MU | Biotech/Health + Semis/AI HW | 38 / 49 | -0.17 | 13-19% | 10% | Balanced | repeat, same rationale |
+| 2 | PDD / MU | China ADR + Semis/AI HW | 36 / 49 | -0.20 | 12-18% | 9% | Balanced | repeat, same rationale |
 | 3 | SMCI / DKNG | Semis/AI HW + Cyclical/Consumer | 73 / 65 | -0.11 | 45-50% | 30% | Higher coupon | repeat, same rationale |
-| 4 | CRWV / DKNG | AI Cloud/DC + Cyclical/Consumer | 70 / 65 | -0.04 | 42-48% | 28% | Higher coupon | fresh |
+| 4 | CRWV / DKNG | AI Cloud/DC + Cyclical/Consumer | 70 / 65 | -0.04 | 42-48% | 28% | Higher coupon | repeat, same rationale |
 | 5 | NTLA / CRDO | Biotech/Health + Semis/AI HW | 83 / 78 | 0.22 | 56-61% | 33% | Aggressive | repeat, same rationale |
 
 ## Three-stock picks
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | NVO / MU / VST | Biotech/Health + Semis/AI HW + Nuclear/Power | 38 / 49 / 49 | 0.12 | 19-26% | 15% | Balanced | fresh |
-| 2 | CRWV / SMCI / DKNG | AI Cloud/DC + Semis/AI HW + Cyclical/Consumer | 70 / 73 / 65 | 0.11 | 54-60% | 40% | Higher coupon | fresh |
+| 1 | NVO / MU / VST | Biotech/Health + Semis/AI HW + Nuclear/Power | 38 / 49 / 49 | 0.12 | 19-26% | 15% | Balanced | repeat, same rationale |
+| 2 | CRWV / SMCI / DKNG | AI Cloud/DC + Semis/AI HW + Cyclical/Consumer | 70 / 73 / 65 | 0.11 | 54-60% | 40% | Higher coupon | repeat, same rationale |
 | 3 | NTLA / CRDO / DKNG | Biotech/Health + Semis/AI HW + Cyclical/Consumer | 83 / 78 / 65 | 0.09 | 64-69% | 46% | Aggressive | repeat, same rationale |
 
 ## Familiar-name anchor (for conservative clients)
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | ORCL / XPEV | Software + China ADR | 54 / 55 | 0.22 | 26-32% | 17% | Higher coupon | fresh |
+| 1 | ORCL / XPEV | Software + China ADR | 54 / 55 | 0.22 | 26-32% | 17% | Higher coupon | repeat, same rationale |
 
 Deep listed liquidity, lower vol, easy to explain. Expect a lower coupon.
 
@@ -74,6 +74,23 @@ Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% b
 | AVAV | -0.4% | -36% | 63% | falling knife: wait 2 stable sessions; thin listed options |
 | KTOS | +1.0% | -43% | 63% | falling knife: wait 2 stable sessions; thin listed options |
 | DELL | +2.0% | -0% | 62% | thin listed options |
+| CRSP | +5.8% | -14% | 62% | falling knife: wait 2 stable sessions |
+| SNDK | -1.7% | -32% | 61% | thin listed options |
+| NET | +5.6% | 0% | 61% | thin listed options |
+| WDC | +1.0% | -47% | 60% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-22 |
+| DDOG | +7.1% | 0% | 60% | thin listed options |
+| STX | +1.1% | -28% | 59% | thin listed options |
+| RIVN | -2.6% | -31% | 58% | falling knife: wait 2 stable sessions |
+| TLN | +5.4% | -14% | 54% | thin listed options |
+| SOFI | +1.2% | -19% | 53% | falling knife: wait 2 stable sessions |
+| UAL | +0.0% | -21% | 44% | event hold: earnings 2026-10-20 |
+| TSLA | +2.1% | -14% | 43% | event hold: earnings 2026-10-21 |
+| BIDU | +1.7% | -43% | 41% | falling knife: wait 2 stable sessions |
+| MELI | +1.8% | -6% | 41% | thin listed options |
+| BABA | +5.4% | -24% | 41% | falling knife: wait 2 stable sessions |
+| ISRG | +2.1% | -12% | 39% | event hold: earnings 2026-10-20; thin listed options |
+| LLY | +0.8% | -8% | 37% | thin listed options |
+| TCOM | +2.5% | -30% | 35% | falling knife: wait 2 stable sessions |
 
 ## Full screen (eligible names, by score)
 
