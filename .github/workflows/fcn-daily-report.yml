@@ -3,8 +3,9 @@ name: FCN Daily Screen
 on:
   workflow_dispatch:
   schedule:
-    # ~08:30 Hong Kong time, Monday-Friday (after the US close). GitHub cron uses UTC.
-    - cron: "30 0 * * 1-5"
+    # 06:17 Hong Kong time, Monday-Friday (after the US close). GitHub often starts
+    # scheduled runs late, so this leaves room before the HK working day. Cron is UTC.
+    - cron: "17 22 * * 0-4"
 
 permissions:
   contents: write
