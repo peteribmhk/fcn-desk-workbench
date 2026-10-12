@@ -3,11 +3,14 @@
 
 What it does
 ------------
-Monte Carlo on monthly observation dates for a worst-of FCN:
+Monte Carlo for a worst-of FCN with monthly coupon and KO observation:
   * fixed coupon paid every month the note is alive,
   * KO (autocall) when the worst leg closes >= KO level on an observation date,
-  * KI observed at maturity only: if not knocked out and the worst leg ends
-    below KI, the investor takes the worst leg's performance (strike = 100%).
+  * downside at maturity (no KO) under one of three conventions:
+      - "maturity": European KI (US-style default),
+      - "daily":    KI observed on daily closes (common in Asian FCN term sheets),
+      - "none":     strike-only FCN (delivery whenever the worst ends below strike);
+    the investor then receives worst / strike, i.e. shares delivered at the strike.
 
 The fair coupon is solved in closed form from the simulated paths:
 
@@ -21,7 +24,9 @@ RFQ levels, never a quote. Issuer RFQ levels always override it.
 
 Usage from the command line (example):
 
-    python scripts/fcn_model.py --vols 0.55 0.48 --corr 0.45 --tenor 6 --ki 60
+    python scripts/fcn_model.py --vols 0.55 0.48 --corr 0.45 --tenor 6
+    python scripts/fcn_model.py --vols 0.55 0.48 --corr 0.45 --ki-style none --ladder 80 85 90
+    python scripts/fcn_model.py --vols 0.55 0.48 --corr 0.45 --ki-style daily --strike 90 --ladder 60 65
 """
 
 from __future__ import annotations
@@ -40,6 +45,8 @@ class FCNTerms:
     rate: float = 0.039  # USD short rate (Fed funds 3.75-4.00% after the 2026-09-16 hike); edit when it changes
     funding_spread: float = 0.005  # issuer funding over the rate, passed to the investor via discounting
     ko_start_month: int = 1
+    strike: float = 1.00  # delivery/loss strike; Asian FCNs often use 80-95%
+    ki_style: str = "maturity"  # "maturity" (European), "daily" (daily close), or "none" (strike-only FCN)
 
 
 def _cholesky(matrix: list[list[float]]) -> list[list[float]] | None:
@@ -79,18 +86,23 @@ def simulate_fcn(
     n_paths: int = 20000,
     seed: int = 7,
 ) -> dict[float, dict[str, float]]:
-    """Return per-KI stats: fair coupon before margin inputs, KI probability, KO probability.
+    """Per ladder level stats: {"annuity", "pv_redemption", "p_ko", "p_ki", "exp_life_m"}.
 
-    Output per KI level: {"annuity", "pv_redemption", "p_ko", "p_ki", "exp_life_m"}.
-    Use fair_coupon() to turn them into a coupon for a given issuer margin.
+    Ladder levels are KI levels for ki_style "maturity"/"daily", and STRIKE levels for
+    ki_style "none" (strike-only FCN, the common Asian ladder 80/85/90...).
+    Loss event at maturity (no KO): KI condition met AND worst < strike; the investor
+    receives worst/strike (physical delivery at strike, valued at the final price).
+    p_ki is the probability of that loss event. Use fair_coupon() to get a coupon.
     """
     terms = terms or FCNTerms()
     n = len(vols)
     low = safe_cholesky(corr)
     rng = random.Random(seed)
-    dt = 1.0 / 12.0
+    steps = 21 if terms.ki_style == "daily" else 1  # sub-steps per month
+    dt = 1.0 / 12.0 / steps
     months = terms.tenor_months
-    discount = [math.exp(-(terms.rate + terms.funding_spread) * dt * (m + 1)) for m in range(months)]
+    month_dt = 1.0 / 12.0
+    discount = [math.exp(-(terms.rate + terms.funding_spread) * month_dt * (m + 1)) for m in range(months)]
     drift = [(terms.rate - 0.5 * v * v) * dt for v in vols]
     shock = [v * math.sqrt(dt) for v in vols]
 
@@ -98,22 +110,26 @@ def simulate_fcn(
     ko_red_sum = 0.0
     ko_count = 0
     life_sum = 0.0
-    worst_at_maturity: list[float] = []  # only for paths that did not knock out
+    survivors: list[tuple[float, float]] = []  # (worst at maturity, path minimum of worst) for non-KO paths
 
     for path in range(n_paths):
-        # antithetic pairs reduce noise
-        sign = 1.0 if path % 2 == 0 else -1.0
+        sign = 1.0 if path % 2 == 0 else -1.0  # antithetic pairs reduce noise
         if sign > 0:
-            normals_cache = [[rng.gauss(0.0, 1.0) for _ in range(n)] for _ in range(months)]
+            normals_cache = [[rng.gauss(0.0, 1.0) for _ in range(n)] for _ in range(months * steps)]
         log_s = [0.0] * n
+        path_min = 1.0
         knocked = False
         for m in range(months):
-            z = normals_cache[m]
-            for i in range(n):
-                correlated = sum(low[i][k] * z[k] for k in range(i + 1)) * sign
-                log_s[i] += drift[i] + shock[i] * correlated
+            for k in range(steps):
+                z = normals_cache[m * steps + k]
+                for i in range(n):
+                    correlated = sum(low[i][j] * z[j] for j in range(i + 1)) * sign
+                    log_s[i] += drift[i] + shock[i] * correlated
+                if steps > 1:
+                    path_min = min(path_min, math.exp(min(log_s)))
             annuity_sum += discount[m]
             worst = math.exp(min(log_s))
+            path_min = min(path_min, worst)
             if m + 1 >= terms.ko_start_month and worst >= terms.ko:
                 ko_red_sum += discount[m]
                 ko_count += 1
@@ -122,24 +138,34 @@ def simulate_fcn(
                 break
         if not knocked:
             life_sum += months
-            worst_at_maturity.append(math.exp(min(log_s)))
+            survivors.append((math.exp(min(log_s)), path_min))
 
     df_t = discount[-1]
     out: dict[float, dict[str, float]] = {}
-    for ki in terms.ki_levels:
+    for level in terms.ki_levels:
+        if terms.ki_style == "none":
+            ki, strike = None, level
+        else:
+            ki, strike = level, terms.strike
         red = ko_red_sum
-        ki_hits = 0
-        for w in worst_at_maturity:
-            if w < ki:
-                red += df_t * w
-                ki_hits += 1
+        losses = 0
+        for w, pmin in survivors:
+            if terms.ki_style == "daily":
+                triggered = pmin < ki
+            elif terms.ki_style == "maturity":
+                triggered = w < ki
+            else:
+                triggered = True
+            if triggered and w < strike:
+                red += df_t * (w / strike)
+                losses += 1
             else:
                 red += df_t
-        out[ki] = {
+        out[level] = {
             "annuity": annuity_sum / n_paths,
             "pv_redemption": red / n_paths,
             "p_ko": ko_count / n_paths,
-            "p_ki": ki_hits / n_paths,
+            "p_ki": losses / n_paths,
             "exp_life_m": life_sum / n_paths,
         }
     return out
@@ -188,18 +214,30 @@ def _main() -> None:
     parser.add_argument("--corr", type=float, default=0.5, help="Flat pairwise correlation")
     parser.add_argument("--tenor", type=int, default=6, help="Tenor in months")
     parser.add_argument("--ko", type=float, default=100, help="KO level in percent")
+    parser.add_argument("--ko-start", type=int, default=1, help="First KO observation month (non-call period)")
+    parser.add_argument("--strike", type=float, default=100, help="Strike in percent (ignored for --ki-style none)")
+    parser.add_argument("--ki-style", choices=["maturity", "daily", "none"], default="maturity",
+                        help="maturity = European KI; daily = daily-close KI; none = strike-only FCN")
+    parser.add_argument("--ladder", type=float, nargs="+", default=None,
+                        help="KI levels (or strike levels for --ki-style none) in percent")
     parser.add_argument("--rate", type=float, default=3.9, help="USD rate in percent")
-    parser.add_argument("--paths", type=int, default=20000)
+    parser.add_argument("--paths", type=int, default=None)
     args = parser.parse_args()
     n = len(args.vols)
     corr = [[1.0 if i == j else args.corr for j in range(n)] for i in range(n)]
-    terms = FCNTerms(tenor_months=args.tenor, ko=args.ko / 100, rate=args.rate / 100)
-    result = ballpark_range(args.vols, corr, terms, args.paths)
+    default_ladder = [80, 85, 90, 95] if args.ki_style == "none" else [50, 55, 59, 65, 70]
+    ladder = [x / 100 for x in (args.ladder or default_ladder)]
+    terms = FCNTerms(tenor_months=args.tenor, ko=args.ko / 100, rate=args.rate / 100, ki_levels=ladder,
+                     ko_start_month=args.ko_start, strike=args.strike / 100, ki_style=args.ki_style)
+    paths = args.paths or (6000 if args.ki_style == "daily" else 20000)
+    result = ballpark_range(args.vols, corr, terms, paths)
+    label = "Strike" if args.ki_style == "none" else "KI"
     print("Indicative only. Not a firm quote.")
-    print(f"{'KI':>4} {'coupon p.a. ballpark':>22} {'P(KO)':>7} {'P(loss)':>8} {'exp life':>9}")
-    for ki, row in result.items():
+    print(f"KI style: {args.ki_style}; strike {args.strike:.0f}% ; KO {args.ko:.1f}% monthly from month {args.ko_start}")
+    print(f"{label:>6} {'coupon p.a. ballpark':>22} {'P(KO)':>7} {'P(loss)':>8} {'exp life':>9}")
+    for level, row in result.items():
         print(
-            f"{ki*100:>4.0f} {row['low']*100:>9.1f}% - {row['high']*100:>5.1f}%"
+            f"{level*100:>6.0f} {row['low']*100:>9.1f}% - {row['high']*100:>5.1f}%"
             f" {row['p_ko']*100:>6.0f}% {row['p_ki']*100:>7.1f}% {row['exp_life_m']:>7.1f}m"
         )
 

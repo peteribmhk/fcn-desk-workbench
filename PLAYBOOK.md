@@ -50,9 +50,9 @@ The desk rules for screening worst-of Fixed Coupon Notes (FCNs) on US equities, 
 | Term | Default | Notes |
 |---|---|---|
 | Tenor | Compare 3M and 6M first | 12M only if the client accepts longer event risk. |
-| KO | 100%, monthly | Also ask 98/102. Later KO start raises coupon but adds exposure. |
-| KI | Ask for a **ladder**: 50 / 55 / 59 / 65 / 70 | Always state the observation style: at maturity, daily close, or continuous. They are not comparable. |
-| Strike | 100% | |
+| KO | 100%, monthly | Also ask 97/98/102. A lower KO or earlier KO start shortens expected life (less time at risk, fewer coupons in total). A non-call period lowers the p.a. coupon but keeps coupons flowing in up-markets. |
+| KI | Ask for a **ladder**: 50 / 55 / 59 / 65 / 70 | Always state the observation style: at maturity, daily close, or continuous. They are not comparable. A daily-close KI pays more because it triggers more often. |
+| Strike | 100% (US style) | Asian FCNs often use a strike of 80–95% with physical delivery and no KI, or a daily KI. Quote and model in the **same convention** (`research/fcn-pricing-logic.md` §3). |
 | RO | 100, plus requested RO | Compare RO separately from headline coupon (§6). |
 | Coupon | Fixed, monthly | Note memory vs non-memory. |
 
@@ -119,10 +119,12 @@ Prefer plain screening language: "worth RFQ", "screens rich", "the quote overrid
 
 ## 10. Ballpark model
 
-`scripts/fcn_model.py` gives a worst-of FCN coupon range by Monte Carlo: monthly KO, KI at maturity, flat vol from listed ATM straddles, realized correlation, a rate + funding assumption, and a low/high band for issuer margin and skew. It ignores skew shape, dividends, borrow and issuer appetite. Use it to sanity-check issuer levels and to make KI-ladder trade-offs concrete, never as a quote.
+`scripts/fcn_model.py` gives a worst-of FCN coupon range by Monte Carlo: monthly coupon and KO, flat vol per leg from listed ATM straddles, realized correlation, a rate + funding assumption, and a low/high band for issuer margin and skew. It supports three downside conventions: KI at maturity (default), daily-close KI, and strike-only FCN with delivery at the strike. It ignores skew shape, dividends, borrow and issuer appetite. Use it to sanity-check issuer levels and to make ladder trade-offs concrete, never as a quote. How coupons are built and why issuers differ: `research/fcn-pricing-logic.md`.
 
 ```bash
-python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --tenor 6
+python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --tenor 6                          # KI at maturity
+python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --ki-style none --ladder 80 85 90  # strike-only FCN
+python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --ki-style daily --strike 90       # daily KI
 ```
 
 ## 11. Living watchlist
@@ -132,3 +134,32 @@ python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --tenor 6
 - **Daily additions from the market** (whether or not a name is in the pool): overnight earnings/FDA/contract/M&A events with residual vol; liquid names whose realized vol jumps with real option depth; well-known names newly in the 20–50% drawdown zone; the two most liquid names in a theme seeing clear rotation; any name a client asks about (answer even if the answer is "not suitable").
 - **To join the pool**, a name passes four gates: sensible drawdown position, enough realized vol, enough option open interest, event calendar mapped. Verify expiries and issuer eligibility first.
 - **Freeze or remove** when the thesis breaks, vol is exhausted (within 10% of highs with RV collapsed), option liquidity dries up, or the name becomes off-limits. Log every change with a reason in `watchlist-changelog.md` so names do not resurface without memory.
+
+## 12. Screening requirements (desk defaults)
+
+These are the default filters for a picks request. A request that states its own terms overrides them.
+
+**Risk-controlled profile (default: "good coupon, controlled risk")**
+- Target coupon about **15–25% p.a.**, KI **55–59 at maturity** (or the equivalent strike-only level, checked with the model).
+- Ballpark probability of loss at maturity about **12% or less**.
+- 2–3 names from **different themes**; at most one leg with implied vol above ~65%.
+- No leg reporting earnings before the first KO observation unless the event is deliberately accepted; prefer the post-earnings window.
+- No falling knives (2-session rule) and no strikes on a spike day (roughly +7% or more in a day).
+- Avoid names whose thesis is under fresh question until the news settles (e.g. October 2026, AI-cloud names after the OpenAI revenue report).
+
+**Tech-growth template**
+- Tenor 4M or 6M, KO 97–97.5% monthly, coupon **≥ 20% p.a.**, the deepest KI that still clears 20% (usually 50–55 on 6M).
+- At 4M, 20%+ normally needs KI 59+ or a higher-vol leg; say so rather than stretching.
+
+**Exclusion switches**
+- Crypto-linked: excluded by default (§1).
+- China ADRs: exclude when the user asks; then the defensive leg usually comes from healthcare or power instead.
+
+## 13. Pricing logic in one screen
+
+- The investor sells a worst-of put to the issuer; the coupon is that premium plus the issuer's funding benefit, minus margin, spread over the expected life.
+- Coupon **rises** with: implied vol, downside skew, lower correlation, more names, a higher KI or strike, daily rather than maturity KI, higher rates/funding, a weaker issuer credit, more callability.
+- Coupon **falls** with: issuer margin and fees, a longer non-call period, fixed rather than conditional coupons, and familiar low-vol names.
+- Issuers differ because of their own vol/skew surfaces, correlation marks, existing book (axes), funding, appetite and term details. Ask which input drives a gap.
+- Public calibration: SEC 424B2 pricing supplements disclose real worst-of coupons and estimated values (`research/data-sources.md`). Normalize the convention first.
+- Concentration: spread clients across baskets and issuers. Regulators (SFC complex-product rules, FINRA 2026 sweep) focus on suitability and concentration in worst-of notes (`research/resources.md`).

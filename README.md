@@ -15,6 +15,9 @@ A shared toolkit for screening **worst-of Fixed Coupon Notes (FCNs) on US stocks
 | Choose a KI level from an issuer ladder | [`templates/ki-optimization.md`](templates/ki-optimization.md) |
 | Check an idea you suggested before | [`templates/requote-checklist.md`](templates/requote-checklist.md) |
 | Compare a quote with the ballpark | [`templates/quote-calibration.md`](templates/quote-calibration.md) |
+| Understand how issuers build the coupon | [`research/fcn-pricing-logic.md`](research/fcn-pricing-logic.md) |
+| Find market data (free and paid) | [`research/data-sources.md`](research/data-sources.md) |
+| Open-source pricers, learning, regulation | [`research/resources.md`](research/resources.md) |
 | See the candidate universe | [`watchlist.csv`](watchlist.csv) and [`watchlist-changelog.md`](watchlist-changelog.md) |
 
 ## The daily screen
@@ -49,7 +52,7 @@ on US stocks: 2–3 names per basket, across risk profiles, with ballpark coupon
 python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --tenor 6
 ```
 
-The model prints a coupon range, the KO probability, the probability of loss at maturity, and the expected life for each KI level. It has no dependencies and works with plain Python 3.10+. Its limits are listed in `PLAYBOOK.md` §10.
+It supports KI at maturity, daily-close KI (`--ki-style daily`) and strike-only FCNs (`--ki-style none --ladder 80 85 90`). The model prints a coupon range, the KO probability, the probability of loss at maturity, and the expected life for each KI level. It has no dependencies and works with plain Python 3.10+. Its limits are listed in `PLAYBOOK.md` §10.
 
 ## Folder map
 
@@ -59,6 +62,7 @@ CLAUDE.md / AGENTS.md       guidance for AI assistants
 watchlist.csv               candidate pool (living, see PLAYBOOK §11)
 watchlist-changelog.md      every add / freeze / removal with reason
 reference/                  option-expiry quirks, event calendar
+research/                   pricing logic, data sources, further resources
 templates/                  RFQ, client explanation, KI ladder, requote, calibration
 scripts/fcn_model.py        ballpark worst-of FCN coupon model
 scripts/generate_daily_pickings.py   daily screen (run by GitHub Actions)
