@@ -1,5 +1,5 @@
 {
-  "generated_hkt": "2026-10-14T09:12:15.290167+08:00",
+  "generated_hkt": "2026-10-15T08:30:32.958017+08:00",
   "us_close": "2026-10-13",
   "status": "GREEN",
   "baskets": [
@@ -10,81 +10,81 @@
         "BABA"
       ],
       "vols": [
-        0.4888,
-        0.4172
+        0.4867,
+        0.4124
       ],
       "avg_corr": -0.033,
       "coupon_headline_ki": [
-        0.1479,
-        0.2065
+        0.1441,
+        0.2019
       ],
       "requote": "repeat, same rationale"
     },
     {
-      "key": "BABA/VST",
+      "key": "MU/NVO",
       "tickers": [
-        "BABA",
-        "VST"
+        "MU",
+        "NVO"
       ],
       "vols": [
-        0.4172,
-        0.4863
+        0.4867,
+        0.379
       ],
-      "avg_corr": 0.051,
+      "avg_corr": -0.137,
       "coupon_headline_ki": [
-        0.1477,
-        0.2043
+        0.1278,
+        0.1838
       ],
       "requote": "fresh"
     },
     {
-      "key": "DKNG/SMCI",
+      "key": "HIMS/SMCI",
       "tickers": [
-        "SMCI",
-        "DKNG"
+        "HIMS",
+        "SMCI"
       ],
       "vols": [
-        0.7262,
-        0.6489
+        0.7464,
+        0.7138
       ],
-      "avg_corr": -0.109,
+      "avg_corr": 0.259,
       "coupon_headline_ki": [
-        0.4429,
-        0.5006
+        0.4756,
+        0.5307
       ],
       "requote": "fresh"
     },
     {
-      "key": "COHR/DKNG",
+      "key": "NTLA/SMCI",
       "tickers": [
-        "COHR",
-        "DKNG"
+        "NTLA",
+        "SMCI"
       ],
       "vols": [
-        0.6839,
-        0.6489
+        0.7282,
+        0.7138
       ],
-      "avg_corr": -0.192,
+      "avg_corr": 0.262,
       "coupon_headline_ki": [
-        0.4173,
-        0.4755
+        0.4647,
+        0.52
       ],
       "requote": "fresh"
     },
     {
-      "key": "CRDO/NTLA",
+      "key": "CRDO/MRNA",
       "tickers": [
         "CRDO",
-        "NTLA"
+        "MRNA"
       ],
       "vols": [
-        0.8009,
-        0.7855
+        0.7715,
+        0.849
       ],
-      "avg_corr": 0.231,
+      "avg_corr": -0.006,
       "coupon_headline_ki": [
-        0.5465,
-        0.5991
+        0.5838,
+        0.6357
       ],
       "requote": "fresh"
     },
@@ -96,69 +96,69 @@
         "VST"
       ],
       "vols": [
-        0.4888,
-        0.4172,
-        0.4863
+        0.4867,
+        0.4124,
+        0.4647
       ],
       "avg_corr": 0.16,
       "coupon_headline_ki": [
-        0.206,
-        0.2698
+        0.1931,
+        0.2558
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
-      "key": "APP/DKNG/SMCI",
+      "key": "DKNG/HIMS/SMCI",
       "tickers": [
+        "HIMS",
         "SMCI",
-        "DKNG",
-        "APP"
-      ],
-      "vols": [
-        0.7262,
-        0.6489,
-        0.6625
-      ],
-      "avg_corr": 0.046,
-      "coupon_headline_ki": [
-        0.5446,
-        0.6055
-      ],
-      "requote": "fresh"
-    },
-    {
-      "key": "CRDO/DKNG/NTLA",
-      "tickers": [
-        "CRDO",
-        "NTLA",
         "DKNG"
       ],
       "vols": [
-        0.8009,
-        0.7855,
-        0.6489
+        0.7464,
+        0.7138,
+        0.6173
       ],
-      "avg_corr": 0.087,
+      "avg_corr": 0.106,
       "coupon_headline_ki": [
-        0.6248,
-        0.6826
+        0.5501,
+        0.6093
       ],
       "requote": "fresh"
     },
     {
-      "key": "NVO/PLTR",
+      "key": "CRDO/DKNG/MRNA",
       "tickers": [
-        "PLTR",
-        "NVO"
+        "CRDO",
+        "MRNA",
+        "DKNG"
       ],
       "vols": [
-        0.526,
-        0.379
+        0.7715,
+        0.849,
+        0.6173
       ],
-      "avg_corr": -0.2,
+      "avg_corr": 0.047,
       "coupon_headline_ki": [
-        0.1541,
-        0.2093
+        0.6418,
+        0.6976
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "MU/PLTR",
+      "tickers": [
+        "PLTR",
+        "MU"
+      ],
+      "vols": [
+        0.5089,
+        0.4867
+      ],
+      "avg_corr": 0.04,
+      "coupon_headline_ki": [
+        0.2004,
+        0.2591
       ],
       "requote": "fresh"
     }
@@ -172,10 +172,10 @@
       "spot": 605.53,
       "move_1d": 1.9,
       "drawdown": -6.76,
-      "vol": 0.5111,
+      "vol": 0.5059,
       "vol_src": "6M listed",
       "rv20": 0.5024,
-      "oi": 2216,
+      "oi": 2280,
       "earnings": "2026-11-03",
       "entry": "near 6M high",
       "flags": []
@@ -188,10 +188,10 @@
       "spot": 39.07,
       "move_1d": -2.28,
       "drawdown": -22.12,
-      "vol": 0.7262,
+      "vol": 0.7138,
       "vol_src": "6M listed",
       "rv20": 0.5758,
-      "oi": 2110,
+      "oi": 2145,
       "earnings": "2026-11-03",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -204,10 +204,10 @@
       "spot": 228.52,
       "move_1d": 0.97,
       "drawdown": -4.48,
-      "vol": 0.3594,
+      "vol": 0.3598,
       "vol_src": "6M listed",
       "rv20": 0.2223,
-      "oi": 63968,
+      "oi": 64465,
       "earnings": "2026-11-18",
       "entry": "near 6M high",
       "flags": []
@@ -220,10 +220,10 @@
       "spot": 375.23,
       "move_1d": -0.74,
       "drawdown": -15.73,
-      "vol": 0.4164,
+      "vol": 0.4133,
       "vol_src": "6M listed",
       "rv20": 0.3004,
-      "oi": 15225,
+      "oi": 15356,
       "earnings": "2026-10-21",
       "entry": "mild pullback",
       "flags": [
@@ -238,10 +238,10 @@
       "spot": 208.67,
       "move_1d": -0.16,
       "drawdown": -0.18,
-      "vol": 0.526,
+      "vol": 0.5089,
       "vol_src": "6M listed",
       "rv20": 0.2554,
-      "oi": 16553,
+      "oi": 16599,
       "earnings": "2026-11-02",
       "entry": "near 6M high",
       "flags": []
@@ -254,14 +254,15 @@
       "spot": 1482.33,
       "move_1d": -0.34,
       "drawdown": -36.52,
-      "vol": 0.6178,
+      "vol": 0.6172,
       "vol_src": "6M listed",
       "rv20": 0.6658,
-      "oi": 389,
+      "oi": 387,
       "earnings": "2026-10-29",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions",
+        "event hold: earnings 2026-10-29",
         "thin listed options"
       ]
     },
@@ -273,10 +274,10 @@
       "spot": 353.78,
       "move_1d": 0.3,
       "drawdown": -12.13,
-      "vol": 0.3382,
+      "vol": 0.3356,
       "vol_src": "6M listed",
       "rv20": 0.2067,
-      "oi": 6565,
+      "oi": 6707,
       "earnings": "2026-10-28",
       "entry": "mild pullback",
       "flags": [
@@ -291,11 +292,11 @@
       "spot": 29.71,
       "move_1d": -3.04,
       "drawdown": -22.39,
-      "vol": 0.7638,
+      "vol": 0.7464,
       "vol_src": "6M listed",
       "rv20": 0.5773,
-      "oi": 10280,
-      "earnings": "2026-11-02",
+      "oi": 10370,
+      "earnings": "2026-11-09",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
     },
@@ -307,11 +308,11 @@
       "spot": 216.25,
       "move_1d": 1.17,
       "drawdown": -3.89,
-      "vol": 0.8165,
+      "vol": 0.849,
       "vol_src": "6M listed",
       "rv20": 0.8819,
-      "oi": 1329,
-      "earnings": "2026-11-05",
+      "oi": 1347,
+      "earnings": "2026-11-06",
       "entry": "near 6M high",
       "flags": []
     },
@@ -323,10 +324,10 @@
       "spot": 34.73,
       "move_1d": -4.25,
       "drawdown": -51.81,
-      "vol": 0.6963,
+      "vol": 0.6944,
       "vol_src": "6M listed",
       "rv20": 0.649,
-      "oi": 9835,
+      "oi": 10055,
       "earnings": "2026-11-04",
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -341,10 +342,10 @@
       "spot": 64.22,
       "move_1d": -2.27,
       "drawdown": -57.25,
-      "vol": 0.6796,
+      "vol": 0.6856,
       "vol_src": "6M listed",
       "rv20": 0.6047,
-      "oi": 12765,
+      "oi": 12936,
       "earnings": "2026-11-09",
       "entry": "deep drawdown (>50%)",
       "flags": []
@@ -357,10 +358,10 @@
       "spot": 32.03,
       "move_1d": 1.71,
       "drawdown": -55.72,
-      "vol": 0.6857,
+      "vol": 0.6278,
       "vol_src": "6M listed",
       "rv20": 0.3841,
-      "oi": 8512,
+      "oi": 8544,
       "earnings": "2026-10-27",
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -371,17 +372,19 @@
       "ticker": "FSLR",
       "theme": "solar manufacturing",
       "bucket": "Solar/Clean",
-      "status": "eligible",
+      "status": "conditional",
       "spot": 186.6,
       "move_1d": 3.83,
       "drawdown": -41.37,
-      "vol": 0.5286,
+      "vol": 0.5097,
       "vol_src": "6M listed",
       "rv20": 0.5821,
-      "oi": 1704,
+      "oi": 1737,
       "earnings": "2026-10-29",
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [
+        "event hold: earnings 2026-10-29"
+      ]
     },
     {
       "ticker": "BABA",
@@ -391,10 +394,10 @@
       "spot": 110.85,
       "move_1d": 0.06,
       "drawdown": -23.98,
-      "vol": 0.4172,
+      "vol": 0.4124,
       "vol_src": "6M listed",
       "rv20": 0.3862,
-      "oi": 18901,
+      "oi": 19315,
       "earnings": "2026-11-24",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -407,10 +410,10 @@
       "spot": 81.96,
       "move_1d": 1.29,
       "drawdown": -21.79,
-      "vol": 0.3731,
+      "vol": 0.3693,
       "vol_src": "6M listed",
       "rv20": 0.2499,
-      "oi": 48603,
+      "oi": 48488,
       "earnings": "2026-11-17",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -423,14 +426,15 @@
       "spot": 13.37,
       "move_1d": -1.26,
       "drawdown": -33.61,
-      "vol": 0.6001,
+      "vol": 0.5905,
       "vol_src": "6M listed",
       "rv20": 0.308,
-      "oi": 9003,
+      "oi": 9728,
       "earnings": "2026-10-29",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
-        "falling knife: wait 2 stable sessions"
+        "falling knife: wait 2 stable sessions",
+        "event hold: earnings 2026-10-29"
       ]
     },
     {
@@ -441,10 +445,10 @@
       "spot": 103.23,
       "move_1d": -1.16,
       "drawdown": -24.16,
-      "vol": 0.4313,
+      "vol": 0.436,
       "vol_src": "6M listed",
       "rv20": 0.3379,
-      "oi": 2554,
+      "oi": 2559,
       "earnings": "2026-10-20",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -460,10 +464,10 @@
       "spot": 953.19,
       "move_1d": -3.62,
       "drawdown": -21.46,
-      "vol": 0.4888,
+      "vol": 0.4867,
       "vol_src": "6M listed",
       "rv20": 0.482,
-      "oi": 9662,
+      "oi": 10529,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -476,10 +480,10 @@
       "spot": 148.54,
       "move_1d": 0.86,
       "drawdown": -41.91,
-      "vol": 0.5437,
+      "vol": 0.5392,
       "vol_src": "6M listed",
       "rv20": 0.5922,
-      "oi": 4961,
+      "oi": 4958,
       "earnings": "2026-10-27",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -494,10 +498,10 @@
       "spot": 268.725,
       "move_1d": 1.08,
       "drawdown": -15.08,
-      "vol": 0.6096,
+      "vol": 0.5877,
       "vol_src": "6M listed",
       "rv20": 0.4457,
-      "oi": 2755,
+      "oi": 2805,
       "earnings": "2026-12-01",
       "entry": "mild pullback",
       "flags": []
@@ -510,10 +514,10 @@
       "spot": 289.98,
       "move_1d": 0.68,
       "drawdown": -32.07,
-      "vol": 0.6839,
+      "vol": 0.6617,
       "vol_src": "6M listed",
       "rv20": 0.8077,
-      "oi": 2072,
+      "oi": 2096,
       "earnings": "2026-11-04",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -526,10 +530,10 @@
       "spot": 325.41,
       "move_1d": 0.4,
       "drawdown": -32.63,
-      "vol": 0.7765,
+      "vol": 0.7577,
       "vol_src": "6M listed",
       "rv20": 0.8044,
-      "oi": 1708,
+      "oi": 1714,
       "earnings": "2026-11-03",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -542,10 +546,10 @@
       "spot": 255.39,
       "move_1d": 0.06,
       "drawdown": -41.89,
-      "vol": 0.6186,
+      "vol": 0.618,
       "vol_src": "6M listed",
       "rv20": 0.9069,
-      "oi": 3339,
+      "oi": 3381,
       "earnings": "2026-11-04",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -558,10 +562,10 @@
       "spot": 237.29,
       "move_1d": -0.86,
       "drawdown": -36.93,
-      "vol": 0.5607,
+      "vol": 0.5513,
       "vol_src": "6M listed",
       "rv20": 0.3233,
-      "oi": 4692,
+      "oi": 4688,
       "earnings": "2026-10-28",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -576,10 +580,10 @@
       "spot": 272.28,
       "move_1d": 0.52,
       "drawdown": -55.63,
-      "vol": 0.6625,
+      "vol": 0.6495,
       "vol_src": "6M listed",
       "rv20": 0.4675,
-      "oi": 1538,
+      "oi": 1585,
       "earnings": "2026-11-04",
       "entry": "deep drawdown (>50%)",
       "flags": []
@@ -592,10 +596,10 @@
       "spot": 464.24,
       "move_1d": -6.69,
       "drawdown": -35.79,
-      "vol": 0.5098,
+      "vol": 0.5067,
       "vol_src": "6M listed",
       "rv20": 0.4759,
-      "oi": 893,
+      "oi": 925,
       "earnings": "2026-11-12",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -611,10 +615,10 @@
       "spot": 198.31,
       "move_1d": -1.26,
       "drawdown": -34.45,
-      "vol": 0.8009,
+      "vol": 0.7715,
       "vol_src": "6M listed",
       "rv20": 0.7373,
-      "oi": 5556,
+      "oi": 5602,
       "earnings": "2026-12-07",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -627,10 +631,10 @@
       "spot": 206.86,
       "move_1d": -1.52,
       "drawdown": -27.85,
-      "vol": 0.7548,
+      "vol": 0.7641,
       "vol_src": "6M listed",
       "rv20": 0.6664,
-      "oi": 9073,
+      "oi": 9135,
       "earnings": "2026-11-10",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -645,10 +649,10 @@
       "spot": 31.78,
       "move_1d": -1.33,
       "drawdown": -60.09,
-      "vol": 0.7028,
+      "vol": 0.6854,
       "vol_src": "6M listed",
       "rv20": 0.687,
-      "oi": 4007,
+      "oi": 4847,
       "earnings": "2026-11-10",
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -663,10 +667,10 @@
       "spot": 47.065,
       "move_1d": -8.54,
       "drawdown": -64.64,
-      "vol": 0.7831,
+      "vol": 0.7815,
       "vol_src": "6M listed",
       "rv20": 0.7978,
-      "oi": 3872,
+      "oi": 4497,
       "earnings": "2026-11-09",
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -681,10 +685,10 @@
       "spot": 12.78,
       "move_1d": -3.55,
       "drawdown": -52.72,
-      "vol": 0.7125,
+      "vol": 0.7269,
       "vol_src": "6M listed",
       "rv20": 0.5087,
-      "oi": 5103,
+      "oi": 8602,
       "earnings": "2026-11-09",
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -699,10 +703,10 @@
       "spot": 22.44,
       "move_1d": -3.48,
       "drawdown": -54.8,
-      "vol": 0.8004,
+      "vol": 0.7927,
       "vol_src": "6M listed",
       "rv20": 0.6527,
-      "oi": 5612,
+      "oi": 7428,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -717,11 +721,11 @@
       "spot": 127.13,
       "move_1d": -3.33,
       "drawdown": -40.7,
-      "vol": 0.6228,
+      "vol": 0.6187,
       "vol_src": "6M listed",
       "rv20": 0.3681,
-      "oi": 385,
-      "earnings": null,
+      "oi": 390,
+      "earnings": "2026-12-08",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions",
@@ -736,10 +740,10 @@
       "spot": 11.91,
       "move_1d": -5.33,
       "drawdown": -33.24,
-      "vol": 0.7855,
+      "vol": 0.7282,
       "vol_src": "6M listed",
       "rv20": 0.6125,
-      "oi": 6421,
+      "oi": 6494,
       "earnings": "2026-11-05",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -752,10 +756,10 @@
       "spot": 6.0,
       "move_1d": 1.35,
       "drawdown": -38.27,
-      "vol": 0.5972,
+      "vol": 0.5634,
       "vol_src": "6M listed",
       "rv20": 0.3879,
-      "oi": 12851,
+      "oi": 12872,
       "earnings": "2026-11-04",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -771,7 +775,7 @@
       "vol": 0.3804,
       "vol_src": "6M listed",
       "rv20": 0.2578,
-      "oi": 497,
+      "oi": 502,
       "earnings": "2026-10-20",
       "entry": "mild pullback",
       "flags": [
@@ -787,13 +791,14 @@
       "spot": 1166.51,
       "move_1d": -1.36,
       "drawdown": -8.89,
-      "vol": 0.37,
+      "vol": 0.3899,
       "vol_src": "6M listed",
       "rv20": 0.2078,
-      "oi": 648,
+      "oi": 653,
       "earnings": "2026-10-29",
       "entry": "near 6M high",
       "flags": [
+        "event hold: earnings 2026-10-29",
         "thin listed options"
       ]
     },
@@ -805,10 +810,10 @@
       "spot": 357.31,
       "move_1d": 0.73,
       "drawdown": -25.8,
-      "vol": 0.4237,
+      "vol": 0.4202,
       "vol_src": "6M listed",
       "rv20": 0.3362,
-      "oi": 13407,
+      "oi": 13452,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -821,10 +826,10 @@
       "spot": 204.52,
       "move_1d": -3.02,
       "drawdown": -5.64,
-      "vol": 0.5064,
+      "vol": 0.4956,
       "vol_src": "6M listed",
       "rv20": 0.2946,
-      "oi": 2539,
+      "oi": 2567,
       "earnings": "2026-11-03",
       "entry": "near 6M high",
       "flags": []
@@ -837,10 +842,10 @@
       "spot": 380.71,
       "move_1d": -1.61,
       "drawdown": -48.98,
-      "vol": 0.585,
+      "vol": 0.5967,
       "vol_src": "6M listed",
       "rv20": 0.6257,
-      "oi": 2194,
+      "oi": 2284,
       "earnings": "2026-10-22",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -856,10 +861,10 @@
       "spot": 747.2,
       "move_1d": -0.8,
       "drawdown": -31.7,
-      "vol": 0.6065,
+      "vol": 0.6071,
       "vol_src": "6M listed",
       "rv20": 0.6867,
-      "oi": 682,
+      "oi": 683,
       "earnings": "2026-10-27",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -876,7 +881,7 @@
       "spot": 987.99,
       "move_1d": -0.75,
       "drawdown": -12.83,
-      "vol": 0.7036,
+      "vol": 0.6707,
       "vol_src": "6M listed",
       "rv20": 0.7227,
       "oi": 149,
@@ -894,10 +899,10 @@
       "spot": 572.47,
       "move_1d": -0.74,
       "drawdown": -2.71,
-      "vol": 0.6169,
+      "vol": 0.6018,
       "vol_src": "6M listed",
       "rv20": 0.4477,
-      "oi": 541,
+      "oi": 554,
       "earnings": "2026-11-24",
       "entry": "near 6M high",
       "flags": [
@@ -912,10 +917,10 @@
       "spot": 77.81,
       "move_1d": -3.05,
       "drawdown": -43.61,
-      "vol": 0.7169,
+      "vol": 0.7461,
       "vol_src": "6M listed",
       "rv20": 0.5353,
-      "oi": 4274,
+      "oi": 4715,
       "earnings": "2026-11-09",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -930,10 +935,10 @@
       "spot": 143.2,
       "move_1d": 4.23,
       "drawdown": -42.29,
-      "vol": 0.5492,
+      "vol": 0.5513,
       "vol_src": "6M listed",
       "rv20": 0.4782,
-      "oi": 11630,
+      "oi": 11968,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -946,10 +951,10 @@
       "spot": 357.76,
       "move_1d": -0.72,
       "drawdown": -3.02,
-      "vol": 0.5546,
+      "vol": 0.5577,
       "vol_src": "6M listed",
       "rv20": 0.36,
-      "oi": 3455,
+      "oi": 3449,
       "earnings": "2026-12-02",
       "entry": "near 6M high",
       "flags": []
@@ -962,13 +967,14 @@
       "spot": 347.7,
       "move_1d": -0.9,
       "drawdown": -3.67,
-      "vol": 0.6066,
+      "vol": 0.6091,
       "vol_src": "6M listed",
       "rv20": 0.4652,
-      "oi": 878,
+      "oi": 888,
       "earnings": "2026-10-29",
       "entry": "near 6M high",
       "flags": [
+        "event hold: earnings 2026-10-29",
         "thin listed options"
       ]
     },
@@ -980,10 +986,10 @@
       "spot": 283.34,
       "move_1d": -1.37,
       "drawdown": -3.38,
-      "vol": 0.5953,
+      "vol": 0.5852,
       "vol_src": "6M listed",
       "rv20": 0.404,
-      "oi": 814,
+      "oi": 916,
       "earnings": "2026-11-05",
       "entry": "near 6M high",
       "flags": [
@@ -998,10 +1004,10 @@
       "spot": 15.24,
       "move_1d": 0.07,
       "drawdown": -21.85,
-      "vol": 0.5154,
+      "vol": 0.5186,
       "vol_src": "6M listed",
       "rv20": 0.2617,
-      "oi": 107309,
+      "oi": 108809,
       "earnings": "2026-10-27",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -1017,10 +1023,10 @@
       "spot": 77.89,
       "move_1d": -0.94,
       "drawdown": -9.2,
-      "vol": 0.5815,
+      "vol": 0.5803,
       "vol_src": "6M listed",
       "rv20": 0.4768,
-      "oi": 907,
+      "oi": 918,
       "earnings": "2026-11-05",
       "entry": "near 6M high",
       "flags": [
@@ -1035,10 +1041,10 @@
       "spot": 26.78,
       "move_1d": 0.22,
       "drawdown": -20.7,
-      "vol": 0.3475,
+      "vol": 0.3465,
       "vol_src": "6M listed",
       "rv20": 0.1946,
-      "oi": 17313,
+      "oi": 17318,
       "earnings": "2026-11-12",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -1051,10 +1057,10 @@
       "spot": 3.56,
       "move_1d": 2.59,
       "drawdown": -48.18,
-      "vol": 0.5677,
+      "vol": 0.6463,
       "vol_src": "6M listed",
       "rv20": 0.3707,
-      "oi": 104078,
+      "oi": 104628,
       "earnings": "2026-11-24",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -1067,10 +1073,10 @@
       "spot": 9.75,
       "move_1d": 0.93,
       "drawdown": -46.58,
-      "vol": 0.5821,
+      "vol": 0.5274,
       "vol_src": "6M listed",
       "rv20": 0.31,
-      "oi": 15717,
+      "oi": 15664,
       "earnings": "2026-11-16",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -1083,10 +1089,10 @@
       "spot": 83.74,
       "move_1d": -0.66,
       "drawdown": -44.36,
-      "vol": 0.4287,
+      "vol": 0.422,
       "vol_src": "6M listed",
       "rv20": 0.2554,
-      "oi": 4212,
+      "oi": 4639,
       "earnings": "2026-11-17",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -1101,10 +1107,10 @@
       "spot": 1876.04,
       "move_1d": -0.87,
       "drawdown": -6.51,
-      "vol": 0.4049,
+      "vol": 0.3943,
       "vol_src": "6M listed",
       "rv20": 0.4,
-      "oi": 145,
+      "oi": 146,
       "earnings": "2026-11-04",
       "entry": "near 6M high",
       "flags": [
@@ -1119,10 +1125,10 @@
       "spot": 38.75,
       "move_1d": -0.03,
       "drawdown": -29.79,
-      "vol": 0.3451,
+      "vol": 0.3511,
       "vol_src": "6M listed",
       "rv20": 0.2386,
-      "oi": 3566,
+      "oi": 1738,
       "earnings": "2026-11-16",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -1135,10 +1141,10 @@
       "spot": 50.1,
       "move_1d": -2.81,
       "drawdown": -19.05,
-      "vol": 0.5602,
+      "vol": 0.5971,
       "vol_src": "6M listed",
       "rv20": 0.6061,
-      "oi": 2832,
+      "oi": 2968,
       "earnings": "2026-11-09",
       "entry": "mild pullback",
       "flags": [
@@ -1153,10 +1159,10 @@
       "spot": 26.65,
       "move_1d": -5.96,
       "drawdown": -36.74,
-      "vol": 0.6436,
+      "vol": 0.6405,
       "vol_src": "6M listed",
       "rv20": 1.3154,
-      "oi": 1785,
+      "oi": 2077,
       "earnings": "2026-10-28",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -1175,7 +1181,7 @@
       "vol": 0.379,
       "vol_src": "6M listed",
       "rv20": 0.3691,
-      "oi": 15371,
+      "oi": 15376,
       "earnings": "2026-11-04",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -1188,10 +1194,10 @@
       "spot": 12.18,
       "move_1d": -5.29,
       "drawdown": -73.35,
-      "vol": 0.8861,
+      "vol": 0.8645,
       "vol_src": "6M listed",
       "rv20": 0.7833,
-      "oi": 12422,
+      "oi": 12455,
       "earnings": "2026-11-12",
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -1206,10 +1212,10 @@
       "spot": 40.35,
       "move_1d": -3.05,
       "drawdown": -45.95,
-      "vol": 0.6095,
+      "vol": 0.6189,
       "vol_src": "6M listed",
       "rv20": 0.3458,
-      "oi": 4755,
+      "oi": 4830,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -1224,10 +1230,10 @@
       "spot": 6.49,
       "move_1d": -3.13,
       "drawdown": -53.48,
-      "vol": 0.7753,
+      "vol": 0.7334,
       "vol_src": "6M listed",
       "rv20": 0.6765,
-      "oi": 5356,
+      "oi": 5510,
       "earnings": "2026-11-05",
       "entry": "deep drawdown (>50%)",
       "flags": [
@@ -1242,10 +1248,10 @@
       "spot": 134.28,
       "move_1d": -0.76,
       "drawdown": -41.95,
-      "vol": 0.7164,
+      "vol": 0.6933,
       "vol_src": "6M listed",
       "rv20": 0.6278,
-      "oi": 116,
+      "oi": 117,
       "earnings": "2026-11-04",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -1261,10 +1267,10 @@
       "spot": 1004.04,
       "move_1d": 0.73,
       "drawdown": -14.54,
-      "vol": 0.4731,
+      "vol": 0.4644,
       "vol_src": "6M listed",
       "rv20": 0.2876,
-      "oi": 2179,
+      "oi": 2219,
       "earnings": "2026-10-28",
       "entry": "mild pullback",
       "flags": [
@@ -1279,10 +1285,10 @@
       "spot": 162.36,
       "move_1d": 2.68,
       "drawdown": -3.92,
-      "vol": 0.4863,
+      "vol": 0.4647,
       "vol_src": "6M listed",
       "rv20": 0.5259,
-      "oi": 2947,
+      "oi": 2809,
       "earnings": "2026-11-06",
       "entry": "near 6M high",
       "flags": []
@@ -1295,11 +1301,11 @@
       "spot": 382.14,
       "move_1d": 0.62,
       "drawdown": -12.78,
-      "vol": 0.5262,
+      "vol": 0.5209,
       "vol_src": "6M listed",
       "rv20": 0.5258,
       "oi": 765,
-      "earnings": "2026-11-04",
+      "earnings": "2026-11-03",
       "entry": "mild pullback",
       "flags": [
         "thin listed options"
@@ -1313,10 +1319,10 @@
       "spot": 19.72,
       "move_1d": 0.31,
       "drawdown": -34.31,
-      "vol": 0.6489,
+      "vol": 0.6173,
       "vol_src": "6M listed",
       "rv20": 0.5511,
-      "oi": 30952,
+      "oi": 30985,
       "earnings": "2026-11-05",
       "entry": "sweet spot (-20% to -50%)",
       "flags": []
@@ -1329,10 +1335,10 @@
       "spot": 6.87,
       "move_1d": -0.87,
       "drawdown": -44.55,
-      "vol": 0.7246,
+      "vol": 0.724,
       "vol_src": "6M listed",
       "rv20": 0.4507,
-      "oi": 28766,
+      "oi": 29127,
       "earnings": "2026-11-13",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
@@ -1347,10 +1353,10 @@
       "spot": 13.38,
       "move_1d": -2.62,
       "drawdown": -55.61,
-      "vol": 0.7315,
+      "vol": 0.7018,
       "vol_src": "6M listed",
       "rv20": 0.5453,
-      "oi": 1630,
+      "oi": 2064,
       "earnings": "2026-11-05",
       "entry": "deep drawdown (>50%)",
       "flags": [
