@@ -4,6 +4,7 @@
 
 | Run (HKT) | Report |
 | --- | --- |
+| 2026-10-19-0811-HKT | [open](archive/2026-10-19-0811-HKT.md) |
 | 2026-10-16-0821-HKT | [open](archive/2026-10-16-0821-HKT.md) |
 | 2026-10-15-0830-HKT | [open](archive/2026-10-15-0830-HKT.md) |
 | 2026-10-14-0912-HKT | [open](archive/2026-10-14-0912-HKT.md) |
