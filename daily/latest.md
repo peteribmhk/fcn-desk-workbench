@@ -1,6 +1,6 @@
 # FCN Daily Screen
 
-**Generated:** 2026-10-22 08:40 HKT  |  **US close used:** 2026-10-20  |  **Data status:** GREEN
+**Generated:** 2026-10-23 08:38 HKT  |  **US close used:** 2026-10-21  |  **Data status:** GREEN
 
 > Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.
 > Public/delayed data, used only to decide what to RFQ. Issuer RFQ levels override everything below.
@@ -13,45 +13,45 @@ Structure assumed for the ballpark: USD worst-of FCN, 6M, KO 100% monthly from m
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | AVGO / TSLA | Semis/AI HW + EV/Auto | 43 / 44 | 0.32 | 12-18% | 8% | Balanced | fresh |
-| 2 | AVGO / BABA | Semis/AI HW + China ADR | 43 / 41 | 0.20 | 11-17% | 8% | Balanced | fresh |
-| 3 | DELL / RKLB | Semis/AI HW + Space/Defense | 65 / 74 | 0.45 | 42-48% | 25% | Higher coupon | fresh |
-| 4 | RKLB / NIO | Space/Defense + China ADR | 74 / 58 | 0.25 | 40-46% | 25% | Higher coupon | fresh |
-| 5 | NBIS / MRNA | AI Cloud/DC + Biotech/Health | 83 / 85 | -0.04 | 62-67% | 39% | Aggressive | fresh |
+| 1 | UAL / AVGO | Cyclical/Consumer + Semis/AI HW | 47 / 43 | 0.33 | 14-20% | 10% | Balanced | fresh |
+| 2 | UAL / TSLA | Cyclical/Consumer + EV/Auto | 47 / 41 | 0.20 | 13-19% | 9% | Balanced | fresh |
+| 3 | QUBT / WDC | Quantum + Semis/AI HW | 74 / 62 | 0.46 | 41-46% | 24% | Higher coupon | fresh |
+| 4 | WDC / RKLB | Semis/AI HW + Space/Defense | 62 / 71 | 0.34 | 40-46% | 25% | Higher coupon | fresh |
+| 5 | CRDO / ASTS | Semis/AI HW + Space/Defense | 75 / 86 | 0.28 | 56-61% | 33% | Aggressive | fresh |
 
 ## Three-stock picks
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | AVGO / BABA / TSLA | Semis/AI HW + China ADR + EV/Auto | 43 / 41 / 44 | 0.19 | 16-22% | 12% | Balanced | fresh |
-| 2 | DELL / RKLB / NIO | Semis/AI HW + Space/Defense + China ADR | 65 / 74 / 58 | 0.27 | 48-54% | 34% | Higher coupon | fresh |
-| 3 | NBIS / CRDO / MRNA | AI Cloud/DC + Semis/AI HW + Biotech/Health | 83 / 81 / 85 | 0.16 | 71-76% | 49% | Aggressive | fresh |
+| 1 | UAL / AVGO / PDD | Cyclical/Consumer + Semis/AI HW + China ADR | 47 / 43 / 37 | 0.11 | 16-22% | 12% | Balanced | fresh |
+| 2 | QUBT / RKLB / XPEV | Quantum + Space/Defense + China ADR | 74 / 71 / 53 | 0.38 | 46-52% | 31% | Higher coupon | fresh |
+| 3 | APLD / CRDO / ASTS | AI Cloud/DC + Semis/AI HW + Space/Defense | 89 / 75 / 86 | 0.45 | 66-72% | 41% | Aggressive | fresh |
 
 ## Familiar-name anchor (for conservative clients)
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | BABA / MU | China ADR + Semis/AI HW | 41 / 52 | -0.06 | 17-22% | 12% | Higher coupon | fresh |
+| 1 | PDD / AVGO | China ADR + Semis/AI HW | 37 / 43 | -0.01 | 9-15% | 7% | Balanced | fresh |
 
 Deep listed liquidity, lower vol, easy to explain. Expect a lower coupon.
 
 ## Why these names
 
-- **AVGO / TSLA**: AVGO: sweet spot (-20% to -50%), -31% vs 6M high, vol 43% (6M listed), next earnings 2026-12-10; TSLA: mild pullback, -16% vs 6M high, vol 44% (6M listed)
-- **AVGO / BABA**: AVGO: sweet spot (-20% to -50%), -31% vs 6M high, vol 43% (6M listed), next earnings 2026-12-10; BABA: sweet spot (-20% to -50%), -26% vs 6M high, vol 41% (6M listed), next earnings 2026-11-24
-- **DELL / RKLB**: DELL: sweet spot (-20% to -50%), -22% vs 6M high, vol 65% (6M listed), next earnings 2026-11-24; RKLB: deep drawdown (>50%), -66% vs 6M high, vol 74% (6M listed), next earnings 2026-11-09
-- **AVGO / BABA / TSLA**: AVGO: sweet spot (-20% to -50%), -31% vs 6M high, vol 43% (6M listed), next earnings 2026-12-10; BABA: sweet spot (-20% to -50%), -26% vs 6M high, vol 41% (6M listed), next earnings 2026-11-24; TSLA: mild pullback, -16% vs 6M high, vol 44% (6M listed)
-- **DELL / RKLB / NIO**: DELL: sweet spot (-20% to -50%), -22% vs 6M high, vol 65% (6M listed), next earnings 2026-11-24; RKLB: deep drawdown (>50%), -66% vs 6M high, vol 74% (6M listed), next earnings 2026-11-09; NIO: sweet spot (-20% to -50%), -48% vs 6M high, vol 58% (6M listed), next earnings 2026-11-24
+- **UAL / AVGO**: UAL: sweet spot (-20% to -50%), -25% vs 6M high, vol 47% (6M listed); AVGO: sweet spot (-20% to -50%), -30% vs 6M high, vol 43% (6M listed), next earnings 2026-12-10
+- **UAL / TSLA**: UAL: sweet spot (-20% to -50%), -25% vs 6M high, vol 47% (6M listed); TSLA: mild pullback, -13% vs 6M high, vol 41% (6M listed)
+- **QUBT / WDC**: QUBT: sweet spot (-20% to -50%), -45% vs 6M high, vol 74% (6M listed), next earnings 2026-11-13; WDC: sweet spot (-20% to -50%), -49% vs 6M high, vol 62% (6M listed)
+- **UAL / AVGO / PDD**: UAL: sweet spot (-20% to -50%), -25% vs 6M high, vol 47% (6M listed); AVGO: sweet spot (-20% to -50%), -30% vs 6M high, vol 43% (6M listed), next earnings 2026-12-10; PDD: sweet spot (-20% to -50%), -23% vs 6M high, vol 37% (6M listed), next earnings 2026-11-17
+- **QUBT / RKLB / XPEV**: QUBT: sweet spot (-20% to -50%), -45% vs 6M high, vol 74% (6M listed), next earnings 2026-11-13; RKLB: deep drawdown (>50%), -64% vs 6M high, vol 71% (6M listed), next earnings 2026-11-09; XPEV: sweet spot (-20% to -50%), -48% vs 6M high, vol 53% (6M listed), next earnings 2026-11-16
 
-## KI ladder: AVGO / TSLA (top pair)
+## KI ladder: UAL / AVGO (top pair)
 
 | KI | Ballpark coupon p.a. | P(loss at maturity) | Pickup per KI pt | Read |
 | --- | --- | --- | --- | --- |
-| 50% | 4.1-8.6% | 2.6% | - | base protection |
-| 55% | 8.0-13.3% | 5.3% | 0.86% p.a. | strong pickup |
-| 59% | 12.1-17.9% | 8.3% | 1.09% p.a. | strong pickup |
-| 65% | 19.1-25.2% | 14.3% | 1.19% p.a. | strong pickup |
-| 70% | 25.0-31.1% | 20.2% | 1.18% p.a. | strong pickup |
+| 50% | 5.6-10.3% | 3.5% | - | base protection |
+| 55% | 9.8-15.1% | 6.4% | 0.91% p.a. | strong pickup |
+| 59% | 14.0-20.0% | 9.5% | 1.14% p.a. | strong pickup |
+| 65% | 21.4-27.5% | 15.8% | 1.23% p.a. | strong pickup |
+| 70% | 27.2-33.1% | 21.6% | 1.13% p.a. | strong pickup |
 
 Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% balanced; above 0.60% the higher KI may be worth it. Model pickup is smooth by construction; the real decision uses the issuer's KI ladder.
 
@@ -59,80 +59,80 @@ Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% b
 
 | Ticker | 1D | vs 6M high | Vol | Why held back |
 | --- | --- | --- | --- | --- |
-| LUNR | -1.9% | -77% | 99% | falling knife: wait 2 stable sessions |
-| SMR | -1.9% | -60% | 86% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-05 |
-| CRWV | +1.7% | -55% | 83% | falling knife: wait 2 stable sessions |
-| SMCI | +1.2% | -35% | 80% | event hold: earnings 2026-11-03 |
-| QBTS | -0.4% | -61% | 79% | event hold: earnings 2026-11-05 |
-| LEU | -0.2% | -52% | 77% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-04; thin listed options |
-| ALAB | -0.6% | -41% | 76% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-03; thin listed options |
-| RGTI | -0.1% | -57% | 76% | falling knife: wait 2 stable sessions |
-| HIMS | +3.8% | -24% | 76% | thin listed options |
-| NTLA | +2.2% | -34% | 75% | event hold: earnings 2026-11-05 |
-| OKLO | +0.9% | -65% | 74% | falling knife: wait 2 stable sessions |
-| IONQ | +1.6% | -57% | 73% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-04; thin listed options |
-| COHR | -0.1% | -46% | 70% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-04 |
-| LITE | -1.4% | -27% | 70% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-05; thin listed options |
-| ENPH | +5.2% | -55% | 68% | event hold: earnings 2026-10-27 |
-| AVAV | -0.2% | -45% | 66% | falling knife: wait 2 stable sessions |
-| SNDK | -0.4% | -42% | 66% | event hold: earnings 2026-10-29; thin listed options |
-| NET | -2.0% | -19% | 66% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-05 |
-| KTOS | -0.5% | -43% | 65% | falling knife: wait 2 stable sessions |
-| DDOG | -1.5% | -13% | 65% | event hold: earnings 2026-11-04 |
-| WDC | +3.4% | -51% | 65% | event hold: earnings 2026-10-22 |
-| STX | +2.2% | -38% | 65% | event hold: earnings 2026-10-27; thin listed options |
-| APP | +1.2% | -56% | 65% | event hold: earnings 2026-11-04; thin listed options |
-| ARM | -3.1% | -50% | 64% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-04 |
-| VKTX | +6.6% | -37% | 64% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-28 |
-| RIVN | +0.7% | -38% | 64% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-29 |
-| TDOC | +8.4% | -36% | 60% | event hold: earnings 2026-10-28 |
-| AFRM | +1.4% | -14% | 60% | event hold: earnings 2026-11-05 |
-| VRT | -1.2% | -46% | 58% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-28 |
-| DKNG | +3.6% | -32% | 57% | event hold: earnings 2026-11-05 |
-| TLN | -0.5% | -20% | 57% | event hold: earnings 2026-11-03; thin listed options |
-| PLTR | -0.8% | -8% | 56% | event hold: earnings 2026-11-02 |
-| XPEV | +7.6% | -45% | 56% | falling knife: wait 2 stable sessions |
-| GLW | -0.4% | -48% | 56% | event hold: earnings 2026-10-27 |
-| SOFI | +2.7% | -23% | 54% | event hold: earnings 2026-10-27 |
-| AMD | -0.6% | -18% | 54% | event hold: earnings 2026-11-03 |
-| AMAT | -2.0% | -44% | 52% | falling knife: wait 2 stable sessions |
-| FSLR | +1.5% | -45% | 52% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-29 |
-| ANET | -1.0% | -16% | 52% | event hold: earnings 2026-11-03 |
-| GEV | -2.0% | -24% | 50% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-28; thin listed options |
-| UAL | +2.3% | -28% | 49% | falling knife: wait 2 stable sessions |
-| BIDU | +0.9% | -47% | 43% | falling knife: wait 2 stable sessions |
-| MELI | +2.2% | -6% | 42% | event hold: earnings 2026-11-04; thin listed options |
-| NVO | +2.4% | -24% | 37% | event hold: earnings 2026-11-04 |
-| LLY | +3.5% | 0% | 36% | event hold: earnings 2026-10-29; thin listed options |
-| ISRG | +1.1% | -9% | 35% | thin listed options |
-| GOOGL | -1.1% | -15% | 33% | event hold: earnings 2026-10-28 |
+| LUNR | +3.5% | -76% | 90% | falling knife: wait 2 stable sessions |
+| SMR | -1.4% | -61% | 79% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-05 |
+| NTLA | -1.6% | -35% | 78% | event hold: earnings 2026-11-05 |
+| MRNA | +1.5% | 0% | 78% | event hold: earnings 2026-11-06 |
+| LEU | -0.9% | -53% | 77% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-04; thin listed options |
+| QBTS | +2.7% | -60% | 77% | event hold: earnings 2026-11-05 |
+| HIMS | +0.0% | -24% | 76% | thin listed options |
+| ALAB | +1.8% | -40% | 75% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-03; thin listed options |
+| SMCI | +9.5% | -29% | 73% | event hold: earnings 2026-11-03 |
+| IONQ | +3.3% | -55% | 71% | event hold: earnings 2026-11-04; thin listed options |
+| RGTI | +3.3% | -55% | 70% | falling knife: wait 2 stable sessions |
+| COHR | +2.5% | -44% | 69% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-04 |
+| APP | -1.7% | -56% | 68% | event hold: earnings 2026-11-04; thin listed options |
+| LITE | +3.4% | -25% | 67% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-05 |
+| AVAV | -0.1% | -45% | 66% | falling knife: wait 2 stable sessions |
+| ENPH | -0.7% | -56% | 66% | event hold: earnings 2026-10-27 |
+| SNDK | +0.9% | -41% | 65% | event hold: earnings 2026-10-29; thin listed options |
+| VKTX | -1.2% | -37% | 65% | event hold: earnings 2026-10-28 |
+| NET | +5.3% | -15% | 65% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-05 |
+| STX | +3.2% | -36% | 64% | event hold: earnings 2026-10-27 |
+| ARM | +2.5% | -48% | 63% | falling knife: wait 2 stable sessions; event hold: earnings 2026-11-04 |
+| TDOC | +1.4% | -35% | 62% | event hold: earnings 2026-10-28 |
+| DELL | +5.3% | -17% | 62% | thin listed options |
+| RIVN | +0.2% | -38% | 62% | event hold: earnings 2026-10-29 |
+| KTOS | -0.6% | -41% | 61% | falling knife: wait 2 stable sessions; thin listed options |
+| DKNG | +0.2% | -32% | 60% | event hold: earnings 2026-11-05 |
+| DDOG | +6.5% | -7% | 60% | event hold: earnings 2026-11-04 |
+| AFRM | -0.5% | -14% | 60% | event hold: earnings 2026-11-05; thin listed options |
+| VRT | +4.2% | -44% | 57% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-28 |
+| NIO | -2.0% | -49% | 55% | falling knife: wait 2 stable sessions |
+| GLW | +2.0% | -47% | 55% | event hold: earnings 2026-10-27 |
+| TLN | +2.9% | -18% | 54% | event hold: earnings 2026-11-03; thin listed options |
+| PLTR | +4.7% | -4% | 54% | event hold: earnings 2026-11-02 |
+| SOFI | +1.5% | -22% | 53% | event hold: earnings 2026-10-27 |
+| FSLR | +0.2% | -45% | 52% | event hold: earnings 2026-10-29 |
+| AMD | +3.4% | -15% | 52% | event hold: earnings 2026-11-03 |
+| ANET | +1.7% | -15% | 52% | event hold: earnings 2026-11-03 |
+| AMAT | +1.0% | -43% | 51% | falling knife: wait 2 stable sessions |
+| GEV | +4.0% | -21% | 49% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-28; thin listed options |
+| VST | +3.9% | -8% | 49% | event hold: earnings 2026-11-06 |
+| BIDU | -2.1% | -48% | 44% | falling knife: wait 2 stable sessions |
+| MELI | -1.3% | -8% | 43% | event hold: earnings 2026-11-04; thin listed options |
+| BABA | -3.9% | -28% | 41% | falling knife: wait 2 stable sessions |
+| LLY | -1.0% | -1% | 38% | event hold: earnings 2026-10-29; thin listed options |
+| ISRG | -2.3% | -11% | 37% | thin listed options |
+| NVO | -0.7% | -24% | 37% | event hold: earnings 2026-11-04 |
+| GOOGL | -1.6% | -17% | 34% | falling knife: wait 2 stable sessions; event hold: earnings 2026-10-28 |
 
 ## Full screen (eligible names, by score)
 
 | Ticker | Theme | Last | 1D | vs 6M high | Vol used | RV20 | ATM OI | Next earnings |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| NBIS | AI Cloud/DC | 171.45 | +0.7% | -40% | 83% | 84% | 5,585 | 2026-11-10 |
-| CRDO | Semis/AI HW | 171.51 | -0.8% | -43% | 81% | 76% | 2,166 | 2026-12-07 |
-| APLD | AI Cloud/DC | 19.33 | +0.4% | -61% | 90% | 74% | 29,743 | n/a |
-| ASTS | Space/Defense | 41.13 | -1.8% | -69% | 86% | 84% | 3,048 | 2026-11-09 |
-| MRNA | Biotech/Health | 242.08 | +6.7% | 0% | 85% | 86% | 8,009 | 2026-11-06 |
-| QUBT | Quantum | 6.50 | +1.2% | -48% | 67% | 57% | 5,674 | 2026-11-13 |
-| DELL | Semis/AI HW | 461.56 | +1.3% | -22% | 65% | 62% | 1,716 | 2026-11-24 |
-| RKLB | Space/Defense | 50.90 | -0.9% | -66% | 74% | 59% | 19,623 | 2026-11-09 |
-| MRVL | Semis/AI HW | 240.42 | +1.4% | -24% | 62% | 56% | 6,940 | 2026-12-01 |
-| NIO | China ADR | 3.43 | +1.2% | -48% | 58% | 41% | 80,831 | 2026-11-24 |
-| ORCL | Software | 131.14 | +1.2% | -47% | 56% | 58% | 24,525 | 2026-12-09 |
-| MU | Semis/AI HW | 896.07 | -1.0% | -26% | 52% | 44% | 17,513 | n/a |
-| SNOW | Software | 319.61 | +1.4% | -13% | 57% | 53% | 4,462 | 2026-12-02 |
-| CRSP | Biotech/Health | 49.88 | -0.3% | -19% | 55% | 51% | 3,643 | 2026-11-09 |
-| VST | Nuclear/Power | 150.32 | +0.4% | -11% | 50% | 58% | 6,209 | 2026-11-06 |
-| AVGO | Semis/AI HW | 334.37 | -0.1% | -31% | 43% | 37% | 12,304 | 2026-12-10 |
-| BABA | China ADR | 108.61 | +0.0% | -26% | 41% | 34% | 19,589 | 2026-11-24 |
-| TSLA | EV/Auto | 373.71 | +1.5% | -16% | 44% | 33% | 11,493 | n/a |
-| JD | China ADR | 26.76 | -0.1% | -21% | 36% | 21% | 17,294 | 2026-11-12 |
-| TCOM | China ADR | 40.30 | +1.8% | -26% | 35% | 24% | 3,980 | 2026-11-16 |
-| PDD | China ADR | 81.63 | +0.3% | -20% | 34% | 25% | 53,249 | 2026-11-17 |
-| NVDA | Semis/AI HW | 216.47 | -0.3% | -10% | 38% | 24% | 43,769 | 2026-11-18 |
+| NBIS | AI Cloud/DC | 171.57 | +0.1% | -40% | 83% | 84% | 5,807 | 2026-11-10 |
+| APLD | AI Cloud/DC | 20.98 | +8.5% | -58% | 89% | 82% | 32,332 | n/a |
+| CRDO | Semis/AI HW | 182.28 | +6.3% | -40% | 75% | 80% | 1,891 | 2026-12-07 |
+| ASTS | Space/Defense | 40.90 | -0.6% | -69% | 86% | 83% | 17,371 | 2026-11-09 |
+| QUBT | Quantum | 6.82 | +4.9% | -45% | 74% | 61% | 32,393 | 2026-11-13 |
+| CRWV | AI Cloud/DC | 61.82 | -0.5% | -55% | 84% | 88% | 15,106 | 2026-11-09 |
+| OKLO | Nuclear/Power | 27.73 | +0.9% | -65% | 81% | 60% | 3,980 | 2026-11-10 |
+| WDC | Semis/AI HW | 378.51 | +3.9% | -49% | 62% | 70% | 2,420 | n/a |
+| RKLB | Space/Defense | 53.67 | +5.4% | -64% | 71% | 64% | 11,398 | 2026-11-09 |
+| MRVL | Semis/AI HW | 244.76 | +1.8% | -23% | 59% | 56% | 6,811 | 2026-12-01 |
+| ORCL | Software | 129.13 | -1.5% | -48% | 57% | 57% | 24,633 | 2026-12-09 |
+| XPEV | China ADR | 9.36 | -5.5% | -48% | 53% | 49% | 7,635 | 2026-11-16 |
+| CRSP | Biotech/Health | 50.50 | +1.2% | -18% | 57% | 48% | 3,660 | 2026-11-09 |
+| MU | Semis/AI HW | 913.67 | +2.0% | -25% | 52% | 45% | 4,970 | 2026-12-16 |
+| SNOW | Software | 322.73 | +1.0% | -13% | 56% | 53% | 4,461 | 2026-12-02 |
+| UAL | Cyclical/Consumer | 101.67 | +4.0% | -25% | 47% | 38% | 6,291 | n/a |
+| AVGO | Semis/AI HW | 337.80 | +1.0% | -30% | 43% | 36% | 12,729 | 2026-12-10 |
+| PDD | China ADR | 78.72 | -3.6% | -23% | 37% | 28% | 56,222 | 2026-11-17 |
+| TSLA | EV/Auto | 386.47 | +3.4% | -13% | 41% | 35% | 11,826 | n/a |
+| TCOM | China ADR | 39.31 | -2.5% | -28% | 37% | 26% | 4,012 | 2026-11-16 |
+| JD | China ADR | 25.79 | -3.6% | -24% | 36% | 25% | 5,773 | 2026-11-12 |
+| NVDA | Semis/AI HW | 221.97 | +2.5% | -7% | 37% | 25% | 74,793 | 2026-11-18 |
 
 ## Before you send an RFQ
 
