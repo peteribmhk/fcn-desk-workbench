@@ -26,7 +26,7 @@ A GitHub Action runs every weekday in the early morning, Hong Kong time (schedul
 
 What it does, using free public data:
 
-1. For every watchlist name: last price, 1-day move, distance from the 6-month high, 20-day realized vol, implied vol from listed ATM straddles, option open interest, next earnings date.
+1. For every watchlist name: last price, 1-day move, distance from the 6-month high, 20-day realized vol, implied vol (Tradier/ORATS when a `TRADIER_TOKEN` secret is set, otherwise listed ATM straddles from Nasdaq, with the other shown as a cross-check), option open interest, next earnings date.
 2. Holds back names that fail a gate: fresh heavy drop (falling-knife rule), earnings within two weeks, thin options, or extreme vol.
 3. Builds **cross-theme 2-stock and 3-stock baskets**, using real correlation from price history, across risk profiles (balanced / higher coupon / aggressive), plus a familiar-name anchor.
 4. Prices each basket with the ballpark model (6M, KO 100% monthly, KI ladder 50/55/59/65/70 at maturity), shows the KI pickup per point, and labels repeats versus the previous run.
@@ -34,6 +34,8 @@ What it does, using free public data:
 The **Data status** line tells you whether to trust a run: GREEN means good coverage, AMBER means partial data (use with care), and RED means no picks were produced.
 
 To refresh manually: GitHub → **Actions** → **FCN Daily Screen** → **Run workflow**.
+
+**Implied vol sources.** Add a free Tradier sandbox token as the `TRADIER_TOKEN` repository secret to get ORATS implied vol and a downside-skew read; setup steps are in [`research/data-sources.md`](research/data-sources.md). To cross-check against IV you read yourself (for example Market Chameleon's free IV30 pages, which must not be scraped), fill `iv_inputs/manual_iv.csv` and run the screen locally; see [`iv_inputs/README.md`](iv_inputs/README.md). That file and any report built from it stay out of git.
 
 ## Using it with Claude (or another AI assistant)
 
@@ -67,6 +69,7 @@ templates/                  RFQ, client explanation, KI ladder, requote, calibra
 scripts/fcn_model.py        ballpark worst-of FCN coupon model
 scripts/generate_daily_pickings.py   daily screen (run by GitHub Actions)
 daily/                      latest report, JSON record, archive
+iv_inputs/                  optional hand-filled IV for local cross-checks (git-ignored except the example)
 ```
 
 ## Contributing
@@ -75,6 +78,6 @@ daily/                      latest report, JSON record, archive
 - Log watchlist changes in `watchlist-changelog.md` with a reason.
 - To edit the screen's thresholds, change the settings block at the top of `scripts/generate_daily_pickings.py`, then test it without network:
   `python scripts/generate_daily_pickings.py --fixture your_saved_data.json --out /tmp/test`
-- Keep anything confidential out. The `actual-quotes/`, `client-notes/` and `suitability-records/` folders are git-ignored for local use only.
+- Keep anything confidential out. The `actual-quotes/`, `client-notes/`, `suitability-records/` and `local/` folders and `iv_inputs/*.csv` are git-ignored for local use only.
 
 The pre-restructure version of this repo is preserved under the branch `legacy-2026-10-08`.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-04: Implied vol sources
+
+- **Tradier/ORATS IV in the daily screen.** When a `TRADIER_TOKEN` secret is set (a free sandbox token works), the screen takes ORATS smoothed ATM implied vol for the ~3M and ~6M expiries, ATM open interest, and a 6M skew read (80% put minus ATM). Nasdaq straddle IV is still fetched as the fallback and shown as a cross-check; gaps above 10 vol points are flagged. Without a token the screen behaves exactly as before. Setup: `research/data-sources.md`.
+- **Manual IV cross-check (local only).** `iv_inputs/manual_iv.csv` takes IV you read yourself, such as Market Chameleon IV30. Market Chameleon is display-only and forbids scraping, so the screen never fetches it. The file is git-ignored, and a run that loads it writes to `local/daily/` (also git-ignored). `--manual-iv-override` uses those values as the model vol. Guide: `iv_inputs/README.md`.
+- Full screen table gains `Vol src` (plus `Straddle IV`, `6M skew 80-ATM` and `Manual IV30` when available); Data notes count names by vol source and report Tradier status.
+- `research/data-sources.md`: Tradier setup, Market Chameleon terms, Massive Basic has no IV snapshot.
+
 ## 2026-10-12: Research pack and model conventions
 
 - Added `research/fcn-pricing-logic.md` (how the coupon is built, lever directions with model examples, US vs Asian conventions, why issuers differ, RFQ best practices), `research/data-sources.md` (free, keyed, paid and institutional data; SEC EDGAR 424B2 as a public calibration source) and `research/resources.md` (open-source pricers, libraries, learning, SFC/FINRA regulation).

@@ -7,8 +7,14 @@ Dependency-free so it runs on GitHub Actions without installs.
 Pipeline
   1. Price history per watchlist name (Nasdaq historical -> Yahoo chart -> Stooq):
      spot, 1D move, 6M high/drawdown, 20D realized vol, 2-session stabilization.
-  2. Listed-options proxy per name (Nasdaq option chain): ~3M and ~6M ATM straddle
-     converted to an implied-vol estimate, plus ATM open interest.
+  2. Implied vol per name, ~3M and ~6M expiries, best source first:
+       a. Tradier API with ORATS greeks (smoothed ATM IV, OI, 80% put skew), used
+          only when a TRADIER_TOKEN is set (free sandbox token works);
+       b. Nasdaq option chain: ATM straddle converted to an IV estimate (always
+          fetched, used as fallback and as a cross-check);
+       c. 20-day realized vol when no options read exists.
+     Optional local cross-check: iv_inputs/manual_iv.csv (git-ignored), e.g. IV30
+     read by hand from Market Chameleon. Never scraped; see iv_inputs/README.md.
   3. Next earnings date (Nasdaq, best effort).
   4. Name gates: liquidity, crypto exclusion, falling-knife, earnings hold.
   5. Basket search: cross-theme pairs and trios, realized correlation from history,
@@ -29,8 +35,11 @@ import datetime as dt
 import itertools
 import json
 import math
+import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -59,6 +68,16 @@ TRIOS_TO_PRICE = 10
 SCREEN_PATHS = 6000
 FINAL_PATHS = 20000
 MAX_NAME_REUSE = 2
+IV_GAP_FLAG = 0.10           # flag (non-blocking) when two IV reads differ by more than 10 vol points
+
+# Tradier API (ORATS greeks). Free sandbox: 15-min delayed, 60 market-data calls/min.
+TRADIER_DEFAULT_BASE = "https://sandbox.tradier.com/v1"
+TRADIER_MIN_INTERVAL = 1.1   # seconds between calls (~55/min, under the sandbox limit)
+
+# Manual IV cross-check (local only, git-ignored)
+MANUAL_IV_PATH = REPO_ROOT / "iv_inputs" / "manual_iv.csv"
+MANUAL_IV_MAX_AGE_DAYS = 5
+LOCAL_OUT = REPO_ROOT / "local" / "daily"   # git-ignored; default output when manual IV is loaded
 
 NASDAQ_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
@@ -150,6 +169,51 @@ def load_watchlist() -> list[dict[str, str]]:
                 cleaned["ticker"] = ticker
                 rows.append(cleaned)
     return rows
+
+
+def _parse_vol(text: str) -> float | None:
+    """'40.5', '40.5%' or '0.405' -> 0.405. Values above 3 are read as percent."""
+    value = to_float(text)
+    if math.isnan(value) or value <= 0:
+        return None
+    return value / 100 if value > 3 else value
+
+
+def load_manual_iv(path: Path, today: dt.date) -> tuple[dict[str, dict], list[str]]:
+    """Read the optional hand-filled IV file. Returns ({ticker: row}, notes).
+
+    Columns: ticker, date (YYYY-MM-DD), iv30, iv_6m (optional), source, notes (optional).
+    Rows older than MANUAL_IV_MAX_AGE_DAYS are ignored so a forgotten file cannot
+    silently feed stale vol into the screen.
+    """
+    if not path.exists():
+        return {}, []
+    out, stale, bad = {}, 0, 0
+    with path.open(newline="", encoding="utf-8-sig") as file:
+        for row in csv.DictReader(file):
+            ticker = (row.get("ticker") or "").strip().upper()
+            if not ticker or ticker.startswith("#"):
+                continue
+            try:
+                day = dt.date.fromisoformat((row.get("date") or "").strip())
+            except ValueError:
+                bad += 1
+                continue
+            iv30, iv6 = _parse_vol(row.get("iv30") or ""), _parse_vol(row.get("iv_6m") or "")
+            if iv30 is None and iv6 is None:
+                bad += 1
+                continue
+            if (today - day).days > MANUAL_IV_MAX_AGE_DAYS:
+                stale += 1
+                continue
+            prior = out.get(ticker)
+            if prior is None or day >= prior["date"]:
+                out[ticker] = {"date": day, "iv30": iv30, "iv_6m": iv6,
+                               "source": (row.get("source") or "manual").strip() or "manual"}
+    notes = [f"Manual IV file: {len(out)} names loaded from `{path.relative_to(REPO_ROOT) if path.is_relative_to(REPO_ROOT) else path}`"
+             + (f", {stale} stale rows ignored (older than {MANUAL_IV_MAX_AGE_DAYS} days)" if stale else "")
+             + (f", {bad} unreadable rows skipped" if bad else "") + "."]
+    return out, notes
 
 
 # --------------------------------------------------------------------------- data fetch
@@ -260,6 +324,105 @@ def fetch_options(ticker: str, spot: float, today: dt.date) -> dict:
     return result
 
 
+class Tradier:
+    """Minimal Tradier market-data client: expirations + chains with ORATS greeks.
+
+    Throttled to stay under the sandbox limit (60 market-data calls per minute).
+    Three calls per name (expirations, ~3M chain, ~6M chain).
+    """
+
+    def __init__(self, token: str, base: str | None = None):
+        self.base = (base or TRADIER_DEFAULT_BASE).rstrip("/")
+        self.headers = {"Authorization": f"Bearer {token}", "Accept": "application/json",
+                        "User-Agent": "fcn-desk-workbench"}
+        self._last = 0.0
+        self.calls = 0
+        self.errors = 0
+
+    def get(self, path: str, params: dict) -> dict:
+        for attempt in (1, 2):
+            wait = TRADIER_MIN_INTERVAL - (time.monotonic() - self._last)
+            if wait > 0:
+                time.sleep(wait)
+            self._last = time.monotonic()
+            self.calls += 1
+            try:
+                return get_json(f"{self.base}{path}?{urllib.parse.urlencode(params)}", self.headers) or {}
+            except urllib.error.HTTPError as err:
+                if err.code == 429 and attempt == 1:
+                    time.sleep(61)
+                    continue
+                self.errors += 1
+                if err.code in (401, 403):
+                    raise PermissionError("Tradier token rejected (expired or wrong environment)") from err
+                raise
+        return {}
+
+    @staticmethod
+    def _as_list(value) -> list:
+        if value is None:
+            return []
+        return value if isinstance(value, list) else [value]
+
+    def expirations(self, ticker: str) -> list[dt.date]:
+        data = self.get("/markets/options/expirations", {"symbol": ticker, "includeAllRoots": "false", "strikes": "false"})
+        dates = self._as_list(((data.get("expirations") or {}).get("date")))
+        out = []
+        for d in dates:
+            try:
+                out.append(dt.date.fromisoformat(str(d)))
+            except ValueError:
+                continue
+        return sorted(out)
+
+    def chain(self, ticker: str, expiry: dt.date) -> list[dict]:
+        data = self.get("/markets/options/chains", {"symbol": ticker, "expiration": expiry.isoformat(), "greeks": "true"})
+        return self._as_list(((data.get("options") or {}).get("option")))
+
+
+def _tradier_iv(option: dict) -> float | None:
+    greeks = option.get("greeks") or {}
+    for key in ("smv_vol", "mid_iv"):
+        value = to_float(greeks.get(key))
+        if not math.isnan(value) and 0.03 < value < 5:
+            return value
+    return None
+
+
+def fetch_options_tradier(client: Tradier, ticker: str, spot: float, today: dt.date) -> dict:
+    """Same shape as fetch_options(): {"oi", "3M": {...}, "6M": {...}} plus ORATS skew."""
+    expiries = [e for e in client.expirations(ticker) if (e - today).days >= 20]
+    result: dict = {"oi": 0, "source": "Tradier/ORATS"}
+    seen: dict[dt.date, list[dict]] = {}
+    for label, target in (("3M", 91), ("6M", 182)):
+        if not expiries:
+            break
+        exp = min(expiries, key=lambda e: abs((e - today).days - target))
+        if exp not in seen:
+            seen[exp] = client.chain(ticker, exp)
+        chain = [o for o in seen[exp] if not math.isnan(to_float(o.get("strike")))]
+        if not chain:
+            continue
+        atm_strike = min({to_float(o["strike"]) for o in chain}, key=lambda k: abs(k - spot))
+        atm = [o for o in chain if to_float(o["strike"]) == atm_strike]
+        ivs = [iv for iv in (_tradier_iv(o) for o in atm) if iv]
+        if not ivs:
+            continue
+        days = (exp - today).days
+        entry = {"expiry": exp.isoformat(), "days": days, "strike": atm_strike,
+                 "iv": sum(ivs) / len(ivs), "gap": abs(days - target) > 45,
+                 "greeks_at": max(((o.get("greeks") or {}).get("updated_at") or "") for o in atm) or None}
+        # Downside skew: 80%-strike put IV minus ATM IV (prices the KI put; info only)
+        puts = [o for o in chain if o.get("option_type") == "put" and _tradier_iv(o)]
+        if puts:
+            p80 = min(puts, key=lambda o: abs(to_float(o["strike"]) - 0.8 * spot))
+            if abs(to_float(p80["strike"]) / spot - 0.8) <= 0.05:
+                entry["skew80"] = _tradier_iv(p80) - entry["iv"]
+        result[label] = entry
+        result["oi"] += sum(to_int(o.get("open_interest")) for o in atm)
+    return result
+
+
 def fetch_earnings(ticker: str, today: dt.date) -> str | None:
     payload = get_json(f"https://api.nasdaq.com/api/analyst/{ticker}/earnings-date", NASDAQ_HEADERS)
     text = json.dumps((payload or {}).get("data") or {})
@@ -274,7 +437,11 @@ def fetch_earnings(ticker: str, today: dt.date) -> str | None:
 
 
 def collect_market(watchlist: list[dict], today: dt.date) -> dict:
-    market = {"names": {}, "sources": {}}
+    market = {"names": {}, "sources": {}, "tradier": {"configured": False}}
+    token = os.environ.get("TRADIER_TOKEN", "").strip()
+    client = Tradier(token, os.environ.get("TRADIER_BASE_URL", "").strip() or None) if token else None
+    if client:
+        market["tradier"] = {"configured": True, "base": client.base}
     for row in watchlist:
         t = row["ticker"]
         series, source = fetch_history(t, today)
@@ -285,11 +452,21 @@ def collect_market(watchlist: list[dict], today: dt.date) -> dict:
                 entry["options"] = fetch_options(t, series[-1][1], today)
             except Exception:
                 entry["options"] = {}
+            if client:
+                try:
+                    entry["options_api"] = fetch_options_tradier(client, t, series[-1][1], today)
+                except PermissionError as err:
+                    market["tradier"]["error"] = str(err)
+                    client = None  # stop calling with a dead token; Nasdaq carries the run
+                except Exception:
+                    entry["options_api"] = {}
             try:
                 entry["earnings"] = fetch_earnings(t, today)
             except Exception:
                 entry["earnings"] = None
         market["names"][t] = entry
+    if market["tradier"].get("configured"):
+        market["tradier"]["calls"] = (client.calls if client else None)
     return market
 
 
@@ -325,7 +502,13 @@ def correlation(a: dict[str, float], b: dict[str, float], window: int = 90) -> f
     return cov / math.sqrt(vx * vy)
 
 
-def analyse_name(row: dict, entry: dict, today: dt.date) -> dict:
+def _iv(opts: dict, label: str) -> float | None:
+    value = (opts.get(label) or {}).get("iv")
+    return value if value and 0.05 < value < 3 else None
+
+
+def analyse_name(row: dict, entry: dict, today: dt.date, manual: dict | None = None,
+                 manual_override: bool = False) -> dict:
     t = row["ticker"]
     hist = entry.get("history") or []
     info = {"ticker": t, "theme": row.get("theme", ""), "bucket": bucket_of(row.get("theme", "")),
@@ -346,21 +529,43 @@ def analyse_name(row: dict, entry: dict, today: dt.date) -> dict:
         "rv20": realized_vol(rets[-20:]),
         "returns": rets_map,
     })
-    opts = entry.get("options") or {}
-    iv6 = (opts.get("6M") or {}).get("iv")
-    iv3 = (opts.get("3M") or {}).get("iv")
-    info["iv3"], info["iv6"], info["oi"] = iv3, iv6, opts.get("oi", 0)
+    nasdaq = entry.get("options") or {}
+    api = entry.get("options_api") or {}
+    # Prefer the API read when it has a usable IV; Nasdaq straddle otherwise.
+    opts = api if (_iv(api, "6M") or _iv(api, "3M")) else nasdaq
+    iv6, iv3 = _iv(opts, "6M"), _iv(opts, "3M")
+    src_name = "ORATS" if opts is api else "straddle"
+    info["iv3"], info["iv6"] = iv3, iv6
+    info["oi"] = opts.get("oi", 0) or nasdaq.get("oi", 0)
     info["opts"] = opts
-    # vol used for a 6M note: 6M listed proxy, else 3M, else realized
-    if iv6 and 0.05 < iv6 < 3:
-        info["vol"], info["vol_src"] = iv6, "6M listed"
-    elif iv3 and 0.05 < iv3 < 3:
-        info["vol"], info["vol_src"] = iv3, "3M listed"
+    info["iv_nasdaq"] = _iv(nasdaq, "6M") or _iv(nasdaq, "3M")
+    info["iv_api"] = _iv(api, "6M") or _iv(api, "3M")
+    info["skew80"] = (api.get("6M") or {}).get("skew80")
+    info["manual"] = manual
+    # vol used for a 6M note: 6M listed, else 3M listed, else realized
+    if iv6:
+        info["vol"], info["vol_src"] = iv6, f"6M {src_name}"
+    elif iv3:
+        info["vol"], info["vol_src"] = iv3, f"3M {src_name}"
     elif not math.isnan(info["rv20"]):
         info["vol"], info["vol_src"] = info["rv20"], "RV20 (no options)"
         info["flags"].append("no listed-options read")
     else:
         return info
+
+    # Cross-checks (non-blocking): API vs Nasdaq straddle, manual IV30 vs ~3M listed
+    if info["iv_api"] and info["iv_nasdaq"] and abs(info["iv_api"] - info["iv_nasdaq"]) > IV_GAP_FLAG:
+        info["flags"].append(f"IV sources disagree: ORATS {info['iv_api']*100:.0f} vs straddle {info['iv_nasdaq']*100:.0f}")
+    if manual:
+        ref = iv3 or info["vol"]
+        m_iv = manual.get("iv30")
+        if m_iv and abs(m_iv - ref) > IV_GAP_FLAG:
+            info["flags"].append(f"manual IV30 {m_iv*100:.0f} vs listed {ref*100:.0f}")
+        if manual_override:
+            chosen = manual.get("iv_6m") or m_iv
+            if chosen:
+                tag = "6M" if manual.get("iv_6m") else "IV30"
+                info["vol"], info["vol_src"] = chosen, f"manual {tag} ({manual['source']})"
 
     dd = info["drawdown"]
     if dd > -10:
@@ -560,12 +765,27 @@ def why_line(b: dict) -> str:
     return "; ".join(parts)
 
 
-def generate(market: dict, now_utc: dt.datetime, prev: dict) -> tuple[str, dict]:
+def generate(market: dict, now_utc: dt.datetime, prev: dict, manual: dict | None = None,
+             manual_override: bool = False, manual_notes: list[str] | None = None) -> tuple[str, dict]:
     watchlist = load_watchlist()
     today = now_utc.astimezone(HKT).date()
-    analysed = [analyse_name(row, market["names"].get(row["ticker"], {}), today) for row in watchlist]
+    manual = manual or {}
+    analysed = [analyse_name(row, market["names"].get(row["ticker"], {}), today,
+                             manual.get(row["ticker"]), manual_override) for row in watchlist]
     with_data = [x for x in analysed if "vol" in x]
     with_opts = [x for x in with_data if x.get("iv3") or x.get("iv6")]
+    n_api = sum(1 for x in with_data if "ORATS" in x["vol_src"])
+    n_straddle = sum(1 for x in with_data if "straddle" in x["vol_src"])
+    n_manual = sum(1 for x in with_data if x["vol_src"].startswith("manual"))
+    n_rv = sum(1 for x in with_data if x["vol_src"].startswith("RV20"))
+    tradier = market.get("tradier") or {}
+    if n_manual:
+        vol_sentence = (f"Vols: manual override for {n_manual} names (local run), otherwise Tradier/ORATS listed IV where available, "
+                        "else Nasdaq ATM straddles")
+    elif n_api:
+        vol_sentence = "Vols come from Tradier/ORATS smoothed ATM implied vol, falling back to Nasdaq ATM straddles"
+    else:
+        vol_sentence = "Vols come from listed ATM straddles (Nasdaq)"
     eligible = sorted([x for x in with_data if x["status"] == "eligible"], key=lambda x: -x["score"])
     conditional = [x for x in with_data if x["status"] == "conditional"]
 
@@ -612,7 +832,7 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict) -> tuple[str, dict]
         "",
         f"Structure assumed for the ballpark: USD worst-of FCN, {TERMS.tenor_months}M, KO 100% monthly from month 1, "
         f"KI {HEADLINE_KI*100:.0f}% observed at maturity, strike 100%, RO 100, monthly fixed coupon. "
-        "Vols come from listed ATM straddles; correlation from 90-day realized returns. "
+        f"{vol_sentence}; correlation from 90-day realized returns. "
         "The ballpark ignores skew, dividends and issuer-specific funding, so treat it as a sanity check for issuer levels, not a forecast. "
         "Every basket mixes different themes on purpose; same-sector pairs are pseudo-diversification.",
         "",
@@ -658,12 +878,33 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict) -> tuple[str, dict]
         lines.append("_None today._")
 
     lines += ["", "## Full screen (eligible names, by score)", ""]
+    def vpct(v):
+        return f"{v*100:.0f}%" if v else "n/a"
+
+    show_api = any(x.get("iv_api") for x in with_data)
+    show_manual = any(x.get("manual") for x in with_data)
+    eheader = ["Ticker", "Theme", "Last", "1D", "vs 6M high", "Vol used", "Vol src"]
+    if show_api:
+        eheader += ["Straddle IV", "6M skew 80-ATM"]
+    if show_manual:
+        eheader += ["Manual IV30"]
+    eheader += ["RV20", "ATM OI", "Next earnings"]
     erow = []
     for x in eligible:
-        erow.append([x["ticker"], x["bucket"], f"{x['spot']:.2f}", fmt_pct(x["move_1d"], 1, True), fmt_pct(x["drawdown"], 0),
-                     f"{x['vol']*100:.0f}%", f"{x['rv20']*100:.0f}%" if not math.isnan(x["rv20"]) else "n/a",
-                     f"{x['oi']:,}" if x.get("oi") else "n/a", x.get("earnings") or "n/a"])
-    lines.append(md_table(["Ticker", "Theme", "Last", "1D", "vs 6M high", "Vol used", "RV20", "ATM OI", "Next earnings"], erow))
+        r = [x["ticker"], x["bucket"], f"{x['spot']:.2f}", fmt_pct(x["move_1d"], 1, True), fmt_pct(x["drawdown"], 0),
+             f"{x['vol']*100:.0f}%", x["vol_src"]]
+        if show_api:
+            r += [vpct(x.get("iv_nasdaq")), f"{x['skew80']*100:+.0f} pts" if x.get("skew80") is not None else "n/a"]
+        if show_manual:
+            r += [vpct((x.get("manual") or {}).get("iv30"))]
+        r += [f"{x['rv20']*100:.0f}%" if not math.isnan(x["rv20"]) else "n/a",
+              f"{x['oi']:,}" if x.get("oi") else "n/a", x.get("earnings") or "n/a"]
+        erow.append(r)
+    lines.append(md_table(eheader, erow))
+    cross = [x for x in with_data if any(f.startswith(("IV sources disagree", "manual IV30")) for f in x["flags"])]
+    if cross:
+        lines += ["", "**IV cross-check flags** (not blocking; check the chain before RFQ): "
+                  + "; ".join(f"{x['ticker']} ({next(f for f in x['flags'] if f.startswith(('IV sources', 'manual IV30')))})" for x in cross)]
 
     missing = [x["ticker"] for x in analysed if "vol" not in x]
     lines += [
@@ -684,6 +925,13 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict) -> tuple[str, dict]
         "## Data notes",
         "",
         f"- Names with usable data: {len(with_data)}/{len(watchlist)}; with listed-options read: {len(with_opts)}/{len(watchlist)}.",
+        f"- Vol source used: Tradier/ORATS {n_api}, Nasdaq straddle {n_straddle}, realized-vol fallback {n_rv}"
+        + (f", manual override {n_manual}" if n_manual else "") + ".",
+        "- Tradier/ORATS: " + (
+            f"configured, but stopped: {tradier['error']}. Regenerate the token and update the `TRADIER_TOKEN` secret." if tradier.get("error")
+            else "configured (15-min delayed sandbox data unless TRADIER_BASE_URL points to production)." if tradier.get("configured")
+            else "not configured. Add a `TRADIER_TOKEN` repository secret to use ORATS IV (see `research/data-sources.md`)."),
+        *[f"- {note}" for note in (manual_notes or [])],
         f"- Missing today: {', '.join(missing) if missing else 'none'}.",
         f"- Model rate assumption {TERMS.rate*100:.2f}% + {TERMS.funding_spread*100:.2f}% funding; ballpark low end = ATM vol and 1.5% issuer margin, high end = ATM vol +3 pts and 0.75% margin.",
         "- Crypto-linked names are excluded by default.",
@@ -695,6 +943,9 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict) -> tuple[str, dict]
             "ticker": x["ticker"], "theme": x["theme"], "bucket": x["bucket"], "status": x["status"],
             "spot": round(x["spot"], 4), "move_1d": round(x["move_1d"], 2), "drawdown": round(x["drawdown"], 2),
             "vol": round(x["vol"], 4), "vol_src": x["vol_src"],
+            "iv_api": None if not x.get("iv_api") else round(x["iv_api"], 4),
+            "iv_straddle": None if not x.get("iv_nasdaq") else round(x["iv_nasdaq"], 4),
+            "skew80": None if x.get("skew80") is None else round(x["skew80"], 4),
             "rv20": None if math.isnan(x["rv20"]) else round(x["rv20"], 4),
             "oi": x.get("oi", 0), "earnings": x.get("earnings"), "entry": x["entry"], "flags": x["flags"],
         }
@@ -714,11 +965,19 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--fixture", help="Load market data from a JSON file instead of the network")
     parser.add_argument("--save-fixture", help="Save fetched market data to this JSON file")
-    parser.add_argument("--out", default=str(REPO_ROOT / "daily"), help="Output folder")
+    parser.add_argument("--out", default=None,
+                        help="Output folder (default: daily/, or local/daily/ when a manual IV file is loaded)")
+    parser.add_argument("--manual-iv", default=str(MANUAL_IV_PATH),
+                        help="Hand-filled IV file for cross-checks (default: iv_inputs/manual_iv.csv; ignored if missing)")
+    parser.add_argument("--manual-iv-override", action="store_true",
+                        help="Use the manual IV as the model vol (iv_6m if given, else iv30). Local runs only.")
     args = parser.parse_args()
 
     now_utc = dt.datetime.now(dt.timezone.utc)
     today = now_utc.astimezone(HKT).date()
+    manual, manual_notes = load_manual_iv(Path(args.manual_iv), today)
+    if args.manual_iv_override and not manual:
+        parser.error("--manual-iv-override needs a manual IV file with fresh rows")
     if args.fixture:
         market = json.loads(Path(args.fixture).read_text(encoding="utf-8"))
     else:
@@ -726,11 +985,22 @@ def main() -> None:
         if args.save_fixture:
             Path(args.save_fixture).write_text(json.dumps(market), encoding="utf-8")
 
-    daily = Path(args.out)
+    if args.out:
+        daily = Path(args.out)
+    elif manual:
+        # Manual IV usually comes from a site whose terms allow personal display only
+        # (e.g. Market Chameleon). Keep reports that contain it out of the public repo.
+        daily = LOCAL_OUT
+        print(f"Manual IV loaded: writing to {daily} (git-ignored), not daily/.")
+    else:
+        daily = REPO_ROOT / "daily"
+    if manual and daily.resolve() == (REPO_ROOT / "daily").resolve():
+        print("WARNING: report contains manual IV and is going to the published daily/ folder. Do not commit it.")
     archive = daily / "archive"
     archive.mkdir(parents=True, exist_ok=True)
-    prev = previous_baskets(daily / "latest.json")
-    report, record = generate(market, now_utc, prev)
+    prev_path = daily / "latest.json"
+    prev = previous_baskets(prev_path if prev_path.exists() else REPO_ROOT / "daily" / "latest.json")
+    report, record = generate(market, now_utc, prev, manual, args.manual_iv_override, manual_notes)
     (daily / "latest.md").write_text(report, encoding="utf-8")
     (daily / "latest.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
     (archive / now_utc.astimezone(HKT).strftime("%Y-%m-%d-%H%M-HKT.md")).write_text(report, encoding="utf-8")

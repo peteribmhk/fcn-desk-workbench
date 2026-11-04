@@ -26,6 +26,12 @@ jobs:
           python-version: "3.12"
 
       - name: Run FCN daily screen
+        env:
+          # Optional. Free Tradier sandbox token -> ORATS implied vol. Without it the
+          # screen uses Nasdaq straddles as before. Add under Settings -> Secrets -> Actions.
+          TRADIER_TOKEN: ${{ secrets.TRADIER_TOKEN }}
+          # Optional repository variable; default is the sandbox (https://sandbox.tradier.com/v1).
+          TRADIER_BASE_URL: ${{ vars.TRADIER_BASE_URL }}
         run: python scripts/generate_daily_pickings.py
 
       - name: Commit report

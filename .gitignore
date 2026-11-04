@@ -8,6 +8,12 @@ client-notes/
 actual-quotes/
 suitability-records/
 
+# Hand-filled IV (e.g. read from Market Chameleon: personal display use only) and
+# any local report built with it. Never publish these.
+iv_inputs/*.csv
+!iv_inputs/manual_iv.example.csv
+local/
+
 
 # Python
 __pycache__/

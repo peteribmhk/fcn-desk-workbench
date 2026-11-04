@@ -119,7 +119,7 @@ Prefer plain screening language: "worth RFQ", "screens rich", "the quote overrid
 
 ## 10. Ballpark model
 
-`scripts/fcn_model.py` gives a worst-of FCN coupon range by Monte Carlo: monthly coupon and KO, flat vol per leg from listed ATM straddles, realized correlation, a rate + funding assumption, and a low/high band for issuer margin and skew. It supports three downside conventions: KI at maturity (default), daily-close KI, and strike-only FCN with delivery at the strike. It ignores skew shape, dividends, borrow and issuer appetite. Use it to sanity-check issuer levels and to make ladder trade-offs concrete, never as a quote. How coupons are built and why issuers differ: `research/fcn-pricing-logic.md`.
+`scripts/fcn_model.py` gives a worst-of FCN coupon range by Monte Carlo: monthly coupon and KO, flat vol per leg from listed ATM implied vol (Tradier/ORATS when configured, else Nasdaq straddles), realized correlation, a rate + funding assumption, and a low/high band for issuer margin and skew. It supports three downside conventions: KI at maturity (default), daily-close KI, and strike-only FCN with delivery at the strike. It ignores skew shape, dividends, borrow and issuer appetite. Use it to sanity-check issuer levels and to make ladder trade-offs concrete, never as a quote. How coupons are built and why issuers differ: `research/fcn-pricing-logic.md`.
 
 ```bash
 python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --tenor 6                          # KI at maturity

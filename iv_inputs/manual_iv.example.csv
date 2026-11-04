@@ -1,0 +1,3 @@
+ticker,date,iv30,iv_6m,source,notes
+NVDA,2026-11-04,40.5,,Market Chameleon,example row: IV30 read by hand from the free IV page
+TSLA,2026-11-04,52.0,48.0,Market Chameleon,iv_6m only if you can see a 6M term-structure value
