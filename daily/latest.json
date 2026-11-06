@@ -1,5 +1,5 @@
 {
-  "generated_hkt": "2026-11-06T10:23:03.521176+08:00",
+  "generated_hkt": "2026-11-06T13:06:03.969554+08:00",
   "us_close": "2026-11-05",
   "status": "GREEN",
   "baskets": [
@@ -10,155 +10,102 @@
         "UAL"
       ],
       "vols": [
-        0.4485,
-        0.4727
+        0.4492,
+        0.4865
       ],
-      "avg_corr": 0.164,
+      "avg_corr": 0.142,
       "coupon_headline_ki": [
-        0.1539,
-        0.2132
+        0.1637,
+        0.2224
       ],
-      "requote": "fresh"
+      "requote": "repeat, same rationale"
     },
     {
-      "key": "TSLA/UAL",
+      "key": "DXCM/UAL",
       "tickers": [
         "UAL",
-        "TSLA"
+        "DXCM"
       ],
       "vols": [
-        0.4727,
-        0.4646
+        0.4865,
+        0.4309
       ],
-      "avg_corr": 0.239,
+      "avg_corr": 0.072,
       "coupon_headline_ki": [
-        0.1623,
-        0.2204
+        0.1534,
+        0.2121
       ],
       "requote": "fresh"
     },
     {
-      "key": "ENPH/VKTX",
+      "key": "DKNG/RIVN",
       "tickers": [
-        "VKTX",
-        "ENPH"
-      ],
-      "vols": [
-        0.6359,
-        0.6722
-      ],
-      "avg_corr": 0.137,
-      "coupon_headline_ki": [
-        0.3967,
-        0.4542
-      ],
-      "requote": "fresh"
-    },
-    {
-      "key": "RIVN/VKTX",
-      "tickers": [
-        "VKTX",
-        "RIVN"
-      ],
-      "vols": [
-        0.6359,
-        0.6113
-      ],
-      "avg_corr": 0.093,
-      "coupon_headline_ki": [
-        0.3579,
-        0.418
-      ],
-      "requote": "fresh"
-    },
-    {
-      "key": "IONQ/NTLA",
-      "tickers": [
-        "NTLA",
-        "IONQ"
-      ],
-      "vols": [
-        0.7933,
-        0.781
-      ],
-      "avg_corr": 0.448,
-      "coupon_headline_ki": [
-        0.5185,
-        0.5714
-      ],
-      "requote": "fresh"
-    },
-    {
-      "key": "AVGO/BABA/UAL",
-      "tickers": [
-        "AVGO",
-        "BABA",
-        "UAL"
-      ],
-      "vols": [
-        0.4493,
-        0.4485,
-        0.4727
-      ],
-      "avg_corr": 0.22,
-      "coupon_headline_ki": [
-        0.1974,
-        0.2609
-      ],
-      "requote": "fresh"
-    },
-    {
-      "key": "ENPH/RIVN/VKTX",
-      "tickers": [
-        "VKTX",
         "RIVN",
-        "ENPH"
+        "DKNG"
       ],
       "vols": [
-        0.6359,
-        0.6113,
-        0.6722
+        0.6292,
+        0.5708
       ],
-      "avg_corr": 0.207,
+      "avg_corr": 0.165,
       "coupon_headline_ki": [
-        0.4656,
-        0.5284
+        0.3267,
+        0.3864
       ],
       "requote": "fresh"
     },
     {
-      "key": "IONQ/NTLA/RIVN",
+      "key": "RIVN/TDOC",
       "tickers": [
-        "NTLA",
-        "IONQ",
-        "RIVN"
+        "RIVN",
+        "TDOC"
       ],
       "vols": [
-        0.7933,
-        0.781,
-        0.6113
+        0.6292,
+        0.5996
       ],
-      "avg_corr": 0.337,
+      "avg_corr": 0.023,
       "coupon_headline_ki": [
-        0.569,
-        0.6255
+        0.3486,
+        0.4092
       ],
       "requote": "fresh"
     },
     {
-      "key": "NIO/SOFI",
+      "key": "BABA/DXCM/UAL",
       "tickers": [
-        "SOFI",
-        "NIO"
+        "BABA",
+        "UAL",
+        "DXCM"
       ],
       "vols": [
-        0.5071,
-        0.5494
+        0.4492,
+        0.4865,
+        0.4309
       ],
-      "avg_corr": 0.306,
+      "avg_corr": 0.156,
       "coupon_headline_ki": [
-        0.2333,
-        0.2934
+        0.2004,
+        0.2634
+      ],
+      "requote": "fresh"
+    },
+    {
+      "key": "DKNG/RIVN/TDOC",
+      "tickers": [
+        "RIVN",
+        "DKNG",
+        "TDOC"
+      ],
+      "vols": [
+        0.6292,
+        0.5708,
+        0.5996
+      ],
+      "avg_corr": 0.173,
+      "coupon_headline_ki": [
+        0.4139,
+        0.4759
       ],
       "requote": "fresh"
     }
@@ -168,246 +115,287 @@
       "ticker": "AMD",
       "theme": "AI semiconductors",
       "bucket": "Semis/AI HW",
-      "status": "eligible",
-      "spot": 488.78,
-      "move_1d": 1.01,
-      "drawdown": -24.74,
-      "vol": 0.5591,
+      "status": "conditional",
+      "spot": 404.4,
+      "move_1d": -17.26,
+      "drawdown": -37.73,
+      "vol": 0.6076,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5591,
+      "iv_straddle": 0.6076,
       "skew80": null,
-      "rv20": 0.739,
-      "oi": 2193,
+      "rv20": 0.965,
+      "oi": 6053,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": null
     },
     {
       "ticker": "SMCI",
       "theme": "AI servers",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 29.6,
-      "move_1d": -5.7,
-      "drawdown": -41.0,
-      "vol": 0.7439,
+      "spot": 27.08,
+      "move_1d": -8.51,
+      "drawdown": -46.02,
+      "vol": 0.791,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7439,
+      "iv_straddle": 0.791,
       "skew80": null,
-      "rv20": 0.7931,
-      "oi": 7372,
+      "rv20": 0.8238,
+      "oi": 1113,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "NVDA",
       "theme": "AI semiconductors",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 200.13,
-      "move_1d": -3.17,
-      "drawdown": -16.35,
-      "vol": 0.4352,
+      "spot": 181.6,
+      "move_1d": -9.26,
+      "drawdown": -24.09,
+      "vol": 0.4587,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.4352,
+      "iv_straddle": 0.4587,
       "skew80": null,
-      "rv20": 0.3377,
-      "oi": 19043,
+      "rv20": 0.4573,
+      "oi": 16905,
       "earnings": "2026-11-17",
-      "entry": "mild pullback",
+      "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-17"
-      ]
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "<p10",
+        "metric": "fwd P/E",
+        "stale": false,
+        "upside": 0.7896
+      }
     },
     {
       "ticker": "TSLA",
       "theme": "EV/AI/robotics",
       "bucket": "EV/Auto",
-      "status": "eligible",
-      "spot": 385.19,
-      "move_1d": -3.34,
-      "drawdown": -13.49,
-      "vol": 0.4646,
+      "status": "conditional",
+      "spot": 343.69,
+      "move_1d": -10.77,
+      "drawdown": -22.81,
+      "vol": 0.4888,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.4646,
+      "iv_straddle": 0.4888,
       "skew80": null,
-      "rv20": 0.3859,
-      "oi": 1394,
+      "rv20": 0.5619,
+      "oi": 1204,
       "earnings": null,
-      "entry": "mild pullback",
-      "flags": []
+      "entry": "sweet spot (-20% to -50%)",
+      "flags": [
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": null
     },
     {
       "ticker": "PLTR",
       "theme": "AI software",
       "bucket": "Software",
       "status": "conditional",
-      "spot": 171.7,
-      "move_1d": -2.11,
-      "drawdown": -17.87,
-      "vol": 0.5309,
+      "spot": 154.99,
+      "move_1d": -9.73,
+      "drawdown": -25.86,
+      "vol": 0.568,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5309,
+      "iv_straddle": 0.568,
       "skew80": null,
-      "rv20": 0.5193,
-      "oi": 2866,
+      "rv20": 0.6084,
+      "oi": 4277,
       "earnings": null,
-      "entry": "mild pullback",
+      "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "SNDK",
       "theme": "storage/semiconductors",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 1037.4,
-      "move_1d": -7.91,
-      "drawdown": -55.57,
-      "vol": 0.7524,
+      "spot": 806.43,
+      "move_1d": -22.26,
+      "drawdown": -65.46,
+      "vol": 0.8097,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7524,
+      "iv_straddle": 0.8097,
       "skew80": null,
-      "rv20": 0.8819,
-      "oi": 432,
+      "rv20": 1.1948,
+      "oi": 225,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "GOOGL",
       "theme": "mega-cap AI/search",
       "bucket": "Mega-cap",
       "status": "eligible",
-      "spot": 288.93,
-      "move_1d": 3.18,
-      "drawdown": -28.24,
-      "vol": 0.3592,
+      "spot": 282.57,
+      "move_1d": -2.2,
+      "drawdown": -29.82,
+      "vol": 0.3671,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.3592,
+      "iv_straddle": 0.3671,
       "skew80": null,
-      "rv20": 0.5255,
-      "oi": 5287,
+      "rv20": 0.5272,
+      "oi": 6235,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "HIMS",
       "theme": "digital health",
       "bucket": "Biotech/Health",
       "status": "conditional",
-      "spot": 26.66,
-      "move_1d": 3.74,
-      "drawdown": -30.36,
-      "vol": 0.8051,
+      "spot": 24.06,
+      "move_1d": -9.75,
+      "drawdown": -37.15,
+      "vol": 0.805,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.8051,
+      "iv_straddle": 0.805,
       "skew80": null,
-      "rv20": 0.7676,
-      "oi": 1858,
+      "rv20": 0.8277,
+      "oi": 463,
       "earnings": "2026-11-09",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
-        "event hold: earnings 2026-11-09"
-      ]
+        "falling knife: wait 2 stable sessions",
+        "event hold: earnings 2026-11-09",
+        "thin listed options"
+      ],
+      "valuation": null
     },
     {
       "ticker": "MRNA",
       "theme": "biotech",
       "bucket": "Biotech/Health",
       "status": "conditional",
-      "spot": 258.38,
-      "move_1d": 13.11,
-      "drawdown": 0.0,
-      "vol": 0.8152,
+      "spot": 241.46,
+      "move_1d": -6.55,
+      "drawdown": -6.55,
+      "vol": 0.8349,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.8152,
+      "iv_straddle": 0.8349,
       "skew80": null,
-      "rv20": 1.1025,
-      "oi": 119,
+      "rv20": 1.1395,
+      "oi": 420,
       "earnings": "2026-11-06",
       "entry": "near 6M high",
       "flags": [
+        "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-06",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "IONQ",
       "theme": "quantum computing",
       "bucket": "Quantum",
-      "status": "eligible",
-      "spot": 29.54,
-      "move_1d": -1.5,
-      "drawdown": -59.01,
-      "vol": 0.781,
+      "status": "conditional",
+      "spot": 26.43,
+      "move_1d": -10.53,
+      "drawdown": -63.33,
+      "vol": 0.7854,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.781,
+      "iv_straddle": 0.7854,
       "skew80": null,
-      "rv20": 0.8472,
-      "oi": 21958,
+      "rv20": 0.9063,
+      "oi": 2298,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
-      "flags": []
+      "flags": [
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "<p10",
+        "metric": "fwd P/S",
+        "stale": false,
+        "upside": 1.6515
+      }
     },
     {
       "ticker": "RKLB",
       "theme": "space/aerospace",
       "bucket": "Space/Defense",
       "status": "conditional",
-      "spot": 52.37,
-      "move_1d": -3.78,
-      "drawdown": -65.14,
-      "vol": 0.7503,
+      "spot": 45.99,
+      "move_1d": -12.18,
+      "drawdown": -69.39,
+      "vol": 0.8209,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7503,
+      "iv_straddle": 0.8209,
       "skew80": null,
-      "rv20": 0.7508,
-      "oi": 20068,
+      "rv20": 0.8464,
+      "oi": 16938,
       "earnings": "2026-11-09",
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-09"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "ENPH",
       "theme": "solar technology",
       "bucket": "Solar/Clean",
-      "status": "eligible",
-      "spot": 31.55,
-      "move_1d": 3.71,
-      "drawdown": -56.38,
-      "vol": 0.6722,
+      "status": "conditional",
+      "spot": 28.97,
+      "move_1d": -8.18,
+      "drawdown": -59.95,
+      "vol": 0.7321,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6722,
+      "iv_straddle": 0.7321,
       "skew80": null,
-      "rv20": 0.928,
+      "rv20": 0.9722,
       "oi": 2910,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
-      "flags": []
+      "flags": [
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": null
     },
     {
       "ticker": "FSLR",
@@ -426,490 +414,539 @@
       "oi": 2068,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "BABA",
       "theme": "China internet ADR",
       "bucket": "China ADR",
       "status": "eligible",
-      "spot": 105.29,
-      "move_1d": 4.91,
-      "drawdown": -27.79,
-      "vol": 0.4485,
+      "spot": 108.07,
+      "move_1d": 2.64,
+      "drawdown": -25.88,
+      "vol": 0.4492,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.4485,
+      "iv_straddle": 0.4492,
       "skew80": null,
-      "rv20": 0.3655,
-      "oi": 4210,
+      "rv20": 0.3747,
+      "oi": 2385,
       "earnings": "2026-11-24",
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "PDD",
       "theme": "China e-commerce ADR",
       "bucket": "China ADR",
       "status": "conditional",
-      "spot": 82.15,
-      "move_1d": 2.47,
-      "drawdown": -19.07,
-      "vol": 0.4031,
+      "spot": 83.95,
+      "move_1d": 2.19,
+      "drawdown": -15.71,
+      "vol": 0.3962,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.4031,
+      "iv_straddle": 0.3962,
       "skew80": null,
-      "rv20": 0.3001,
-      "oi": 59139,
+      "rv20": 0.307,
+      "oi": 44945,
       "earnings": "2026-11-17",
       "entry": "mild pullback",
       "flags": [
         "event hold: earnings 2026-11-17"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "RIVN",
       "theme": "EV manufacturer",
       "bucket": "EV/Auto",
       "status": "eligible",
-      "spot": 14.06,
-      "move_1d": 5.79,
-      "drawdown": -30.19,
-      "vol": 0.6113,
+      "spot": 13.29,
+      "move_1d": -5.48,
+      "drawdown": -34.01,
+      "vol": 0.6292,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6113,
+      "iv_straddle": 0.6292,
       "skew80": null,
-      "rv20": 0.5506,
-      "oi": 13811,
+      "rv20": 0.5846,
+      "oi": 16883,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "UAL",
       "theme": "airlines/cyclicals",
       "bucket": "Cyclical/Consumer",
       "status": "eligible",
-      "spot": 115.76,
-      "move_1d": 7.98,
-      "drawdown": -14.95,
-      "vol": 0.4727,
+      "spot": 110.49,
+      "move_1d": -4.55,
+      "drawdown": -18.82,
+      "vol": 0.4865,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.4727,
+      "iv_straddle": 0.4865,
       "skew80": null,
-      "rv20": 0.5349,
-      "oi": 3727,
+      "rv20": 0.5547,
+      "oi": 3457,
       "earnings": null,
       "entry": "mild pullback",
-      "flags": []
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "MU",
       "theme": "memory/semiconductors",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 795.23,
-      "move_1d": -7.0,
-      "drawdown": -34.47,
-      "vol": 0.6033,
+      "spot": 656.39,
+      "move_1d": -17.46,
+      "drawdown": -45.91,
+      "vol": 0.6272,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6033,
+      "iv_straddle": 0.6272,
       "skew80": null,
-      "rv20": 0.6507,
-      "oi": 2535,
+      "rv20": 0.8982,
+      "oi": 770,
       "earnings": "2026-12-16",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
-        "falling knife: wait 2 stable sessions"
-      ]
+        "falling knife: wait 2 stable sessions",
+        "thin listed options"
+      ],
+      "valuation": null
     },
     {
       "ticker": "GLW",
       "theme": "specialty glass/optical materials",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 118.77,
-      "move_1d": -5.84,
-      "drawdown": -53.55,
-      "vol": 0.6041,
+      "spot": 103.43,
+      "move_1d": -12.92,
+      "drawdown": -59.55,
+      "vol": 0.6267,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6041,
+      "iv_straddle": 0.6267,
       "skew80": null,
-      "rv20": 0.5853,
-      "oi": 1827,
+      "rv20": 0.7103,
+      "oi": 1532,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "MRVL",
       "theme": "networking/custom silicon",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 159.8,
-      "move_1d": -7.08,
-      "drawdown": -49.5,
-      "vol": 0.6545,
+      "spot": 133.55,
+      "move_1d": -16.43,
+      "drawdown": -57.79,
+      "vol": 0.6963,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6545,
+      "iv_straddle": 0.6963,
       "skew80": null,
-      "rv20": 0.9446,
-      "oi": 5657,
+      "rv20": 1.0856,
+      "oi": 770,
       "earnings": "2026-12-01",
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "deep drawdown (>50%)",
       "flags": [
-        "falling knife: wait 2 stable sessions"
-      ]
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions",
+        "thin listed options"
+      ],
+      "valuation": null
     },
     {
       "ticker": "COHR",
       "theme": "optical components/lasers",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 195.09,
-      "move_1d": -5.98,
-      "drawdown": -54.3,
-      "vol": 0.7408,
+      "spot": 169.76,
+      "move_1d": -12.98,
+      "drawdown": -60.23,
+      "vol": 0.7964,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7408,
+      "iv_straddle": 0.7964,
       "skew80": null,
-      "rv20": 0.956,
-      "oi": 157,
+      "rv20": 1.0032,
+      "oi": 553,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "ALAB",
       "theme": "connectivity semiconductors",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 223.27,
-      "move_1d": -4.43,
-      "drawdown": -53.78,
-      "vol": 0.8135,
+      "spot": 179.47,
+      "move_1d": -19.62,
+      "drawdown": -62.84,
+      "vol": 0.878,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.8135,
+      "iv_straddle": 0.878,
       "skew80": null,
-      "rv20": 0.9181,
-      "oi": 1471,
+      "rv20": 1.1203,
+      "oi": 2030,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "ARM",
       "theme": "CPU IP/licensing",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 191.8,
-      "move_1d": -5.28,
-      "drawdown": -56.36,
-      "vol": 0.6784,
+      "spot": 166.72,
+      "move_1d": -13.08,
+      "drawdown": -62.06,
+      "vol": 0.719,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6784,
+      "iv_straddle": 0.719,
       "skew80": null,
-      "rv20": 0.7254,
-      "oi": 2487,
+      "rv20": 0.8258,
+      "oi": 1239,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "VRT",
       "theme": "data-center power/cooling",
       "bucket": "AI Cloud/DC",
       "status": "conditional",
-      "spot": 205.55,
-      "move_1d": -12.89,
-      "drawdown": -45.37,
-      "vol": 0.6465,
+      "spot": 176.73,
+      "move_1d": -14.02,
+      "drawdown": -53.03,
+      "vol": 0.6607,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6465,
+      "iv_straddle": 0.6607,
       "skew80": null,
-      "rv20": 0.9379,
-      "oi": 2632,
+      "rv20": 1.0649,
+      "oi": 10315,
       "earnings": null,
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "APP",
       "theme": "adtech/software",
       "bucket": "Software",
       "status": "conditional",
-      "spot": 271.75,
-      "move_1d": 10.69,
-      "drawdown": -55.72,
-      "vol": 0.9031,
+      "spot": 356.1,
+      "move_1d": 31.04,
+      "drawdown": -41.97,
+      "vol": 0.6522,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.9031,
+      "iv_straddle": 0.6522,
       "skew80": null,
-      "rv20": 0.7018,
-      "oi": 684,
+      "rv20": 1.1933,
+      "oi": 544,
       "earnings": null,
-      "entry": "deep drawdown (>50%)",
+      "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "AMAT",
       "theme": "semiconductor equipment",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 369.4,
-      "move_1d": -3.28,
-      "drawdown": -48.91,
-      "vol": 0.5891,
+      "spot": 319.25,
+      "move_1d": -13.58,
+      "drawdown": -55.84,
+      "vol": 0.6096,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5891,
+      "iv_straddle": 0.6096,
       "skew80": null,
-      "rv20": 0.587,
-      "oi": 772,
+      "rv20": 0.7443,
+      "oi": 1673,
       "earnings": "2026-11-12",
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
-        "event hold: earnings 2026-11-12",
-        "thin listed options"
-      ]
+        "event hold: earnings 2026-11-12"
+      ],
+      "valuation": null
     },
     {
       "ticker": "CRDO",
       "theme": "connectivity semiconductors (AEC)",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 136.5,
-      "move_1d": -9.55,
-      "drawdown": -54.88,
-      "vol": 0.8332,
+      "spot": 112.33,
+      "move_1d": -17.71,
+      "drawdown": -62.87,
+      "vol": 0.8937,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.8332,
+      "iv_straddle": 0.8937,
       "skew80": null,
-      "rv20": 1.0336,
-      "oi": 271,
+      "rv20": 1.1989,
+      "oi": 228,
       "earnings": "2026-12-07",
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "NBIS",
       "theme": "AI cloud/neocloud",
       "bucket": "AI Cloud/DC",
       "status": "conditional",
-      "spot": 141.52,
-      "move_1d": -6.67,
-      "drawdown": -50.64,
-      "vol": 0.8994,
+      "spot": 120.37,
+      "move_1d": -14.94,
+      "drawdown": -58.01,
+      "vol": 0.9822,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.8994,
+      "iv_straddle": 0.9822,
       "skew80": null,
-      "rv20": 1.0289,
-      "oi": 637,
+      "rv20": 1.1249,
+      "oi": 769,
       "earnings": "2026-11-12",
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-12",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "OKLO",
       "theme": "advanced nuclear/SMR",
       "bucket": "Nuclear/Power",
       "status": "conditional",
-      "spot": 22.12,
-      "move_1d": -5.83,
-      "drawdown": -71.69,
-      "vol": 0.8191,
+      "spot": 19.2,
+      "move_1d": -13.2,
+      "drawdown": -75.43,
+      "vol": 0.8852,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.8191,
+      "iv_straddle": 0.8852,
       "skew80": null,
-      "rv20": 0.6145,
-      "oi": 3900,
+      "rv20": 0.7304,
+      "oi": 8070,
       "earnings": "2026-11-06",
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-06"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "ASTS",
       "theme": "satellite-to-phone",
       "bucket": "Space/Defense",
       "status": "conditional",
-      "spot": 35.62,
-      "move_1d": -4.12,
-      "drawdown": -73.24,
-      "vol": 0.9171,
+      "spot": 30.2,
+      "move_1d": -15.22,
+      "drawdown": -77.31,
+      "vol": 1.0038,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.9171,
+      "iv_straddle": 1.0038,
       "skew80": null,
-      "rv20": 0.9028,
-      "oi": 5113,
+      "rv20": 1.0221,
+      "oi": 6418,
       "earnings": "2026-11-09",
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-09"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "RGTI",
       "theme": "quantum computing",
       "bucket": "Quantum",
       "status": "conditional",
-      "spot": 11.21,
-      "move_1d": 1.13,
-      "drawdown": -58.53,
-      "vol": 0.759,
+      "spot": 9.85,
+      "move_1d": -12.13,
+      "drawdown": -63.56,
+      "vol": 0.8048,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.759,
+      "iv_straddle": 0.8048,
       "skew80": null,
-      "rv20": 0.743,
-      "oi": 729,
+      "rv20": 0.8487,
+      "oi": 1313,
       "earnings": "2026-11-10",
       "entry": "deep drawdown (>50%)",
       "flags": [
-        "event hold: earnings 2026-11-10",
-        "thin listed options"
-      ]
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions",
+        "event hold: earnings 2026-11-10"
+      ],
+      "valuation": null
     },
     {
       "ticker": "APLD",
       "theme": "data-center infrastructure",
       "bucket": "AI Cloud/DC",
       "status": "conditional",
-      "spot": 16.61,
-      "move_1d": -6.74,
-      "drawdown": -66.55,
-      "vol": 0.985,
+      "spot": 14.17,
+      "move_1d": -14.69,
+      "drawdown": -71.46,
+      "vol": 1.0321,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.985,
+      "iv_straddle": 1.0321,
       "skew80": null,
-      "rv20": 1.0582,
-      "oi": 10276,
+      "rv20": 1.1665,
+      "oi": 232,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
-        "falling knife: wait 2 stable sessions"
-      ]
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions",
+        "thin listed options"
+      ],
+      "valuation": null
     },
     {
       "ticker": "AVAV",
       "theme": "defense drones/aerospace",
       "bucket": "Space/Defense",
       "status": "conditional",
-      "spot": 113.23,
-      "move_1d": -8.34,
-      "drawdown": -47.19,
-      "vol": 0.7264,
+      "spot": 102.08,
+      "move_1d": -9.85,
+      "drawdown": -52.39,
+      "vol": 0.7453,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7264,
+      "iv_straddle": 0.7453,
       "skew80": null,
-      "rv20": 0.5795,
-      "oi": 664,
+      "rv20": 0.6676,
+      "oi": 923,
       "earnings": "2026-12-08",
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "NTLA",
       "theme": "gene editing",
       "bucket": "Biotech/Health",
-      "status": "eligible",
-      "spot": 12.31,
-      "move_1d": 3.79,
-      "drawdown": -31.0,
-      "vol": 0.7933,
+      "status": "conditional",
+      "spot": 11.1,
+      "move_1d": -9.83,
+      "drawdown": -37.78,
+      "vol": 0.884,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7933,
+      "iv_straddle": 0.884,
       "skew80": null,
-      "rv20": 0.7242,
-      "oi": 7216,
+      "rv20": 0.7656,
+      "oi": 1738,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": null
     },
     {
       "ticker": "TDOC",
       "theme": "telehealth",
       "bucket": "Biotech/Health",
       "status": "eligible",
-      "spot": 9.7,
-      "move_1d": 9.11,
-      "drawdown": -0.21,
-      "vol": 0.6099,
+      "spot": 9.41,
+      "move_1d": -2.99,
+      "drawdown": -3.19,
+      "vol": 0.5996,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6099,
+      "iv_straddle": 0.5996,
       "skew80": null,
-      "rv20": 0.9623,
-      "oi": 11893,
+      "rv20": 0.9784,
+      "oi": 3787,
       "earnings": null,
       "entry": "near 6M high",
-      "flags": []
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "ISRG",
       "theme": "surgical robotics",
       "bucket": "Biotech/Health",
       "status": "conditional",
-      "spot": 482.1,
-      "move_1d": 9.38,
-      "drawdown": 0.0,
-      "vol": 0.3562,
+      "spot": 468.52,
+      "move_1d": -2.82,
+      "drawdown": -2.82,
+      "vol": 0.3603,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.3562,
+      "iv_straddle": 0.3603,
       "skew80": null,
-      "rv20": 0.4052,
-      "oi": 79,
+      "rv20": 0.4248,
+      "oi": 93,
       "earnings": null,
       "entry": "near 6M high",
       "flags": [
         "thin listed options"
-      ]
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "p10-p25",
+        "metric": "fwd EV/EBITDA",
+        "stale": false,
+        "upside": 0.0672
+      }
     },
     {
       "ticker": "LLY",
@@ -930,26 +967,30 @@
       "entry": "near 6M high",
       "flags": [
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "AVGO",
       "theme": "semiconductors/networking",
       "bucket": "Semis/AI HW",
-      "status": "eligible",
-      "spot": 325.48,
-      "move_1d": -2.0,
-      "drawdown": -32.41,
-      "vol": 0.4493,
+      "status": "conditional",
+      "spot": 291.53,
+      "move_1d": -10.43,
+      "drawdown": -39.46,
+      "vol": 0.495,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.4493,
+      "iv_straddle": 0.495,
       "skew80": null,
-      "rv20": 0.442,
-      "oi": 3926,
+      "rv20": 0.5608,
+      "oi": 2508,
       "earnings": "2026-12-10",
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": null
     },
     {
       "ticker": "ANET",
@@ -970,94 +1011,102 @@
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "WDC",
       "theme": "storage (HDD/NAND)",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 323.83,
-      "move_1d": -6.77,
-      "drawdown": -56.6,
-      "vol": 0.6859,
+      "spot": 267.63,
+      "move_1d": -17.35,
+      "drawdown": -64.14,
+      "vol": 0.7404,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6859,
+      "iv_straddle": 0.7404,
       "skew80": null,
-      "rv20": 0.7583,
-      "oi": 3122,
+      "rv20": 0.9899,
+      "oi": 1612,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "STX",
       "theme": "storage (HDD)",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 557.06,
-      "move_1d": -8.13,
-      "drawdown": -49.08,
-      "vol": 0.7127,
+      "spot": 466.53,
+      "move_1d": -16.25,
+      "drawdown": -57.36,
+      "vol": 0.7566,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7127,
+      "iv_straddle": 0.7566,
       "skew80": null,
-      "rv20": 0.7318,
-      "oi": 762,
+      "rv20": 0.9224,
+      "oi": 113,
       "earnings": null,
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "LITE",
       "theme": "optical components",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 626.75,
-      "move_1d": -7.85,
-      "drawdown": -44.7,
-      "vol": 0.6857,
+      "spot": 509.7,
+      "move_1d": -18.68,
+      "drawdown": -55.03,
+      "vol": 0.7212,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6857,
+      "iv_straddle": 0.7212,
       "skew80": null,
-      "rv20": 1.1487,
-      "oi": 726,
+      "rv20": 1.3093,
+      "oi": 868,
       "earnings": null,
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "DELL",
       "theme": "AI servers/PC",
       "bucket": "Semis/AI HW",
       "status": "conditional",
-      "spot": 372.36,
-      "move_1d": -8.82,
-      "drawdown": -36.72,
-      "vol": 0.7089,
+      "spot": 316.91,
+      "move_1d": -14.89,
+      "drawdown": -46.14,
+      "vol": 0.7574,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7089,
+      "iv_straddle": 0.7574,
       "skew80": null,
-      "rv20": 0.8677,
-      "oi": 264,
+      "rv20": 0.9957,
+      "oi": 572,
       "earnings": "2026-11-24",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "CRWV",
@@ -1077,111 +1126,124 @@
       "earnings": "2026-11-10",
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-10"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "ORCL",
       "theme": "cloud/software",
       "bucket": "Software",
-      "status": "eligible",
-      "spot": 123.73,
-      "move_1d": -1.95,
-      "drawdown": -50.14,
-      "vol": 0.6078,
+      "status": "conditional",
+      "spot": 115.16,
+      "move_1d": -6.93,
+      "drawdown": -53.59,
+      "vol": 0.6333,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6078,
+      "iv_straddle": 0.6333,
       "skew80": null,
-      "rv20": 0.8021,
-      "oi": 4593,
+      "rv20": 0.8163,
+      "oi": 5377,
       "earnings": "2026-12-09",
       "entry": "deep drawdown (>50%)",
-      "flags": []
+      "flags": [
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": null
     },
     {
       "ticker": "SNOW",
       "theme": "data cloud software",
       "bucket": "Software",
       "status": "conditional",
-      "spot": 290.6,
-      "move_1d": -1.5,
-      "drawdown": -21.22,
-      "vol": 0.5771,
+      "spot": 269.54,
+      "move_1d": -7.25,
+      "drawdown": -26.93,
+      "vol": 0.612,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5771,
+      "iv_straddle": 0.612,
       "skew80": null,
-      "rv20": 0.6469,
-      "oi": 714,
+      "rv20": 0.6738,
+      "oi": 978,
       "earnings": "2026-12-02",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "NET",
       "theme": "edge cloud/security",
       "bucket": "Software",
       "status": "conditional",
-      "spot": 266.58,
-      "move_1d": -2.57,
-      "drawdown": -26.14,
-      "vol": 0.6703,
+      "spot": 244.51,
+      "move_1d": -8.28,
+      "drawdown": -32.26,
+      "vol": 0.6976,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6703,
+      "iv_straddle": 0.6976,
       "skew80": null,
-      "rv20": 0.6866,
-      "oi": 372,
+      "rv20": 0.7335,
+      "oi": 192,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
+        "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "DDOG",
       "theme": "observability software",
       "bucket": "Software",
       "status": "conditional",
-      "spot": 188.72,
-      "move_1d": -14.42,
-      "drawdown": -35.65,
-      "vol": 0.6445,
+      "spot": 174.6,
+      "move_1d": -7.48,
+      "drawdown": -40.46,
+      "vol": 0.6598,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6445,
+      "iv_straddle": 0.6598,
       "skew80": null,
-      "rv20": 0.9628,
-      "oi": 1355,
+      "rv20": 0.9795,
+      "oi": 2717,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "SOFI",
       "theme": "fintech/consumer finance",
       "bucket": "Fintech",
-      "status": "eligible",
-      "spot": 17.38,
-      "move_1d": 3.64,
-      "drawdown": -9.38,
-      "vol": 0.5071,
+      "status": "conditional",
+      "spot": 16.04,
+      "move_1d": -7.71,
+      "drawdown": -16.37,
+      "vol": 0.5429,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5071,
+      "iv_straddle": 0.5429,
       "skew80": null,
-      "rv20": 0.6772,
-      "oi": 45822,
+      "rv20": 0.742,
+      "oi": 21594,
       "earnings": null,
-      "entry": "near 6M high",
-      "flags": []
+      "entry": "mild pullback",
+      "flags": [
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": null
     },
     {
       "ticker": "AFRM",
@@ -1203,131 +1265,141 @@
       "flags": [
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "JD",
       "theme": "China e-commerce ADR",
       "bucket": "China ADR",
       "status": "conditional",
-      "spot": 27.73,
-      "move_1d": 3.05,
-      "drawdown": -17.89,
-      "vol": 0.4126,
+      "spot": 28.64,
+      "move_1d": 3.28,
+      "drawdown": -15.19,
+      "vol": 0.3841,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.4126,
+      "iv_straddle": 0.3841,
       "skew80": null,
-      "rv20": 0.2575,
-      "oi": 13483,
+      "rv20": 0.2788,
+      "oi": 1970,
       "earnings": "2026-11-17",
       "entry": "mild pullback",
       "flags": [
         "event hold: earnings 2026-11-17"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "NIO",
       "theme": "China EV ADR",
       "bucket": "China ADR",
       "status": "eligible",
-      "spot": 3.3,
-      "move_1d": 3.45,
-      "drawdown": -49.54,
-      "vol": 0.5494,
+      "spot": 3.2,
+      "move_1d": -3.03,
+      "drawdown": -51.07,
+      "vol": 0.5665,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5494,
+      "iv_straddle": 0.5665,
       "skew80": null,
-      "rv20": 0.3927,
+      "rv20": 0.3857,
       "oi": 21119,
       "earnings": "2026-11-24",
-      "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "entry": "deep drawdown (>50%)",
+      "flags": [
+        "thesis check: >50% off high without valuation support"
+      ],
+      "valuation": null
     },
     {
       "ticker": "XPEV",
       "theme": "China EV ADR",
       "bucket": "China ADR",
       "status": "conditional",
-      "spot": 9.85,
-      "move_1d": 1.86,
-      "drawdown": -44.94,
-      "vol": 0.5556,
+      "spot": 9.6,
+      "move_1d": -2.54,
+      "drawdown": -46.34,
+      "vol": 0.57,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5556,
+      "iv_straddle": 0.57,
       "skew80": null,
-      "rv20": 0.5136,
+      "rv20": 0.5224,
       "oi": 18978,
       "earnings": "2026-11-16",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "event hold: earnings 2026-11-16"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "BIDU",
       "theme": "China AI/search ADR",
       "bucket": "China ADR",
       "status": "conditional",
-      "spot": 80.43,
-      "move_1d": 4.5,
-      "drawdown": -46.56,
-      "vol": 0.457,
+      "spot": 79.48,
+      "move_1d": -1.18,
+      "drawdown": -47.19,
+      "vol": 0.4625,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.457,
+      "iv_straddle": 0.4625,
       "skew80": null,
-      "rv20": 0.2839,
+      "rv20": 0.2815,
       "oi": 10468,
       "earnings": "2026-11-16",
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "event hold: earnings 2026-11-16"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "MELI",
       "theme": "Latin America e-commerce/fintech",
       "bucket": "Fintech",
       "status": "conditional",
-      "spot": 1739.88,
-      "move_1d": 4.68,
-      "drawdown": -13.29,
-      "vol": 0.3974,
+      "spot": 1530.28,
+      "move_1d": -12.05,
+      "drawdown": -23.74,
+      "vol": 0.4204,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.3974,
+      "iv_straddle": 0.4204,
       "skew80": null,
-      "rv20": 0.4022,
-      "oi": 107,
+      "rv20": 0.5984,
+      "oi": 129,
       "earnings": null,
-      "entry": "mild pullback",
+      "entry": "sweet spot (-20% to -50%)",
       "flags": [
+        "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "TCOM",
       "theme": "China travel ADR",
       "bucket": "China ADR",
       "status": "conditional",
-      "spot": 42.69,
-      "move_1d": 3.17,
-      "drawdown": -20.01,
-      "vol": 0.3831,
+      "spot": 43.81,
+      "move_1d": 2.62,
+      "drawdown": -16.84,
+      "vol": 0.3568,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.3831,
+      "iv_straddle": 0.3568,
       "skew80": null,
-      "rv20": 0.2708,
-      "oi": 2015,
+      "rv20": 0.2776,
+      "oi": 10193,
       "earnings": "2026-11-16",
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "mild pullback",
       "flags": [
         "event hold: earnings 2026-11-16"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "CRSP",
@@ -1348,66 +1420,76 @@
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "VKTX",
       "theme": "obesity/metabolic biotech",
       "bucket": "Biotech/Health",
-      "status": "eligible",
-      "spot": 27.97,
-      "move_1d": 7.21,
-      "drawdown": -33.61,
-      "vol": 0.6359,
+      "status": "conditional",
+      "spot": 25.79,
+      "move_1d": -7.79,
+      "drawdown": -38.78,
+      "vol": 0.6698,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6359,
+      "iv_straddle": 0.6698,
       "skew80": null,
-      "rv20": 0.7122,
-      "oi": 1853,
+      "rv20": 0.7618,
+      "oi": 781,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [
+        "falling knife: wait 2 stable sessions",
+        "thin listed options"
+      ],
+      "valuation": null
     },
     {
       "ticker": "NVO",
       "theme": "pharma GLP-1 (ADR)",
       "bucket": "Biotech/Health",
       "status": "eligible",
-      "spot": 42.18,
-      "move_1d": 4.95,
-      "drawdown": -18.27,
-      "vol": 0.3516,
+      "spot": 40.3,
+      "move_1d": -4.46,
+      "drawdown": -21.91,
+      "vol": 0.3531,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.3516,
+      "iv_straddle": 0.3531,
       "skew80": null,
-      "rv20": 0.2674,
-      "oi": 10776,
+      "rv20": 0.3215,
+      "oi": 56524,
       "earnings": null,
-      "entry": "mild pullback",
-      "flags": []
+      "entry": "sweet spot (-20% to -50%)",
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "LUNR",
       "theme": "space/lunar landers",
       "bucket": "Space/Defense",
       "status": "conditional",
-      "spot": 9.93,
-      "move_1d": -5.25,
-      "drawdown": -78.27,
-      "vol": 0.9018,
+      "spot": 8.62,
+      "move_1d": -13.19,
+      "drawdown": -81.14,
+      "vol": 0.9301,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.9018,
+      "iv_straddle": 0.9301,
       "skew80": null,
-      "rv20": 0.8324,
-      "oi": 10988,
+      "rv20": 0.9349,
+      "oi": 548,
       "earnings": "2026-11-12",
       "entry": "deep drawdown (>50%)",
       "flags": [
-        "event hold: earnings 2026-11-12"
-      ]
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions",
+        "event hold: earnings 2026-11-12",
+        "thin listed options"
+      ],
+      "valuation": null
     },
     {
       "ticker": "KTOS",
@@ -1429,28 +1511,31 @@
       "flags": [
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "SMR",
       "theme": "small modular reactors",
       "bucket": "Nuclear/Power",
       "status": "conditional",
-      "spot": 5.13,
-      "move_1d": -4.47,
-      "drawdown": -63.23,
-      "vol": 0.8068,
+      "spot": 4.37,
+      "move_1d": -14.81,
+      "drawdown": -68.67,
+      "vol": 0.8747,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.8068,
+      "iv_straddle": 0.8747,
       "skew80": null,
-      "rv20": 0.6827,
-      "oi": 3175,
+      "rv20": 0.842,
+      "oi": 1226,
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "LEU",
@@ -1470,136 +1555,276 @@
       "earnings": null,
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "GEV",
       "theme": "power equipment/grid",
       "bucket": "Nuclear/Power",
       "status": "conditional",
-      "spot": 832.83,
-      "move_1d": -9.3,
-      "drawdown": -29.11,
-      "vol": 0.5203,
+      "spot": 770.51,
+      "move_1d": -7.48,
+      "drawdown": -34.42,
+      "vol": 0.5437,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5203,
+      "iv_straddle": 0.5437,
       "skew80": null,
-      "rv20": 0.7054,
-      "oi": 188,
+      "rv20": 0.7446,
+      "oi": 216,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "p10-p25",
+        "metric": "fwd EV/EBITDA",
+        "stale": false,
+        "upside": 0.6223
+      }
     },
     {
       "ticker": "VST",
       "theme": "power generation (IPP)",
       "bucket": "Nuclear/Power",
       "status": "conditional",
-      "spot": 120.29,
-      "move_1d": -13.83,
-      "drawdown": -28.81,
-      "vol": 0.5153,
+      "spot": 112.89,
+      "move_1d": -6.15,
+      "drawdown": -33.19,
+      "vol": 0.5387,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5153,
+      "iv_straddle": 0.5387,
       "skew80": null,
-      "rv20": 0.7754,
-      "oi": 6325,
-      "earnings": "2026-11-06",
+      "rv20": 0.7737,
+      "oi": 3661,
+      "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
-        "falling knife: wait 2 stable sessions",
-        "event hold: earnings 2026-11-06"
-      ]
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "<p10",
+        "metric": "fwd EV/EBITDA",
+        "stale": false,
+        "upside": 0.7183
+      }
     },
     {
       "ticker": "TLN",
       "theme": "power generation (IPP)",
       "bucket": "Nuclear/Power",
       "status": "conditional",
-      "spot": 326.78,
-      "move_1d": -8.54,
-      "drawdown": -25.41,
-      "vol": 0.5757,
+      "spot": 316.225,
+      "move_1d": -3.23,
+      "drawdown": -27.82,
+      "vol": 0.5855,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.5757,
+      "iv_straddle": 0.5855,
       "skew80": null,
-      "rv20": 0.6508,
-      "oi": 153,
+      "rv20": 0.6369,
+      "oi": 330,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
       "flags": [
         "falling knife: wait 2 stable sessions",
         "thin listed options"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "DKNG",
       "theme": "sports betting/gaming",
       "bucket": "Cyclical/Consumer",
       "status": "eligible",
-      "spot": 23.11,
-      "move_1d": 5.38,
-      "drawdown": -23.02,
-      "vol": 0.581,
+      "spot": 23.52,
+      "move_1d": 1.77,
+      "drawdown": -21.65,
+      "vol": 0.5708,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.581,
+      "iv_straddle": 0.5708,
       "skew80": null,
-      "rv20": 0.407,
+      "rv20": 0.3953,
       "oi": 4487,
       "earnings": null,
       "entry": "sweet spot (-20% to -50%)",
-      "flags": []
+      "flags": [],
+      "valuation": null
     },
     {
       "ticker": "QUBT",
       "theme": "quantum computing",
       "bucket": "Quantum",
       "status": "conditional",
-      "spot": 6.43,
-      "move_1d": 0.0,
-      "drawdown": -48.1,
-      "vol": 0.6501,
+      "spot": 5.63,
+      "move_1d": -12.44,
+      "drawdown": -54.56,
+      "vol": 0.7424,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.6501,
+      "iv_straddle": 0.7424,
       "skew80": null,
-      "rv20": 0.6869,
+      "rv20": 0.8163,
       "oi": 5853,
       "earnings": "2026-11-09",
-      "entry": "sweet spot (-20% to -50%)",
+      "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-09"
-      ]
+      ],
+      "valuation": null
     },
     {
       "ticker": "QBTS",
       "theme": "quantum annealing",
       "bucket": "Quantum",
       "status": "conditional",
-      "spot": 10.38,
-      "move_1d": 0.1,
-      "drawdown": -65.56,
-      "vol": 0.7626,
+      "spot": 9.05,
+      "move_1d": -12.81,
+      "drawdown": -69.97,
+      "vol": 0.858,
       "vol_src": "6M straddle",
       "iv_api": null,
-      "iv_straddle": 0.7626,
+      "iv_straddle": 0.858,
       "skew80": null,
-      "rv20": 0.7052,
-      "oi": 21007,
+      "rv20": 0.8181,
+      "oi": 1970,
       "earnings": "2026-11-10",
       "entry": "deep drawdown (>50%)",
       "flags": [
+        "thesis check: >50% off high without valuation support",
+        "falling knife: wait 2 stable sessions",
         "event hold: earnings 2026-11-10"
-      ]
+      ],
+      "valuation": null
+    },
+    {
+      "ticker": "DXCM",
+      "theme": "medtech/diabetes devices (health)",
+      "bucket": "Biotech/Health",
+      "status": "eligible",
+      "spot": 84.46,
+      "move_1d": -4.54,
+      "drawdown": -8.53,
+      "vol": 0.4309,
+      "vol_src": "6M straddle",
+      "iv_api": null,
+      "iv_straddle": 0.4309,
+      "skew80": null,
+      "rv20": 0.4825,
+      "oi": 2053,
+      "earnings": null,
+      "entry": "near 6M high",
+      "flags": [],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "p10-p25",
+        "metric": "fwd EV/EBITDA",
+        "stale": false,
+        "upside": 0.1361
+      }
+    },
+    {
+      "ticker": "ZBH",
+      "theme": "medtech/orthopedics (health)",
+      "bucket": "Biotech/Health",
+      "status": "conditional",
+      "spot": 106.85,
+      "move_1d": -3.0,
+      "drawdown": -3.0,
+      "vol": 0.3211,
+      "vol_src": "6M straddle",
+      "iv_api": null,
+      "iv_straddle": 0.3211,
+      "skew80": null,
+      "rv20": 0.533,
+      "oi": 59,
+      "earnings": null,
+      "entry": "near 6M high",
+      "flags": [
+        "thin listed options"
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "<p10",
+        "metric": "fwd EV/EBITDA",
+        "stale": false,
+        "upside": 0.03
+      }
+    },
+    {
+      "ticker": "ZS",
+      "theme": "cybersecurity software",
+      "bucket": "Software",
+      "status": "conditional",
+      "spot": 203.88,
+      "move_1d": -9.16,
+      "drawdown": -21.72,
+      "vol": 0.652,
+      "vol_src": "6M straddle",
+      "iv_api": null,
+      "iv_straddle": 0.652,
+      "skew80": null,
+      "rv20": 0.7308,
+      "oi": 726,
+      "earnings": "2026-11-24",
+      "entry": "sweet spot (-20% to -50%)",
+      "flags": [
+        "falling knife: wait 2 stable sessions",
+        "thin listed options"
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "<p10",
+        "metric": "fwd P/S",
+        "stale": false,
+        "upside": 0.128
+      }
+    },
+    {
+      "ticker": "BE",
+      "theme": "fuel cells/on-site power generation",
+      "bucket": "Nuclear/Power",
+      "status": "conditional",
+      "spot": 167.52,
+      "move_1d": -16.41,
+      "drawdown": -51.56,
+      "vol": 0.8709,
+      "vol_src": "6M straddle",
+      "iv_api": null,
+      "iv_straddle": 0.8709,
+      "skew80": null,
+      "rv20": 1.1426,
+      "oi": 2558,
+      "earnings": null,
+      "entry": "deep drawdown (>50%)",
+      "flags": [
+        "falling knife: wait 2 stable sessions"
+      ],
+      "valuation": {
+        "as_of": "2026-11-06",
+        "label": "supported",
+        "band": "<p10",
+        "metric": "fwd P/E",
+        "stale": false,
+        "upside": 0.8567
+      }
     }
   ]
 }
