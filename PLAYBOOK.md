@@ -25,6 +25,8 @@ The desk rules for screening worst-of Fixed Coupon Notes (FCNs) on US equities, 
 | **20–50% below with 20-day realized vol still elevated** | **Sweet spot.** Coupon screens rich without buying a fresh top. |
 | More than 50% below | Caution: check whether the thesis is broken. |
 
+**Valuation floor check.** A worst-of FCN can hand the client the worst leg at the strike, so ask: *would we be happy to own it there?* A sturdier floor is a forward multiple below the name's own 10-year 25th percentile, a median analyst target above the price, and revenue still growing. A target below the price is a weak floor. A name more than 50% off its high with no valuation support needs a written thesis check before RFQ. The daily screen reads `fundamentals/valuation.csv` and shows this as a non-blocking cross-check; refresh the file at least monthly and after earnings. Cheap against its own history is not proof: ask *why* it is cheap (cycle, one-off, or broken thesis).
+
 **Falling-knife rule.** Never strike on a fresh heavy down day. Wait for **two consecutive stabilization sessions** (price holds, no new low) before activating a basket on a falling name. Conditional ideas stay conditional until the test passes, and the output must say so.
 
 **Never anchor to a spike.** Do not set strikes against a parabolic or immediately post-event print.
@@ -132,7 +134,7 @@ python scripts/fcn_model.py --vols 0.55 0.45 --corr 0.4 --ki-style daily --strik
 `watchlist.csv` is a **candidate pool, not a fixed universe**. Every name is re-scored daily; none is guaranteed a pick.
 
 - **Daily additions from the market** (whether or not a name is in the pool): overnight earnings/FDA/contract/M&A events with residual vol; liquid names whose realized vol jumps with real option depth; well-known names newly in the 20–50% drawdown zone; the two most liquid names in a theme seeing clear rotation; any name a client asks about (answer even if the answer is "not suitable").
-- **To join the pool**, a name passes four gates: sensible drawdown position, enough realized vol, enough option open interest, event calendar mapped. Verify expiries and issuer eligibility first.
+- **To join the pool**, a name passes four gates: sensible drawdown position, enough realized vol, enough option open interest, event calendar mapped. Verify expiries and issuer eligibility first. Where a valuation read exists, prefer names with a supported floor (§2) and log the read in `fundamentals/valuation.csv`.
 - **Freeze or remove** when the thesis breaks, vol is exhausted (within 10% of highs with RV collapsed), option liquidity dries up, or the name becomes off-limits. Log every change with a reason in `watchlist-changelog.md` so names do not resurface without memory.
 
 ## 12. Screening requirements (desk defaults)

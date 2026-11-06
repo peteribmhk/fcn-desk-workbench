@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-06: Valuation floor check
+
+- **Valuation cross-check in the daily screen.** New `fundamentals/valuation.csv` holds each name's forward multiple against its own 10-year range, the median analyst target and consensus revenue growth. The screen labels every leg (supported / target below price / rich vs own history / neutral), adds a "Valuation cross-check" section for the legs in today's picks and a `Valuation` column in the full screen, and flags names more than 50% off their high with no valuation support for a thesis check. Non-blocking: no name is removed. Missing file = old behaviour. Guide: `fundamentals/README.md`.
+- **Watchlist round 3:** DXCM, ZBH, ZS, BE (see `watchlist-changelog.md`). DXCM and ZBH give the screen mid-vol medtech defensive legs; the health bucket previously held only high-vol biotech.
+- PLAYBOOK §2 gains the "Valuation floor check"; §11 asks for a valuation read when adding names.
+
 ## 2026-11-04: Implied vol sources
 
 - **Tradier/ORATS IV in the daily screen.** When a `TRADIER_TOKEN` secret is set (a free sandbox token works), the screen takes ORATS smoothed ATM implied vol for the ~3M and ~6M expiries, ATM open interest, and a 6M skew read (80% put minus ATM). Nasdaq straddle IV is still fetched as the fallback and shown as a cross-check; gaps above 10 vol points are flagged. Without a token the screen behaves exactly as before. Setup: `research/data-sources.md`.
