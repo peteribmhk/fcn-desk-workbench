@@ -13,6 +13,14 @@ Added: AVGO, ANET, WDC, STX, LITE, DELL, CRWV, ORCL, SNOW, NET, DDOG, SOFI, AFRM
 Reason: user directive — the pool is a living candidate base, not a fixed universe; broadened across AI infra, power, software, fintech, China ADR, biotech, space/defense, quantum.
 Pending for round-2 names: option-expiry verification + issuer eligibility check before first RFQ.
 
+## 2026-11-06 — Round 3 additions (+4, pool 69 → 73)
+
+Added: DXCM, ZBH, ZS, BE.
+Reason: sourced from an external valuation screen (forward multiple below the name's own 10-year 25th percentile, revenue still growing, market cap ≥ $10B, median analyst target above price). DXCM and ZBH fill a gap: the Biotech/Health bucket held only high-vol biotech, with no mid-vol medtech to act as a defensive non-tech leg. ZS adds a software leg; BE an aggressive power leg.
+Considered and skipped: RMD, BAX, GEN (median analyst target below price, so a weak floor if struck); MDLN (2025 IPO, short valuation history, many issuers will not quote it); ABT, SYK, CARR (vol too low for a useful coupon).
+Valuation reads for these and for NVDA, GEV, VST, ISRG, IONQ are in `fundamentals/valuation.csv`; the daily screen shows them as a non-blocking cross-check.
+Pending: option-expiry verification + issuer eligibility before first RFQ.
+
 ## Frozen / Removed
 
 (none yet — first weekly review due week of 2026-09-07)

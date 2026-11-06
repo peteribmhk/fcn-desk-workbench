@@ -79,6 +79,11 @@ MANUAL_IV_PATH = REPO_ROOT / "iv_inputs" / "manual_iv.csv"
 MANUAL_IV_MAX_AGE_DAYS = 5
 LOCAL_OUT = REPO_ROOT / "local" / "daily"   # git-ignored; default output when manual IV is loaded
 
+# Valuation cross-check (committed, hand-maintained; see fundamentals/README.md)
+VALUATION_PATH = REPO_ROOT / "fundamentals" / "valuation.csv"
+VALUATION_MAX_AGE_DAYS = 45  # older rows are still shown but marked stale
+DEEP_DRAWDOWN = -50.0        # beyond this, PLAYBOOK §2 asks for a thesis check
+
 NASDAQ_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
     "Accept": "application/json, text/plain, */*",
@@ -214,6 +219,82 @@ def load_manual_iv(path: Path, today: dt.date) -> tuple[dict[str, dict], list[st
              + (f", {stale} stale rows ignored (older than {MANUAL_IV_MAX_AGE_DAYS} days)" if stale else "")
              + (f", {bad} unreadable rows skipped" if bad else "") + "."]
     return out, notes
+
+
+def load_valuation(path: Path, today: dt.date) -> tuple[dict[str, dict], list[str]]:
+    """Read fundamentals/valuation.csv. Returns ({ticker: read}, notes).
+
+    Each read places the current forward multiple against the name's own 10-year
+    range (p10 / p25 / median), the median analyst target against the price, and
+    next-year revenue growth, then gives one label:
+      supported          cheap vs own history (below p25), target above price, revenue growing
+      target below price analysts see no upside: weak floor if the note gets struck
+      rich vs own history above the 10-year median
+      neutral            anything else
+    Non-blocking: the label annotates the screen, it never removes a name.
+    """
+    if not path.exists():
+        return {}, []
+    out, bad = {}, 0
+    with path.open(newline="", encoding="utf-8-sig") as file:
+        for row in csv.DictReader(file):
+            ticker = (row.get("ticker") or "").strip().upper()
+            if not ticker or ticker.startswith("#"):
+                continue
+            try:
+                day = dt.date.fromisoformat((row.get("as_of") or "").strip())
+            except ValueError:
+                bad += 1
+                continue
+            cur, p10, p25, med = (to_float(row.get(k)) for k in ("current", "p10", "p25", "median"))
+            price, target = to_float(row.get("price")), to_float(row.get("target_median"))
+            growth = to_float(row.get("rev_g_next"))
+            if any(math.isnan(v) for v in (cur, p10, p25, med)):
+                bad += 1
+                continue
+            if cur < p10:
+                band = "<p10"
+            elif cur < p25:
+                band = "p10-p25"
+            elif cur < med:
+                band = "p25-p50"
+            else:
+                band = ">p50"
+            upside = target / price - 1 if price > 0 and not math.isnan(target) else float("nan")
+            if not math.isnan(upside) and upside <= 0:
+                label = "target below price"
+            elif band == ">p50":
+                label = "rich vs own history"
+            elif band in ("<p10", "p10-p25") and not math.isnan(upside) and (math.isnan(growth) or growth > 0):
+                label = "supported"
+            else:
+                label = "neutral"
+            caveat = (row.get("caveat") or "").strip()
+            age = (today - day).days
+            out[ticker] = {
+                "as_of": day.isoformat(), "stale": age > VALUATION_MAX_AGE_DAYS, "metric": (row.get("metric") or "").strip(),
+                "current": cur, "band": band, "upside": upside, "growth": growth, "label": label, "caveat": caveat,
+            }
+    notes = []
+    if out or bad:
+        oldest = min((v["as_of"] for v in out.values()), default="n/a")
+        n_stale = sum(1 for v in out.values() if v["stale"])
+        notes.append(f"Valuation file: {len(out)} names from `fundamentals/valuation.csv` (oldest row {oldest})"
+                     + (f", {n_stale} older than {VALUATION_MAX_AGE_DAYS} days (marked stale)" if n_stale else "")
+                     + (f", {bad} unreadable rows skipped" if bad else "") + ".")
+    return out, notes
+
+
+def valuation_text(v: dict | None, short: bool = False) -> str:
+    if not v:
+        return "n/a"
+    up = "" if math.isnan(v["upside"]) else f", target {v['upside']*100:+.0f}%"
+    text = v["label"] if short else f"{v['label']} ({v['metric']} {v['band']} of 10Y{up})"
+    if v["caveat"]:
+        text += "*"
+    if v["stale"]:
+        text += " [stale]"
+    return text
 
 
 # --------------------------------------------------------------------------- data fetch
@@ -508,11 +589,11 @@ def _iv(opts: dict, label: str) -> float | None:
 
 
 def analyse_name(row: dict, entry: dict, today: dt.date, manual: dict | None = None,
-                 manual_override: bool = False) -> dict:
+                 manual_override: bool = False, valuation: dict | None = None) -> dict:
     t = row["ticker"]
     hist = entry.get("history") or []
     info = {"ticker": t, "theme": row.get("theme", ""), "bucket": bucket_of(row.get("theme", "")),
-            "risks": row.get("primary_risks", ""), "flags": [], "status": "no data"}
+            "risks": row.get("primary_risks", ""), "flags": [], "status": "no data", "valuation": valuation}
     if len(hist) < 25:
         return info
     closes = [c for _, c in hist]
@@ -576,6 +657,13 @@ def analyse_name(row: dict, entry: dict, today: dt.date, manual: dict | None = N
         info["entry"] = "sweet spot (-20% to -50%)"
     else:
         info["entry"] = "deep drawdown (>50%)"
+
+    # Valuation cross-check (non-blocking, PLAYBOOK §2): a deep drawdown needs a reason to
+    # believe the floor holds; a target below price means a weak floor if the note is struck.
+    if valuation and valuation["label"] == "target below price":
+        info["flags"].append("valuation: analyst target below price")
+    if dd < DEEP_DRAWDOWN and not (valuation and valuation["label"] == "supported"):
+        info["flags"].append("thesis check: >50% off high without valuation support")
 
     # Falling-knife rule: fresh heavy drop, or a new 20D low in either of the last two sessions
     low20_prior = min(closes[-22:-2]) if len(closes) >= 22 else min(closes[:-2])
@@ -761,17 +849,24 @@ def why_line(b: dict) -> str:
         bits = [f"{x['ticker']}: {x['entry']}", f"{x['drawdown']:.0f}% vs 6M high", f"vol {x['vol']*100:.0f}% ({x['vol_src']})"]
         if x.get("earnings"):
             bits.append(f"next earnings {x['earnings']}")
+        if x.get("valuation"):
+            bits.append(f"valuation {valuation_text(x['valuation'])}")
+        elif x["drawdown"] < DEEP_DRAWDOWN:
+            bits.append("thesis check needed (no valuation data)")
         parts.append(", ".join(bits))
     return "; ".join(parts)
 
 
 def generate(market: dict, now_utc: dt.datetime, prev: dict, manual: dict | None = None,
-             manual_override: bool = False, manual_notes: list[str] | None = None) -> tuple[str, dict]:
+             manual_override: bool = False, manual_notes: list[str] | None = None,
+             valuation: dict | None = None, valuation_notes: list[str] | None = None) -> tuple[str, dict]:
     watchlist = load_watchlist()
     today = now_utc.astimezone(HKT).date()
     manual = manual or {}
+    valuation = valuation or {}
     analysed = [analyse_name(row, market["names"].get(row["ticker"], {}), today,
-                             manual.get(row["ticker"]), manual_override) for row in watchlist]
+                             manual.get(row["ticker"]), manual_override, valuation.get(row["ticker"]))
+                for row in watchlist]
     with_data = [x for x in analysed if "vol" in x]
     with_opts = [x for x in with_data if x.get("iv3") or x.get("iv6")]
     n_api = sum(1 for x in with_data if "ORATS" in x["vol_src"])
@@ -862,6 +957,26 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict, manual: dict | None
     for b in pairs[:3] + trios[:2]:
         lines.append(f"- **{' / '.join(x['ticker'] for x in b['names'])}**: {why_line(b)}")
 
+    # Valuation cross-check for every leg in today's picks (non-blocking)
+    shown = pairs + trios + ([anchor] if anchor else [])
+    legs = {x["ticker"]: x for b in shown for x in b["names"]}
+    if legs:
+        vrows = []
+        for t, x in sorted(legs.items(), key=lambda kv: kv[1]["drawdown"]):
+            v = x.get("valuation")
+            if v:
+                read = valuation_text(v)
+            elif x["drawdown"] < DEEP_DRAWDOWN:
+                read = "**no data: thesis check before RFQ**"
+            else:
+                read = "no data"
+            vrows.append([t, fmt_pct(x["drawdown"], 0), read, (v or {}).get("caveat", "")])
+        lines += ["", "## Valuation cross-check (legs in today's picks)", "",
+                  "Would you be happy to own the worst leg at the strike? Cheap against its own 10-year range, "
+                  "an analyst target above the price and growing revenue make a sturdier floor. "
+                  "Not blocking: it informs the RFQ, it does not remove names. Data: `fundamentals/valuation.csv`.", "",
+                  md_table(["Ticker", "vs 6M high", "Valuation read", "Caveat"], vrows)]
+
     if pairs:
         lines += ["", f"## KI ladder: {' / '.join(x['ticker'] for x in pairs[0]['names'])} (top pair)", "",
                   ki_ladder_table(pairs[0]), "",
@@ -888,7 +1003,7 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict, manual: dict | None
         eheader += ["Straddle IV", "6M skew 80-ATM"]
     if show_manual:
         eheader += ["Manual IV30"]
-    eheader += ["RV20", "ATM OI", "Next earnings"]
+    eheader += ["RV20", "ATM OI", "Next earnings", "Valuation"]
     erow = []
     for x in eligible:
         r = [x["ticker"], x["bucket"], f"{x['spot']:.2f}", fmt_pct(x["move_1d"], 1, True), fmt_pct(x["drawdown"], 0),
@@ -898,7 +1013,8 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict, manual: dict | None
         if show_manual:
             r += [vpct((x.get("manual") or {}).get("iv30"))]
         r += [f"{x['rv20']*100:.0f}%" if not math.isnan(x["rv20"]) else "n/a",
-              f"{x['oi']:,}" if x.get("oi") else "n/a", x.get("earnings") or "n/a"]
+              f"{x['oi']:,}" if x.get("oi") else "n/a", x.get("earnings") or "n/a",
+              valuation_text(x.get("valuation"), short=True)]
         erow.append(r)
     lines.append(md_table(eheader, erow))
     cross = [x for x in with_data if any(f.startswith(("IV sources disagree", "manual IV30")) for f in x["flags"])]
@@ -932,6 +1048,7 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict, manual: dict | None
             else "configured (15-min delayed sandbox data unless TRADIER_BASE_URL points to production)." if tradier.get("configured")
             else "not configured. Add a `TRADIER_TOKEN` repository secret to use ORATS IV (see `research/data-sources.md`)."),
         *[f"- {note}" for note in (manual_notes or [])],
+        *[f"- {note}" for note in (valuation_notes or [])],
         f"- Missing today: {', '.join(missing) if missing else 'none'}.",
         f"- Model rate assumption {TERMS.rate*100:.2f}% + {TERMS.funding_spread*100:.2f}% funding; ballpark low end = ATM vol and 1.5% issuer margin, high end = ATM vol +3 pts and 0.75% margin.",
         "- Crypto-linked names are excluded by default.",
@@ -948,6 +1065,9 @@ def generate(market: dict, now_utc: dt.datetime, prev: dict, manual: dict | None
             "skew80": None if x.get("skew80") is None else round(x["skew80"], 4),
             "rv20": None if math.isnan(x["rv20"]) else round(x["rv20"], 4),
             "oi": x.get("oi", 0), "earnings": x.get("earnings"), "entry": x["entry"], "flags": x["flags"],
+            "valuation": None if not x.get("valuation") else {
+                k: x["valuation"][k] for k in ("as_of", "label", "band", "metric", "stale")}
+                | {"upside": None if math.isnan(x["valuation"]["upside"]) else round(x["valuation"]["upside"], 4)},
         }
         for x in with_data
     ]
@@ -971,11 +1091,14 @@ def main() -> None:
                         help="Hand-filled IV file for cross-checks (default: iv_inputs/manual_iv.csv; ignored if missing)")
     parser.add_argument("--manual-iv-override", action="store_true",
                         help="Use the manual IV as the model vol (iv_6m if given, else iv30). Local runs only.")
+    parser.add_argument("--valuation", default=str(VALUATION_PATH),
+                        help="Valuation cross-check file (default: fundamentals/valuation.csv; ignored if missing)")
     args = parser.parse_args()
 
     now_utc = dt.datetime.now(dt.timezone.utc)
     today = now_utc.astimezone(HKT).date()
     manual, manual_notes = load_manual_iv(Path(args.manual_iv), today)
+    valuation, valuation_notes = load_valuation(Path(args.valuation), today)
     if args.manual_iv_override and not manual:
         parser.error("--manual-iv-override needs a manual IV file with fresh rows")
     if args.fixture:
@@ -1000,7 +1123,8 @@ def main() -> None:
     archive.mkdir(parents=True, exist_ok=True)
     prev_path = daily / "latest.json"
     prev = previous_baskets(prev_path if prev_path.exists() else REPO_ROOT / "daily" / "latest.json")
-    report, record = generate(market, now_utc, prev, manual, args.manual_iv_override, manual_notes)
+    report, record = generate(market, now_utc, prev, manual, args.manual_iv_override, manual_notes,
+                              valuation, valuation_notes)
     (daily / "latest.md").write_text(report, encoding="utf-8")
     (daily / "latest.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
     (archive / now_utc.astimezone(HKT).strftime("%Y-%m-%d-%H%M-HKT.md")).write_text(report, encoding="utf-8")
