@@ -1,6 +1,6 @@
 # FCN Daily Screen
 
-**Generated:** 2026-11-26 12:07 HKT  |  **US close used:** 2026-11-25  |  **Data status:** GREEN
+**Generated:** 2026-11-27 12:12 HKT  |  **US close used:** 2026-11-25  |  **Data status:** GREEN
 
 > Indicative only. Not a firm quote. Not investment advice. Final coupon and terms must be confirmed by issuer RFQ and firm-approved systems.
 > Public/delayed data, used only to decide what to RFQ. Issuer RFQ levels override everything below.
@@ -13,25 +13,25 @@ Structure assumed for the ballpark: USD worst-of FCN, 6M, KO 100% monthly from m
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | UAL / BABA | Cyclical/Consumer + China ADR | 49 / 47 | 0.25 | 18-24% | 12% | Balanced | fresh |
-| 2 | UAL / BIDU | Cyclical/Consumer + China ADR | 49 / 48 | 0.41 | 18-24% | 12% | Balanced | fresh |
-| 3 | AMD / RIVN | Semis/AI HW + EV/Auto | 71 / 69 | 0.27 | 44-50% | 27% | Higher coupon | fresh |
-| 4 | AMD / TDOC | Semis/AI HW + Biotech/Health | 71 / 62 | -0.17 | 42-48% | 28% | Higher coupon | fresh |
-| 5 | CRWV / NTLA | AI Cloud/DC + Biotech/Health | 104 / 88 | 0.30 | 70-75% | 39% | Aggressive | fresh |
+| 1 | UAL / BABA | Cyclical/Consumer + China ADR | 49 / 47 | 0.25 | 18-24% | 12% | Balanced | repeat, same rationale |
+| 2 | UAL / BIDU | Cyclical/Consumer + China ADR | 49 / 48 | 0.41 | 18-24% | 12% | Balanced | repeat, same rationale |
+| 3 | AMD / RIVN | Semis/AI HW + EV/Auto | 71 / 69 | 0.27 | 44-50% | 27% | Higher coupon | repeat, same rationale |
+| 4 | AMD / TDOC | Semis/AI HW + Biotech/Health | 71 / 62 | -0.17 | 42-48% | 29% | Higher coupon | repeat, same rationale |
+| 5 | CRWV / NTLA | AI Cloud/DC + Biotech/Health | 104 / 88 | 0.30 | 71-76% | 39% | Aggressive | repeat, same rationale |
 
 ## Three-stock picks
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | UAL / BABA / GOOGL | Cyclical/Consumer + China ADR + Mega-cap | 49 / 47 / 41 | 0.30 | 20-27% | 15% | Balanced | fresh |
-| 2 | AMD / RIVN / TDOC | Semis/AI HW + EV/Auto + Biotech/Health | 71 / 69 / 62 | 0.07 | 53-59% | 40% | Higher coupon | fresh |
-| 3 | ASTS / APLD / MRNA | Space/Defense + AI Cloud/DC + Biotech/Health | 108 / 106 / 86 | 0.32 | 84-89% | 51% | Aggressive | fresh |
+| 1 | UAL / BABA / GOOGL | Cyclical/Consumer + China ADR + Mega-cap | 49 / 47 / 41 | 0.30 | 20-27% | 15% | Balanced | repeat, same rationale |
+| 2 | AMD / RIVN / TDOC | Semis/AI HW + EV/Auto + Biotech/Health | 71 / 69 / 62 | 0.07 | 53-59% | 40% | Higher coupon | repeat, same rationale |
+| 3 | ASTS / APLD / MRNA | Space/Defense + AI Cloud/DC + Biotech/Health | 108 / 106 / 86 | 0.32 | 84-89% | 51% | Aggressive | repeat, same rationale |
 
 ## Familiar-name anchor (for conservative clients)
 
 | # | Basket | Themes | Vol % (legs) | Avg corr | 6M KI59 ballpark | P(loss) | Profile | Requote |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | NVDA / PDD | Semis/AI HW + China ADR | 55 / 37 | 0.07 | 17-23% | 12% | Higher coupon | repeat, same rationale |
+| 1 | NVDA / PDD | Semis/AI HW + China ADR | 55 / 38 | 0.07 | 17-23% | 12% | Higher coupon | repeat, same rationale |
 
 Deep listed liquidity, lower vol, easy to explain. Expect a lower coupon.
 
@@ -68,11 +68,11 @@ Would you be happy to own the worst leg at the strike? Cheap against its own 10-
 
 | KI | Ballpark coupon p.a. | P(loss at maturity) | Pickup per KI pt | Read |
 | --- | --- | --- | --- | --- |
-| 50% | 7.8-12.9% | 4.7% | - | base protection |
-| 55% | 13.0-18.7% | 8.4% | 1.10% p.a. | strong pickup |
-| 59% | 18.0-23.9% | 12.2% | 1.27% p.a. | strong pickup |
-| 65% | 25.5-31.6% | 18.8% | 1.27% p.a. | strong pickup |
-| 70% | 31.3-37.0% | 24.7% | 1.12% p.a. | strong pickup |
+| 50% | 7.9-13.0% | 4.8% | - | base protection |
+| 55% | 13.1-18.9% | 8.5% | 1.11% p.a. | strong pickup |
+| 59% | 18.1-24.0% | 12.3% | 1.26% p.a. | strong pickup |
+| 65% | 25.6-31.7% | 18.9% | 1.27% p.a. | strong pickup |
+| 70% | 31.4-37.1% | 24.8% | 1.12% p.a. | strong pickup |
 
 Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% balanced; above 0.60% the higher KI may be worth it. Model pickup is smooth by construction; the real decision uses the issuer's KI ladder.
 
@@ -84,7 +84,7 @@ Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% b
 | SMR | -1.5% | -77% | 96% | thesis check: >50% off high without valuation support; falling knife: wait 2 stable sessions |
 | SNDK | -5.6% | -75% | 95% | thesis check: >50% off high without valuation support; falling knife: wait 2 stable sessions |
 | ALAB | -0.5% | -61% | 94% | thesis check: >50% off high without valuation support; thin listed options |
-| CRDO | +0.3% | -65% | 93% | thesis check: >50% off high without valuation support; event hold: earnings 2026-12-01; thin listed options |
+| CRDO | +0.3% | -65% | 94% | thesis check: >50% off high without valuation support; event hold: earnings 2026-12-01; thin listed options |
 | RGTI | +3.4% | -71% | 93% | thesis check: >50% off high without valuation support; thin listed options |
 | LEU | -1.0% | -58% | 92% | thesis check: >50% off high without valuation support; thin listed options |
 | COHR | -0.0% | -54% | 89% | thesis check: >50% off high without valuation support; thin listed options |
@@ -93,7 +93,7 @@ Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% b
 | STX | -2.1% | -57% | 80% | thesis check: >50% off high without valuation support; thin listed options |
 | MRVL | -0.5% | -59% | 77% | thesis check: >50% off high without valuation support; event hold: earnings 2026-12-01 |
 | DELL | +0.6% | -50% | 77% | thin listed options |
-| AVAV | +2.2% | -56% | 76% | thesis check: >50% off high without valuation support; event hold: earnings 2026-12-08; thin listed options |
+| AVAV | +2.2% | -56% | 77% | thesis check: >50% off high without valuation support; event hold: earnings 2026-12-08; thin listed options |
 | KTOS | +2.6% | -55% | 73% | thesis check: >50% off high without valuation support; thin listed options |
 | VRT | -0.3% | -52% | 72% | thesis check: >50% off high without valuation support; thin listed options |
 | NET | -1.4% | -22% | 71% | thin listed options |
@@ -123,7 +123,7 @@ Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% b
 | CRWV | AI Cloud/DC | 42.57 | -0.1% | -66% | 104% | 6M straddle | 157% | 11,802 | n/a | n/a |
 | NTLA | Biotech/Health | 10.31 | -2.0% | -42% | 88% | 6M straddle | 79% | 6,014 | n/a | n/a |
 | QBTS | Quantum | 7.00 | +3.9% | -77% | 100% | 6M straddle | 125% | 1,653 | n/a | n/a |
-| LUNR | Space/Defense | 9.14 | +2.4% | -79% | 97% | 6M straddle | 144% | 2,272 | n/a | n/a |
+| LUNR | Space/Defense | 9.14 | +2.4% | -79% | 98% | 6M straddle | 144% | 2,272 | n/a | n/a |
 | BE | Nuclear/Power | 152.89 | -2.3% | -56% | 96% | 6M straddle | 140% | 1,752 | n/a | supported* |
 | IONQ | Quantum | 23.54 | +5.1% | -67% | 94% | 6M straddle | 130% | 5,823 | n/a | supported* |
 | OKLO | Nuclear/Power | 19.47 | +1.4% | -73% | 92% | 6M straddle | 121% | 4,371 | n/a | n/a |
@@ -135,8 +135,8 @@ Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% b
 | AMD | Semis/AI HW | 406.03 | -1.8% | -37% | 71% | 6M straddle | 136% | 4,477 | n/a | n/a |
 | RIVN | EV/Auto | 11.71 | +3.2% | -42% | 69% | 6M straddle | 75% | 4,997 | n/a | n/a |
 | ENPH | Solar/Clean | 20.86 | +2.4% | -71% | 79% | 6M straddle | 87% | 1,643 | n/a | n/a |
-| WDC | Semis/AI HW | 272.45 | -0.5% | -63% | 78% | 6M straddle | 120% | 1,709 | n/a | n/a |
-| ARM | Semis/AI HW | 161.51 | -0.0% | -63% | 77% | 6M straddle | 124% | 3,093 | n/a | n/a |
+| WDC | Semis/AI HW | 272.45 | -0.5% | -63% | 79% | 6M straddle | 120% | 1,709 | n/a | n/a |
+| ARM | Semis/AI HW | 161.51 | -0.0% | -63% | 78% | 6M straddle | 124% | 3,093 | n/a | n/a |
 | MU | Semis/AI HW | 601.25 | -4.5% | -50% | 72% | 6M straddle | 134% | 4,055 | 2026-12-17 | n/a |
 | TDOC | Biotech/Health | 7.62 | +1.3% | -22% | 62% | 6M straddle | 104% | 31,278 | n/a | n/a |
 | ANET | Semis/AI HW | 163.99 | -2.7% | -24% | 62% | 6M straddle | 98% | 2,075 | n/a | n/a |
@@ -157,7 +157,7 @@ Pickup per KI point thresholds: below 0.25% p.a. keep the lower KI; 0.25-0.60% b
 | GOOGL | Mega-cap | 273.10 | -2.1% | -28% | 41% | 6M straddle | 61% | 3,193 | n/a | n/a |
 | JD | China ADR | 26.38 | +2.5% | -21% | 40% | 6M straddle | 44% | 5,423 | n/a | n/a |
 | NVO | Biotech/Health | 40.97 | +1.6% | -21% | 37% | 6M straddle | 40% | 28,227 | n/a | n/a |
-| PDD | China ADR | 87.42 | +0.2% | -6% | 37% | 6M straddle | 49% | 13,425 | n/a | n/a |
+| PDD | China ADR | 87.42 | +0.2% | -6% | 38% | 6M straddle | 49% | 13,425 | n/a | n/a |
 
 ## Before you send an RFQ
 
